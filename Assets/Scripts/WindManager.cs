@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class WindManager : MonoBehaviour
 {
-    public static WindManager instance;
     public GameObject windPrefab;
     GameObject actualBlock;
     Wind wind = new Wind();
@@ -15,61 +14,71 @@ public class WindManager : MonoBehaviour
     public Vector3 startDirection;
     public Vector3 endDirection;
 
+    public Ray origin;
+    public Vector3 direction;
     private Vector3 windDirection;
 
-    private void Awake()
-    {
-        if (instance == null)
-            instance = this;
+    float windTimeLife;
 
-        if (instance != null || instance != this)
-            Destroy(this);
-    }
+   
 
     private void Start()
     {
 
     }
 
-    public void chargeWind(GameObject actualBlock)
+    public void Update()
     {
-        Vector3 temp = new Vector3();
-        temp.z += 0.1f;
-        windForce += temp;
+
+    }
+
+    public void setWindPos(GameObject actualBlock)
+    {
+
+        //Vector3 temp = new Vector3();
+        //temp.z += 0.1f;
+        //windForce += temp;
 
         //Debug.Log(windForce);
+        windPrefab.GetComponent<Rigidbody>().velocity = Vector3.zero;
         windPrefab.transform.position = new Vector3(actualBlock.transform.position.x, 1, actualBlock.transform.position.z);
-        //Debug.Log(windPrefab.transform.position);
-        wind.ActualState = Wind.windState.Charging;
+        startDirection = windPrefab.transform.position;
 
-        if (startDirection.x > endDirection.x)
-            windDirection = Vector3.right;
-
-        if (startDirection.x < endDirection.x)
-            windDirection = Vector3.left;
-
-        if(startDirection.y > endDirection.y)
-            windDirection = Vector3.up;
-
-        if (startDirection.y < endDirection.y)
-            windDirection = Vector3.down;
-
-
-        Debug.Log(windDirection);
-
-        //Debug.Log("Direção inicial"+ startDirection);
-        //Debug.Log("Direção final"+ endDirection);
-
+        //Debug.Log(windDirection);
 
 
     }
 
-    public void releaseWind()
+    public void chargeWind(GameObject actualBlock)
     {
-        wind.ActualState = Wind.windState.Released;
-        windPrefab.GetComponent<Rigidbody>().AddForce(windForce * Time.deltaTime * speedLaunch , ForceMode.Impulse);
-
+        windPrefab.transform.position = new Vector3(actualBlock.transform.position.x, 1, actualBlock.transform.position.z);
     }
+
+    public void releaseWind(GameObject actualBlock)
+    {
+        endDirection = actualBlock.transform.position;
+        windPrefab.transform.localEulerAngles = new Vector3(0, 45, 0);
+        windPrefab.GetComponent<Rigidbody>().AddForce((startDirection - endDirection).normalized * speedLaunch, ForceMode.VelocityChange);
+        windTimeLife = Mathf.Clamp(Vector2.Distance(startDirection, endDirection), 1f,5f);
+        StartCoroutine(startWindTimer(windTimeLife));
+        Debug.Log(windTimeLife);
+    }
+
+    IEnumerator startWindTimer(float wTimer)
+    {
+        yield return new WaitForSeconds(wTimer);
+        windPrefab.transform.position = new Vector3(50, 50, 50);
+        
+    }
+
+    //public void releaseWind(Vector3 endDirection)
+    //{
+    //    Debug.Log("Direção inicial" + startDirection);
+    //    Debug.Log("Direção final" + endDirection);
+    //    wind.ActualState = Wind.windState.Released;
+    //    windPrefab.GetComponent<Rigidbody>().AddForce((startDirection - endDirection).normalized * speedLaunch, ForceMode.Impulse);
+
+    //}
 
 
 
