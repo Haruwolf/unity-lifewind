@@ -56,10 +56,11 @@ public class WindManager : MonoBehaviour
 
     public void releaseWind(GameObject actualBlock)
     {
+        windTimeLife = 0;
         endDirection = actualBlock.transform.position;
         windPrefab.transform.localEulerAngles = new Vector3(0, 45, 0);
         windPrefab.GetComponent<Rigidbody>().AddForce((startDirection - endDirection).normalized * speedLaunch, ForceMode.VelocityChange);
-        windTimeLife = Mathf.Clamp(Vector2.Distance(startDirection, endDirection), 1f,5f);
+        windTimeLife = Mathf.Clamp(Vector3.Distance(startDirection, endDirection), 1f,5f);
         StartCoroutine(startWindTimer(windTimeLife));
         Debug.Log(windTimeLife);
     }

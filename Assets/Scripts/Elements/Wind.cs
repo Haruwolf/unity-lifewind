@@ -19,4 +19,6 @@ public class Wind
     windState _actualState = windState.None;
 
     public windState ActualState { get { return _actualState; } set { _actualState = value; } }
+
+
 }

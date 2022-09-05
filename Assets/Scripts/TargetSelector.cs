@@ -5,6 +5,8 @@ using UnityEngine;
 public class TargetSelector : MonoBehaviour
 {
     public WindManager windManager;
+    float timePressed;
+    Wind wind = new Wind();
     
     // Start is called before the first frame update
     void Start()
@@ -16,19 +18,35 @@ public class TargetSelector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            BlockSelected();
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    BlockSelected();
+        //}
 
         if (Input.GetMouseButton(0))
         {
-            ChargeWind();
+            timePressed += Time.deltaTime;
+
+            if (timePressed > 0.5f && timePressed < 0.8f)
+                BlockSelected();
+
+            else if (timePressed > 0.8f)
+            {
+                wind.ActualState = Wind.windState.Charging;
+                ChargeWind();
+            }
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            ReleaseWind();
+            timePressed = 0;
+
+            if (wind.ActualState == Wind.windState.Charging)
+            {
+                wind.ActualState = Wind.windState.None;
+                ReleaseWind();
+            }
+
         }
     }
 

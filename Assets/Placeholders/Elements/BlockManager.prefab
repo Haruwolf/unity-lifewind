@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 39542307813785149}
-  - component: {fileID: 5754846454964547672}
+  - component: {fileID: 1022432180408432996}
+  - component: {fileID: 8409913919694464260}
   m_Layer: 0
   m_Name: BlockManager
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5754846454964547672
+--- !u!114 &1022432180408432996
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,7 +41,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 39542307813785148}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1725bec876354b042a042b43e797fb7a, type: 3}
+  m_Script: {fileID: 11500000, guid: d1e80e8095f7d3348bd56bccf4f1dd84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedBlock: {fileID: 0}
+  windManager: {fileID: 0}
+--- !u!114 &8409913919694464260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39542307813785148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c20fa417e29dccd4dba9101ec162af63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waterBlocks:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
