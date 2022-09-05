@@ -5,4 +5,5 @@ using UnityEngine;
 public class WindActive : MonoBehaviour
 {
     public float windSpeed;
+
 }

@@ -81,7 +81,10 @@ public class WindManager : MonoBehaviour
     IEnumerator startWindTimer(float wTimer)
     {
         yield return new WaitForSeconds(wTimer);
-        windPrefab.transform.position = new Vector3(50, 50, 50);
+        {
+            windPrefab.transform.position = new Vector3(50, 50, 50);
+        }
+           
         
     }
 
