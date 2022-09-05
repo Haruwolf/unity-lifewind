@@ -20,6 +20,8 @@ public class WindManager : MonoBehaviour
 
     float windTimeLife;
 
+    public WindActive windActive;
+
    
 
     private void Start()
@@ -60,9 +62,20 @@ public class WindManager : MonoBehaviour
         endDirection = actualBlock.transform.position;
         windPrefab.transform.localEulerAngles = new Vector3(0, 45, 0);
         windPrefab.GetComponent<Rigidbody>().AddForce((startDirection - endDirection).normalized * speedLaunch, ForceMode.VelocityChange);
-        windTimeLife = Mathf.Clamp(Vector3.Distance(startDirection, endDirection), 1f,5f);
+        setWindTimer();
+        
+    }
+
+    private void setWindTimer()
+    {
+        windTimeLife = Mathf.Clamp(Vector3.Distance(startDirection, endDirection), 1f, 5f);
+        setWindProperty(windTimeLife);
         StartCoroutine(startWindTimer(windTimeLife));
-        Debug.Log(windTimeLife);
+    }
+
+    private void setWindProperty(float windTime)
+    {
+        windActive.GetComponent<WindActive>().windSpeed = windTime;
     }
 
     IEnumerator startWindTimer(float wTimer)

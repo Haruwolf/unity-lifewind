@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Water
   - Wind
+  - Grass
+  - OoB
+  - Cloud
   layers:
   - Default
   - TransparentFX

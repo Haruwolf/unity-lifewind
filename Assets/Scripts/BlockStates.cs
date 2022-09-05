@@ -13,4 +13,18 @@ public class BlockStates : MonoBehaviour
         Vector3 cloudPos = new Vector3(transform.position.x, 2, transform.position.z);
         Instantiate(cloudGameObject, cloudPos, gameObject.transform.rotation);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Cloud")
+            canSpawnCloud = false;
+
+        //Debug.Log(canSpawnCloud);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {    
+        canSpawnCloud = true;
+        //Debug.Log(canSpawnCloud);
+    }
 }
