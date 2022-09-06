@@ -6,12 +6,6 @@ public class CloudPosition : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        //if (other.gameObject.tag == "Wind")
-        //{
-        //    WindActive windActive = other.GetComponent<WindActive>();
-        //    if (windActive.windSpeed > 4)
-        //        Destroy(gameObject);
-        //}
     }
     private void OnTriggerStay(Collider other)
     { 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrowControl : MonoBehaviour
+public class Eucalipto : MonoBehaviour
 {
     public Plant plant;
 

@@ -6,6 +6,8 @@ public class BlockState : MonoBehaviour
 {
     private Renderer rendererGameObject;
     private Color originalColor;
+
+    public bool canCreateWeeds;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +16,11 @@ public class BlockState : MonoBehaviour
     }
 
     public bool occupiedBlock;
+    List<GameObject> blocksAround = new List<GameObject>();
+
+    public GameObject weedGameObject;
+
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -33,6 +40,36 @@ public class BlockState : MonoBehaviour
             //gameObject.tag = "Grass";
             rendererGameObject.material.color = originalColor;
         }
+
+    }
+
+    public void AroundObjects()
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(gameObject.transform.position, 1);
+        foreach (Collider collider in hitColliders)
+        {
+            if (collider.gameObject.tag == "Grass")
+            {
+                if (collider.gameObject != gameObject)
+                {
+                    canCreateWeeds = true;
+                    blocksAround.Add(collider.gameObject);
+                    Debug.Log(collider.gameObject.name);
+                    createWeeds(blocksAround);
+                    collider.gameObject.GetComponent<Renderer>().material.color = Color.cyan;
+                }
+            }
+            
+        }
+
+
+    }
+
+    void createWeeds(List<GameObject> blocksAround)
+    {
+        int indexChoosed = Random.Range(0, blocksAround.Count);
+        GameObject weedBlock = blocksAround[indexChoosed].gameObject;
+        Instantiate(weedGameObject, new Vector3(weedBlock.transform.position.x, 1, weedBlock.transform.position.z), weedBlock.transform.rotation);
 
     }
 }

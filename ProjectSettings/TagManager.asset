@@ -10,6 +10,7 @@ TagManager:
   - OoB
   - Cloud
   - Plant
+  - Weed
   layers:
   - Default
   - TransparentFX

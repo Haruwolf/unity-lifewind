@@ -6,11 +6,11 @@ public class Seed : MonoBehaviour
 {
     public Plant plant;
     public WindActive windPrefab;
-    public GrowControl plantGameObject;
+    public Eucalipto plantGameObject;
 
     private void OnEnable()
     {
-        plantGameObject = gameObject.transform.parent.GetComponent<GrowControl>();
+        plantGameObject = gameObject.transform.parent.GetComponent<Eucalipto>();
 
 
     }
@@ -42,7 +42,7 @@ public class Seed : MonoBehaviour
     {
         if (other.gameObject.tag == "Wind" && Wind.ActualState == Wind.windState.Released)
         {
-            plantGameObject.plant.isIngrained = true;
+            
             plantGameObject.transform.SetParent(null);
             setPlantOnCube(plantGameObject.transform.position);
             
@@ -61,8 +61,13 @@ public class Seed : MonoBehaviour
                 switch (blockLanded.gameObject.tag)
                 {
                     case "Grass":
-                        blockLanded.GetComponent<BlockState>().occupiedBlock = true;
-                        plantGameObject.transform.position = new Vector3(blockLanded.gameObject.transform.position.x, blockLanded.gameObject.transform.position.y, blockLanded.gameObject.transform.position.z);
+                        if (plantGameObject.plant.isIngrained == false)
+                        {
+                            plantGameObject.plant.isIngrained = true;
+                            blockLanded.GetComponent<BlockState>().occupiedBlock = true;
+                            blockLanded.GetComponent<BlockState>().AroundObjects();
+                            plantGameObject.transform.position = new Vector3(blockLanded.gameObject.transform.position.x, 1, blockLanded.gameObject.transform.position.z);
+                        }
                         break;
                     case "Water":
                         Debug.Log(blockLanded.gameObject.tag);

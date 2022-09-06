@@ -6,11 +6,11 @@ public class Sprout: MonoBehaviour
 {
     public Plant plant;
     public WindActive windPrefab;
-    public GrowControl plantGameObject;
+    public Eucalipto plantGameObject;
 
     private void OnEnable()
     {
-        plantGameObject = gameObject.transform.parent.GetComponent<GrowControl>();
+        plantGameObject = gameObject.transform.parent.GetComponent<Eucalipto>();
         
     }
 
