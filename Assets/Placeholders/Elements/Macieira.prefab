@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3588312155851966597}
   m_Layer: 0
   m_Name: Macieira
-  m_TagString: Untagged
+  m_TagString: Plant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56,6 +56,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8257690447122279548}
     m_Modifications:
+    - target: {fileID: 2125934340313680763, guid: 75c25ab913fcc3f48aaaf5c46ac87978, type: 3}
+      propertyPath: m_Size.y
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2341367655604820756, guid: 75c25ab913fcc3f48aaaf5c46ac87978, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -107,6 +111,10 @@ PrefabInstance:
     - target: {fileID: 7379394624520840685, guid: 75c25ab913fcc3f48aaaf5c46ac87978, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7379394624520840685, guid: 75c25ab913fcc3f48aaaf5c46ac87978, type: 3}
+      propertyPath: m_TagString
+      value: Plant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75c25ab913fcc3f48aaaf5c46ac87978, type: 3}
@@ -174,6 +182,14 @@ PrefabInstance:
     - target: {fileID: 7378554526822225263, guid: 1f315aab776903246a4b6d7cf23c1560, type: 3}
       propertyPath: m_Name
       value: Seeds
+      objectReference: {fileID: 0}
+    - target: {fileID: 7378554526822225263, guid: 1f315aab776903246a4b6d7cf23c1560, type: 3}
+      propertyPath: m_TagString
+      value: Plant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7741552256991370462, guid: 1f315aab776903246a4b6d7cf23c1560, type: 3}
+      propertyPath: m_Size.y
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f315aab776903246a4b6d7cf23c1560, type: 3}
@@ -245,6 +261,18 @@ PrefabInstance:
     - target: {fileID: 4208197007632896719, guid: 4ea8e7cb0e332404589dd0857ab795b4, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4208197007632896719, guid: 4ea8e7cb0e332404589dd0857ab795b4, type: 3}
+      propertyPath: m_TagString
+      value: Plant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4358046950051708200, guid: 4ea8e7cb0e332404589dd0857ab795b4, type: 3}
+      propertyPath: plantGameObject
+      value: 
+      objectReference: {fileID: 3588312155851966597}
+    - target: {fileID: 6278300396685629267, guid: 4ea8e7cb0e332404589dd0857ab795b4, type: 3}
+      propertyPath: m_Size.y
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ea8e7cb0e332404589dd0857ab795b4, type: 3}

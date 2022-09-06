@@ -290,7 +290,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 1.2, z: 0.8}
+  m_Size: {x: 0.8, y: 2, z: 0.8}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &2447952455843590169
 Rigidbody:
@@ -321,3 +321,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   windPrefab: {fileID: 2063016554423257727, guid: 5172d82bf8591204cb50762c08a8f823, type: 3}
+  plantGameObject: {fileID: 0}

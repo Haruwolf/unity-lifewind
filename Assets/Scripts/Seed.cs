@@ -11,8 +11,10 @@ public class Seed : MonoBehaviour
     private void OnEnable()
     {
         plantGameObject = gameObject.transform.parent.GetComponent<GrowControl>();
-        
+
+
     }
+
 
     private void OnTriggerStay(Collider other)
     {
@@ -24,7 +26,7 @@ public class Seed : MonoBehaviour
             }
         }
 
-        if(other.gameObject.tag == "Cloud")
+        if (other.gameObject.tag == "Cloud")
         {
             if (plantGameObject.plant.isIngrained == true)
             {
@@ -42,29 +44,50 @@ public class Seed : MonoBehaviour
         {
             plantGameObject.plant.isIngrained = true;
             plantGameObject.transform.SetParent(null);
-        } 
-    }
-
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (plantGameObject.plant.isIngrained == true)
-        {
-            switch (other.gameObject.tag)
-            {
-                case "Grass":
-                    gameObject.transform.position = new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y, other.gameObject.transform.position.z);
-                    break;
-                case "Water":
-                    Destroy(gameObject);
-                    break;
-                case "OoB":
-                    Destroy(gameObject);
-                    break;
-
-                default:  
-                    break;
-            }
+            setPlantOnCube(plantGameObject.transform.position);
+            
         }
     }
+
+    public void setPlantOnCube(Vector3 plantPos)
+    {
+        Ray ray = new Ray(plantGameObject.transform.position, Vector3.down);
+
+        if (Physics.Raycast(ray, out RaycastHit hitInfo))
+        {
+            if (hitInfo.collider != null)
+            {
+                GameObject blockLanded = hitInfo.collider.gameObject;
+                switch (blockLanded.gameObject.tag)
+                {
+                    case "Grass":
+                        blockLanded.GetComponent<BlockState>().occupiedBlock = true;
+                        plantGameObject.transform.position = new Vector3(blockLanded.gameObject.transform.position.x, blockLanded.gameObject.transform.position.y, blockLanded.gameObject.transform.position.z);
+                        break;
+                    case "Water":
+                        Debug.Log(blockLanded.gameObject.tag);
+                        Destroy(plantGameObject.gameObject);
+                        break;
+                    case "OoB":
+                        Debug.Log(blockLanded.gameObject.tag);
+                        Destroy(plantGameObject.gameObject);
+                        break;
+
+                    default:
+                        break;
+                }
+
+            }
+
+        }
+    }
+
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (plantGameObject.plant.isIngrained)
+    //    {
+
+    //    }
+    //}
 }

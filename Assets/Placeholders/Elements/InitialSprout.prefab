@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2771857642936174158}
   m_Layer: 0
   m_Name: InitialSprout
-  m_TagString: Untagged
+  m_TagString: Plant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,3 +108,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86fdcbc766c408f4db7a340bff066ea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  seeds: {fileID: 0}
+  windPrefab: {fileID: 0}

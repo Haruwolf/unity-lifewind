@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 337670789246600840}
   - component: {fileID: 7060007862556891140}
   - component: {fileID: 4313636742676606901}
+  - component: {fileID: -2729281955368196602}
+  - component: {fileID: -1159281474266350839}
   m_Layer: 0
   m_Name: GBlock
   m_TagString: Grass
@@ -91,7 +93,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6079996070228828880}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -108,3 +110,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4ea5f35d4c39aa40bd143a5d2821266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2729281955368196602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6079996070228828880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ce7ee30bf1b5742847b9de534c6fa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  occupiedBlock: 0
+--- !u!54 &-1159281474266350839
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6079996070228828880}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
