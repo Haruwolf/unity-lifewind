@@ -16,9 +16,9 @@ public class Wind
         Released,
     }
 
-    windState _actualState = windState.None;
+    static windState _actualState = windState.None;
 
-    public windState ActualState { get { return _actualState; } set { _actualState = value; } }
+    public static windState ActualState { get { return _actualState; } set { _actualState = value; } }
 
 
 }

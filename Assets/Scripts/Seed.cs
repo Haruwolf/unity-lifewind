@@ -5,7 +5,7 @@ using UnityEngine;
 public class Seed : MonoBehaviour
 {
     public Plant plant;
-    public GameObject windPrefab;
+    public WindActive windPrefab;
 
     private void OnEnable()
     {
@@ -16,34 +16,49 @@ public class Seed : MonoBehaviour
             canDestroy: false,
             wLevel: 0,
             isIngrained: false);
+
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Wind" && plant.isIngrained == false)
-            gameObject.transform.position = new Vector3(other.gameObject.transform.position.x, 2, other.gameObject.transform.position.z);
+        if (other.gameObject.tag == "Wind")
+        { 
+            if (plant.isIngrained == false && Wind.ActualState == Wind.windState.Released)
+            {
+                gameObject.transform.position = new Vector3(other.gameObject.transform.position.x, 2, other.gameObject.transform.position.z);
+            }
+        }           
     }
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Wind")
+        if (other.gameObject.tag == "Wind" && Wind.ActualState == Wind.windState.Released)
         {
             plant.isIngrained = true;
             gameObject.transform.SetParent(null);
-            Debug.Log("teste");
         } 
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Grass" && plant.isIngrained == true)
-            gameObject.transform.position = new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y, other.gameObject.transform.position.z);
+        if (plant.isIngrained == true)
+        {
+            switch (other.gameObject.tag)
+            {
+                case "Grass":
+                    gameObject.transform.position = new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y, other.gameObject.transform.position.z);
+                    break;
+                case "Water":
+                    Destroy(gameObject);
+                    break;
+                case "OoB":
+                    Destroy(gameObject);
+                    break;
 
-        if (other.gameObject.tag == "Water" && plant.isIngrained == true)
-            Destroy(gameObject);
-
-        
-
+                default:  
+                    break;
+            }
+        }
     }
 }

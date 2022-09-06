@@ -6,6 +6,7 @@ public class TargetSelector : MonoBehaviour
 {
     public WindManager windManager;
     float timePressed;
+    public WindActive windPrefab;
     Wind wind = new Wind();
     
     // Start is called before the first frame update
@@ -32,8 +33,9 @@ public class TargetSelector : MonoBehaviour
 
             else if (timePressed > 0.8f)
             {
-                wind.ActualState = Wind.windState.Charging;
+                Wind.ActualState = Wind.windState.Charging;
                 ChargeWind();
+                windPrefab.updateState(wind);
             }
         }
 
@@ -41,10 +43,11 @@ public class TargetSelector : MonoBehaviour
         {
             timePressed = 0;
 
-            if (wind.ActualState == Wind.windState.Charging)
+            if (Wind.ActualState == Wind.windState.Charging)
             {
-                wind.ActualState = Wind.windState.None;
+                Wind.ActualState = Wind.windState.Released;
                 ReleaseWind();
+                windPrefab.updateState(wind);
             }
 
         }

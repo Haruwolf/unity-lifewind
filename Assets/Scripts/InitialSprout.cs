@@ -7,6 +7,7 @@ public class InitialSprout : MonoBehaviour
     Plant plant;
     public GameObject seeds;
     GameObject instantiateSeeds;
+    public WindActive windPrefab;
 
     private void OnEnable()
     {
@@ -17,14 +18,19 @@ public class InitialSprout : MonoBehaviour
             isIngrained: false,
             canDestroy: false,
             wLevel: 0);
+
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Wind")
         {
-            gameObject.GetComponent<Renderer>().enabled = false;
-            instantiateSeeds = Instantiate(seeds, gameObject.transform.position, gameObject.transform.rotation);
+            if (Wind.ActualState == Wind.windState.Released)
+            {
+                gameObject.GetComponent<Renderer>().enabled = false;
+                instantiateSeeds = Instantiate(seeds, gameObject.transform.position, gameObject.transform.rotation);
+            }
         }
     }
 
@@ -38,6 +44,14 @@ public class InitialSprout : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Destroy(gameObject);
+        if (other.gameObject.tag == "Wind")
+        {
+            GameObject go = other.gameObject;
+            if (Wind.ActualState == Wind.windState.Released)
+            {
+                Destroy(gameObject);
+            }
+        }
+
     }
 }

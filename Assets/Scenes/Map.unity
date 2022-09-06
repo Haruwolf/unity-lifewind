@@ -25884,6 +25884,10 @@ PrefabInstance:
       propertyPath: seeds
       value: 
       objectReference: {fileID: 7378554526822225263, guid: 1f315aab776903246a4b6d7cf23c1560, type: 3}
+    - target: {fileID: 2771857642936174158, guid: b4ffdd882d929264e9de7a39a75fd7cf, type: 3}
+      propertyPath: windPrefab
+      value: 
+      objectReference: {fileID: 285113223}
     - target: {fileID: 3476104076553047154, guid: b4ffdd882d929264e9de7a39a75fd7cf, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -34712,6 +34716,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1022432180408432996, guid: 8b2c37abc73d08f4e917bf3201dbd308, type: 3}
+      propertyPath: windPrefab
+      value: 
+      objectReference: {fileID: 285113223}
     - target: {fileID: 1022432180408432996, guid: 8b2c37abc73d08f4e917bf3201dbd308, type: 3}
       propertyPath: windManager
       value: 

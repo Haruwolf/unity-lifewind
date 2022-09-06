@@ -320,4 +320,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6e39273188a6094e999fa3437eeaa9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windPrefab: {fileID: 907277177468930964, guid: 5172d82bf8591204cb50762c08a8f823, type: 3}
+  windPrefab: {fileID: 2063016554423257727, guid: 5172d82bf8591204cb50762c08a8f823, type: 3}
