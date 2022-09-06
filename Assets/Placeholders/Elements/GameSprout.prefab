@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 248983003576446579}
   - component: {fileID: 2880104007864925956}
   - component: {fileID: 6278300396685629267}
+  - component: {fileID: 4358046950051708200}
   m_Layer: 0
   m_Name: GameSprout
   m_TagString: Untagged
@@ -95,3 +96,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.5, y: 3, z: 2.5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4358046950051708200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4208197007632896719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b411180bc7a0d046827be1cfdc5ed38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  windPrefab: {fileID: 2063016554423257727, guid: 5172d82bf8591204cb50762c08a8f823, type: 3}
+  plantGameObject: {fileID: 3588312155851966597, guid: 7bd0ad4aa42b0d14ba4c5734ccd7cf39, type: 3}

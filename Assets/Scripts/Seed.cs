@@ -6,43 +6,49 @@ public class Seed : MonoBehaviour
 {
     public Plant plant;
     public WindActive windPrefab;
+    public GrowControl plantGameObject;
 
     private void OnEnable()
     {
-        plant = new Plant(
-            plantState: Plant.plantStates.Seed,
-            iSprout: false,
-            iWeed: false,
-            canDestroy: false,
-            wLevel: 0,
-            isIngrained: false);
-
+        plantGameObject = gameObject.transform.parent.GetComponent<GrowControl>();
+        
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Wind")
-        { 
-            if (plant.isIngrained == false && Wind.ActualState == Wind.windState.Released)
+        {
+            if (plantGameObject.plant.isIngrained == false && Wind.ActualState == Wind.windState.Released)
             {
-                gameObject.transform.position = new Vector3(other.gameObject.transform.position.x, 2, other.gameObject.transform.position.z);
+                plantGameObject.transform.position = new Vector3(other.gameObject.transform.position.x, 1, other.gameObject.transform.position.z);
             }
-        }           
+        }
+
+        if(other.gameObject.tag == "Cloud")
+        {
+            if (plantGameObject.plant.isIngrained == true)
+            {
+                plantGameObject.plant.WaterLevel += 0.5f * Time.deltaTime;
+                plantGameObject.plant.growStates(plantGameObject.plant.WaterLevel);
+                plantGameObject.checkGrow(plantGameObject.plant.WaterLevel);
+            }
+
+        }
     }
 
     public void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Wind" && Wind.ActualState == Wind.windState.Released)
         {
-            plant.isIngrained = true;
-            gameObject.transform.SetParent(null);
+            plantGameObject.plant.isIngrained = true;
+            plantGameObject.transform.SetParent(null);
         } 
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if (plant.isIngrained == true)
+        if (plantGameObject.plant.isIngrained == true)
         {
             switch (other.gameObject.tag)
             {

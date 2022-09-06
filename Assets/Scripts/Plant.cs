@@ -13,38 +13,49 @@ public class Plant
         Weed,
     }
 
-    plantStates plantState = Plant.plantStates.NotSet;
+    public plantStates plantState = Plant.plantStates.NotSet;
 
-    bool initialSprout;
-    bool isWeed;
-    bool canBeDestroyed;
+    public bool initialSprout;
+    public bool isWeed;
+    public bool canBeDestroyed;
     public bool isIngrained;
-    int waterLevel;
+    private float _waterLevel;
 
-    public Plant(plantStates plantState, bool iSprout, bool iWeed, bool canDestroy, int wLevel, bool isIngrained)
+    public float WaterLevel { get { return _waterLevel; } set
+        {
+            if (value < 20f)
+                _waterLevel = value;
+            else
+                _waterLevel = 20f;
+        }
+    }
+
+    public Plant(plantStates plantState, bool iSprout, bool iWeed, bool canDestroy, float wLevel, bool isIngrained)
     {
         this.plantState = plantState;
         initialSprout = iSprout;
         canBeDestroyed = canDestroy;
-        waterLevel = wLevel;
+        WaterLevel = wLevel;
         this.isIngrained = isIngrained;
     }
 
-    public void growStates()
+    public virtual void growStates(float wLevel)
     {
-        if (waterLevel > 5 && plantState == plantStates.Seed)
+        if (wLevel > 5 && plantState == plantStates.Seed)
         {
             plantState = plantStates.Sprout;
             return;
         }
 
-        if (waterLevel > 15 && plantState == plantStates.Sprout)
+        if (wLevel > 15 && plantState == plantStates.Sprout)
         {
             plantState = plantStates.Tree;
             return;
         }
 
     }
+
+
 
 
 
