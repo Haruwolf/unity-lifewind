@@ -19,13 +19,7 @@ public class WindActive : MonoBehaviour
         
     }
 
-    public void OnTriggerEnter(Collider other)
-    {
-        Debug.Log(wind.ActualState);
-        if (other.gameObject.tag == "Weed")
-            if (windSpeed > 2 && wind.ActualState == Wind.windState.Released)
-                Destroy(other.gameObject);
-    }
+   
 
 
 

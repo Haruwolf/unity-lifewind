@@ -8,11 +8,14 @@ public class BlockState : MonoBehaviour
     private Color originalColor;
 
     public bool canCreateWeeds;
+
+    public float waterLevel;
     // Start is called before the first frame update
     void Start()
     {
         rendererGameObject = GetComponent<Renderer>();
         originalColor = rendererGameObject.material.color;
+        canCreateWeeds = true;
     }
 
     public bool occupiedBlock;
@@ -32,6 +35,23 @@ public class BlockState : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+       if (other.gameObject.tag == "Cloud" && canCreateWeeds == true)
+        {
+            waterLevel += 1 * Time.deltaTime;
+        }
+
+       if (waterLevel > 1 && canCreateWeeds == true && occupiedBlock == false)
+        {
+            canCreateWeeds = false;
+            occupiedBlock = true;
+            Instantiate(weedGameObject, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 1, gameObject.transform.position.z), weedGameObject.transform.rotation);
+        }
+    }
+
+
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Plant")
@@ -43,33 +63,33 @@ public class BlockState : MonoBehaviour
 
     }
 
-    public void AroundObjects()
-    {
-        Collider[] hitColliders = Physics.OverlapSphere(gameObject.transform.position, 1);
-        foreach (Collider collider in hitColliders)
-        {
-            if (collider.gameObject.tag == "Grass")
-            {
-                if (collider.gameObject != gameObject)
-                {
-                    canCreateWeeds = true;
-                    blocksAround.Add(collider.gameObject);
-                    Debug.Log(collider.gameObject.name);
-                    createWeeds(blocksAround);
-                    collider.gameObject.GetComponent<Renderer>().material.color = Color.cyan;
-                }
-            }
+    //public void AroundObjects()
+    //{
+    //    Collider[] hitColliders = Physics.OverlapSphere(gameObject.transform.position, 5);
+    //    foreach (Collider collider in hitColliders)
+    //    {
+    //        if (collider.gameObject.tag == "Grass")
+    //        {
+    //            if (collider.gameObject != gameObject)
+    //            {
+    //                canCreateWeeds = true;
+    //                blocksAround.Add(collider.gameObject);
+    //                Debug.Log(collider.gameObject.name);
+    //                createWeeds(blocksAround);
+    //                collider.gameObject.GetComponent<Renderer>().material.color = Color.cyan;
+    //            }
+    //        }
             
-        }
+    //    }
 
 
-    }
+    //}
 
-    void createWeeds(List<GameObject> blocksAround)
-    {
-        int indexChoosed = Random.Range(0, blocksAround.Count);
-        GameObject weedBlock = blocksAround[indexChoosed].gameObject;
-        Instantiate(weedGameObject, new Vector3(weedBlock.transform.position.x, 1, weedBlock.transform.position.z), weedBlock.transform.rotation);
+    //void createWeeds(List<GameObject> blocksAround)
+    //{
+    //    int indexChoosed = Random.Range(0, blocksAround.Count);
+    //    GameObject weedBlock = blocksAround[indexChoosed].gameObject;
+    //    Instantiate(weedGameObject, new Vector3(weedBlock.transform.position.x, 1, weedBlock.transform.position.z), weedBlock.transform.rotation);
 
-    }
+    //}
 }

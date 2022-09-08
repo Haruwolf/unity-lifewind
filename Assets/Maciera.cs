@@ -9,6 +9,7 @@ public class Maciera : MonoBehaviour
     public GameObject seed;
     public GameObject sprout;
     public GameObject tree;
+
     private void Awake()
     {
         plant = new Plant(
@@ -17,7 +18,8 @@ public class Maciera : MonoBehaviour
             iWeed: false,
             canDestroy: false,
             wLevel: 0,
-            isIngrained: false);
+            isIngrained: false,
+            spawnSeed: true);
 
     }
 
@@ -29,6 +31,12 @@ public class Maciera : MonoBehaviour
         seed.SetActive(plant.plantState == Plant.plantStates.Seed);
         sprout.SetActive(plant.plantState == Plant.plantStates.Sprout); 
         tree.SetActive(plant.plantState == Plant.plantStates.Tree);
+
+        if (plant.WaterLevel > 1 && plant.spawnSeeds == true && plant.plantState == Plant.plantStates.Seed)
+        {
+            plant.spawnSeeds = false;
+            Instantiate(gameObject, gameObject.transform.position, gameObject.transform.rotation);
+        }
     }
 
 }

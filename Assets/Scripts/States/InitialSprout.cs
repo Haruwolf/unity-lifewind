@@ -17,7 +17,8 @@ public class InitialSprout : MonoBehaviour
             iWeed: false,
             isIngrained: false,
             canDestroy: false,
-            wLevel: 0);
+            wLevel: 0,
+            spawnSeed: false);
 
         
     }

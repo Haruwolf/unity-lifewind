@@ -16,10 +16,31 @@ public class Weed : MonoBehaviour
             iWeed: true,
             canDestroy: true,
             wLevel: 0,
-            isIngrained: true);
+            isIngrained: true,
+            spawnSeed: false);
     }
 
-   
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Wind")
+            if (other.gameObject.GetComponentInParent<WindActive>().windSpeed > 2 && other.gameObject.GetComponentInParent<WindActive>().wind.ActualState == Wind.windState.Released)
+            {
+                Destroy(gameObject);
+                Ray ray = new Ray(transform.position, Vector3.down);
 
+                if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity))
+                {
+                    if (hitInfo.collider.gameObject.tag == "Grass")
+                    {
+                        hitInfo.collider.gameObject.GetComponent<BlockState>().waterLevel = 0;
+                        hitInfo.collider.gameObject.GetComponent<BlockState>().occupiedBlock = false;
+                        hitInfo.collider.gameObject.GetComponent<BlockState>().canCreateWeeds = true;
+                    }
+                }
+            }
+
+
+
+    }
 }
 

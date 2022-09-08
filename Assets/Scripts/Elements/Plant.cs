@@ -19,6 +19,7 @@ public class Plant
     public bool isWeed;
     public bool canBeDestroyed;
     public bool isIngrained;
+    public bool spawnSeeds;
     private float _waterLevel;
 
     public float WaterLevel { get { return _waterLevel; } set
@@ -30,13 +31,14 @@ public class Plant
         }
     }
 
-    public Plant(plantStates plantState, bool iSprout, bool iWeed, bool canDestroy, float wLevel, bool isIngrained)
+    public Plant(plantStates plantState, bool iSprout, bool iWeed, bool canDestroy, float wLevel, bool isIngrained, bool spawnSeed)
     {
         this.plantState = plantState;
         initialSprout = iSprout;
         canBeDestroyed = canDestroy;
         WaterLevel = wLevel;
         this.isIngrained = isIngrained;
+        this.spawnSeeds = spawnSeed;
     }
 
     public virtual void growStates(float wLevel)

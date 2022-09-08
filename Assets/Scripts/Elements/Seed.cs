@@ -61,7 +61,7 @@ public class Seed : MonoBehaviour
                         {
                             plantGameObject.plant.isIngrained = true;
                             blockLanded.GetComponent<BlockState>().occupiedBlock = true;
-                            blockLanded.GetComponent<BlockState>().AroundObjects();
+                            //blockLanded.GetComponent<BlockState>().AroundObjects();
                             plantGameObject.transform.position = new Vector3(blockLanded.gameObject.transform.position.x, blockLanded.gameObject.transform.position.y + 1, blockLanded.gameObject.transform.position.z);
                         }
                         break;

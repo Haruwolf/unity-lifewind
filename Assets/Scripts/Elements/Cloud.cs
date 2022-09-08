@@ -63,6 +63,10 @@ public class Cloud : MonoBehaviour
     {
         if (cloudStateActual == cloudState.Released)
         {
+            rainPrefab.SetActive(true);
+            if (cloudHP > 200)
+                thunderPrefab.SetActive(true);
+
             cloudHP -= decrementHP * Time.deltaTime;
             currentColor += decrementHP / 255 * Time.deltaTime;
             if (cloudHP < 0)
@@ -71,17 +75,16 @@ public class Cloud : MonoBehaviour
             
         }
 
+        if (cloudHP < 200)
+        {
+            thunderPrefab.SetActive(false);
+
+        }
+
+
         cloudParticle.startColor = new Color(currentColor, currentColor, currentColor);
         //Debug.Log(cloudParticle.startColor.color);
 
-        if (cloudHP > 200)
-            thunderPrefab.SetActive(true);
-
-        if (cloudHP > 50)
-            rainPrefab.SetActive(true);
-
-        else
-            thunderPrefab.SetActive(false);
 
 
 
