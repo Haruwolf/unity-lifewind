@@ -1431,7 +1431,7 @@ MonoBehaviour:
     value: 2.6
   keyValue:
     overrideState: 1
-    value: 1.25
+    value: 1
   eyeAdaptation:
     overrideState: 0
     value: 0
