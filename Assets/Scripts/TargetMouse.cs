@@ -4,22 +4,27 @@ using UnityEngine;
 
 public class TargetMouse : MonoBehaviour
 {
-    private Renderer rendererGameObject;
-    private Color originalColor;
+
+    private Material[] materials;
+    private Color firstOriginalColor;
+    private Color secondOriginalColor;
     // Start is called before the first frame update
     void Start()
     {
-        rendererGameObject = GetComponent<Renderer>();
-        originalColor = rendererGameObject.material.color;
+        materials = GetComponent<Renderer>().materials;
+        firstOriginalColor = materials[0].color;
+        secondOriginalColor = materials[1].color;
     }
 
     private void OnMouseEnter()
     {
-        rendererGameObject.material.color = Color.yellow;
+        materials[0].color = Color.yellow;
+        materials[1].color = Color.yellow;
     }
 
     private void OnMouseExit()
     {
-        rendererGameObject.material.color = originalColor;
+        materials[0].color = firstOriginalColor;
+        materials[1].color = secondOriginalColor;
     }
 }

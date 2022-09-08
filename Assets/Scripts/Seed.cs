@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Seed : MonoBehaviour
 {
-    public Plant plant;
     public WindActive windPrefab;
-    public Eucalipto plantGameObject;
+    public Maciera plantGameObject;
 
     private void OnEnable()
     {
-        plantGameObject = gameObject.transform.parent.GetComponent<Eucalipto>();
-
-
+        plantGameObject = gameObject.transform.parent.GetComponent<Maciera>();
     }
 
 
@@ -22,7 +19,7 @@ public class Seed : MonoBehaviour
         {
             if (plantGameObject.plant.isIngrained == false && Wind.ActualState == Wind.windState.Released)
             {
-                plantGameObject.transform.position = new Vector3(other.gameObject.transform.position.x, 1, other.gameObject.transform.position.z);
+                plantGameObject.transform.position = new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y, other.gameObject.transform.position.z);
             }
         }
 
@@ -40,7 +37,7 @@ public class Seed : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Wind" && Wind.ActualState == Wind.windState.Released)
+        if (other.gameObject.tag == "Wind" && Wind.ActualState == Wind.windState.None)
         {
             
             plantGameObject.transform.SetParent(null);
@@ -51,9 +48,9 @@ public class Seed : MonoBehaviour
 
     public void setPlantOnCube(Vector3 plantPos)
     {
-        Ray ray = new Ray(plantGameObject.transform.position, Vector3.down);
+        Ray ray = new Ray(transform.position, Vector3.down);
 
-        if (Physics.Raycast(ray, out RaycastHit hitInfo))
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity))
         {
             if (hitInfo.collider != null)
             {
@@ -66,7 +63,7 @@ public class Seed : MonoBehaviour
                             plantGameObject.plant.isIngrained = true;
                             blockLanded.GetComponent<BlockState>().occupiedBlock = true;
                             blockLanded.GetComponent<BlockState>().AroundObjects();
-                            plantGameObject.transform.position = new Vector3(blockLanded.gameObject.transform.position.x, 1, blockLanded.gameObject.transform.position.z);
+                            plantGameObject.transform.position = new Vector3(blockLanded.gameObject.transform.position.x, blockLanded.gameObject.transform.position.y + 1, blockLanded.gameObject.transform.position.z);
                         }
                         break;
                     case "Water":

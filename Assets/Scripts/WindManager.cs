@@ -4,29 +4,43 @@ using UnityEngine;
 
 public class WindManager : MonoBehaviour
 {
-    public GameObject windPrefab;
-    GameObject actualBlock;
-    Wind wind = new Wind();
+    public GameObject cyclonePrefab;
+    public GameObject breezePrefab;
+    ParticleSystem cycloneParticle;
+    ParticleSystem breezeParticle;
     public float speedLaunch;
-
-    Vector3 windForce = new Vector3();
 
     public Vector3 startDirection;
     public Vector3 endDirection;
+    public Vector3 holdDirection;
+
+    public static Vector3 startDirectionstatic;
+    public static Vector3 endDirectionstatic;
+
 
     public Ray origin;
     public Vector3 direction;
-    private Vector3 windDirection;
 
     float windTimeLife;
 
     public WindActive windActive;
 
-   
+    [SerializeField]
+    [Range(0f, 10f)]
+    float windHeight = 7.5f;
+
+    GameObject cyClone;
+    GameObject breezeClone;
+
+
 
     private void Start()
     {
+        cycloneParticle = cyclonePrefab.GetComponent<ParticleSystem>();
+        breezeParticle = breezePrefab.GetComponent<ParticleSystem>();
 
+        cycloneParticle.Stop();
+        breezeParticle.Stop();
     }
 
     public void Update()
@@ -36,34 +50,40 @@ public class WindManager : MonoBehaviour
 
     public void setWindPos(GameObject actualBlock)
     {
-
-        //Vector3 temp = new Vector3();
-        //temp.z += 0.1f;
-        //windForce += temp;
-
-        //Debug.Log(windForce);
-        windPrefab.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        windPrefab.transform.position = new Vector3(actualBlock.transform.position.x, 1, actualBlock.transform.position.z);
-        startDirection = windPrefab.transform.position;
-
-        //Debug.Log(windDirection);
-
+        cyClone = Instantiate(cyclonePrefab, new Vector3(actualBlock.transform.position.x, actualBlock.transform.position.y + windHeight, actualBlock.transform.position.z), cycloneParticle.transform.rotation);
+        cyClone.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        cyClone.GetComponent<ParticleSystem>().Play();
+        startDirection = cyClone.transform.position;
+        startDirectionstatic = startDirection;
 
     }
 
     public void chargeWind(GameObject actualBlock)
     {
-        windPrefab.transform.position = new Vector3(actualBlock.transform.position.x, 1, actualBlock.transform.position.z);
+        cyClone.transform.position = new Vector3(actualBlock.transform.position.x, actualBlock.transform.position.y + windHeight, actualBlock.transform.position.z);
+        holdDirection = cyClone.transform.position;
+        float actualDistance = Mathf.Clamp(Vector3.Distance(holdDirection, startDirection) / 10, 0.5f, 3.0f);
+        cyClone.transform.localScale = new Vector3(actualDistance, actualDistance, actualDistance);
+
     }
 
     public void releaseWind(GameObject actualBlock)
     {
+        cyClone.GetComponent<ParticleSystem>().Stop();
+        endDirection = cyClone.transform.position;
+        endDirectionstatic = endDirection;
+        breezeClone = Instantiate(breezePrefab, endDirection, breezePrefab.transform.rotation);
+        breezeClone.GetComponent<ParticleSystem>().Play();
         windTimeLife = 0;
-        endDirection = actualBlock.transform.position;
-        windPrefab.transform.localEulerAngles = new Vector3(0, 45, 0);
-        windPrefab.GetComponent<Rigidbody>().AddForce((startDirection - endDirection).normalized * speedLaunch, ForceMode.VelocityChange);
+        Rigidbody breezeRigidbody = breezeClone.GetComponent<Rigidbody>();
+        breezeRigidbody.AddForce((startDirection - endDirection).normalized * speedLaunch, ForceMode.VelocityChange);
         setWindTimer();
-        
+
+    }
+
+    public void canceledWind()
+    {
+        cyClone.GetComponent<ParticleSystem>().Stop();
     }
 
     private void setWindTimer()
@@ -82,10 +102,14 @@ public class WindManager : MonoBehaviour
     {
         yield return new WaitForSeconds(wTimer);
         {
-            windPrefab.transform.position = new Vector3(50, 50, 50);
+            breezeClone.GetComponent<ParticleSystem>().Stop();
+            Wind.ActualState = Wind.windState.None;
+            //Destroy(breezeClone);
+            //Destroy(cyClone);
+
         }
-           
-        
+
+
     }
 
     //public void releaseWind(Vector3 endDirection)
