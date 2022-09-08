@@ -8,11 +8,11 @@ public class BlockStates : MonoBehaviour
     public GameObject cloudGameObject;
    
 
-    public void spawnCloud()
-    {
-        Vector3 cloudPos = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
-        Instantiate(cloudGameObject, cloudPos, cloudGameObject.transform.rotation);
-    }
+    //public void spawnCloud()
+    //{
+    //    Vector3 cloudPos = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
+    //    Instantiate(cloudGameObject, cloudPos, cloudGameObject.transform.rotation);
+    //}
 
     private void OnTriggerEnter(Collider other)
     {

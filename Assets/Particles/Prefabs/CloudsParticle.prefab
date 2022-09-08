@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7243208415880103173}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.21, z: 1.03}
+  m_LocalPosition: {x: 0, y: 0, z: 1.61}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7243208417592492163}
@@ -4818,6 +4818,7 @@ GameObject:
   - component: {fileID: -5535727186443907569}
   - component: {fileID: 2439179488874625256}
   - component: {fileID: 7734372530187304678}
+  - component: {fileID: 1159446952894930238}
   m_Layer: 0
   m_Name: CloudsParticle
   m_TagString: Cloud
@@ -4833,7 +4834,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7243208417592492166}
   m_LocalRotation: {x: 0.6311612, y: 0.3188021, z: -0.3188012, w: 0.63116294}
-  m_LocalPosition: {x: 6.49, y: 10.8, z: 9.84}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.7756728, y: 1.7756728, z: 1.7756728}
   m_Children:
   - {fileID: 7243208417341346109}
@@ -4851,7 +4852,7 @@ ParticleSystem:
   serializedVersion: 7
   lengthInSec: 5
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 2
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -5031,7 +5032,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.23584908, g: 0.2322891, b: 0.2322891, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9664,6 +9665,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 3.31}
   m_Center: {x: 0, y: 0, z: 1.6}
+--- !u!114 &1159446952894930238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7243208417592492166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac8bc528c5007504991ab68f153f55d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cloudHP: 0
+  cloudMaxHP: 255
+  decrementHP: 25
+  cloudStateActual: 0
 --- !u!1001 &4214828730654910889
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9705,15 +9722,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6844099018982422676, guid: 7077a8e1f1f91f84ea55fde60c64ac84, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.07
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6844099018982422676, guid: 7077a8e1f1f91f84ea55fde60c64ac84, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.03
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6844099018982422676, guid: 7077a8e1f1f91f84ea55fde60c64ac84, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.31
+      value: 0.68
       objectReference: {fileID: 0}
     - target: {fileID: 6844099018982422676, guid: 7077a8e1f1f91f84ea55fde60c64ac84, type: 3}
       propertyPath: m_LocalRotation.w

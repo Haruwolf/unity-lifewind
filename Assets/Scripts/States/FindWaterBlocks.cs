@@ -33,7 +33,7 @@ public class FindWaterBlocks : MonoBehaviour
         int indexChoosed = Random.Range(0, availableBlocks.Count);
         GameObject wBlocks = availableBlocks[indexChoosed];
         wBlocks.GetComponent<BlockStates>().canSpawnCloud = false;
-        wBlocks.GetComponent<BlockStates>().spawnCloud();
+        //wBlocks.GetComponent<BlockStates>().spawnCloud();
         availableBlocks.Clear();
         Invoke(nameof(checkCloudTiles), 7);
     }

@@ -4232,6 +4232,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7099013272395054131, guid: 499ee1f5bab80a54ba98221a22542f3f, type: 3}
+      propertyPath: cloudPrefab
+      value: 
+      objectReference: {fileID: 7243208417592492166, guid: 0a71c5c2efae3814dba1d2e671e0b087, type: 3}
+    - target: {fileID: 7099013272395054131, guid: 499ee1f5bab80a54ba98221a22542f3f, type: 3}
       propertyPath: windManager
       value: 
       objectReference: {fileID: 8797846129683063874, guid: 8a569228b3bd6a549a84965290643a07, type: 3}
