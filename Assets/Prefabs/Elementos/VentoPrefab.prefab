@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 176642130764760640}
+  - component: {fileID: -3376866281167894133}
   m_Layer: 0
   m_Name: VentoPrefab
   m_TagString: Untagged
@@ -32,6 +33,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-3376866281167894133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2825915288988247718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 064fe3089f514f840b120d9d732b5b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  windSpeed: 0
 --- !u!1001 &3762702905267173953
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -101,6 +115,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 176642130764760640}
     m_Modifications:
+    - target: {fileID: 5206542835397840702, guid: 2d5f2417541631d40bd7e449ef431e99, type: 3}
+      propertyPath: windSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6080972213243413145, guid: 2d5f2417541631d40bd7e449ef431e99, type: 3}
       propertyPath: m_Name
       value: Vento

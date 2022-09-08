@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Seed : MonoBehaviour
 {
-    public WindActive windPrefab;
     public Maciera plantGameObject;
 
     private void OnEnable()
@@ -17,7 +16,7 @@ public class Seed : MonoBehaviour
     {
         if (other.gameObject.tag == "Wind")
         {
-            if (plantGameObject.plant.isIngrained == false && Wind.ActualState == Wind.windState.Released)
+            if (plantGameObject.plant.isIngrained == false && other.gameObject.GetComponentInParent<WindActive>().wind.ActualState == Wind.windState.Released)
             {
                 plantGameObject.transform.position = new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y, other.gameObject.transform.position.z);
             }
@@ -37,7 +36,7 @@ public class Seed : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Wind" && Wind.ActualState == Wind.windState.None)
+        if (other.gameObject.tag == "Wind" && other.gameObject.GetComponentInParent<WindActive>().wind.ActualState == Wind.windState.None)
         {
             
             plantGameObject.transform.SetParent(null);

@@ -26,11 +26,11 @@ public class InitialSprout : MonoBehaviour
     {
         if (other.gameObject.tag == "Wind")
         {
-            if (Wind.ActualState == Wind.windState.Released)
-            {
-                gameObject.GetComponent<Renderer>().enabled = false;
-                instantiateSeeds = Instantiate(seeds, gameObject.transform.position, gameObject.transform.rotation);
-            }
+            //if (Wind.ActualState == Wind.windState.Released)
+            //{
+            //    gameObject.GetComponent<Renderer>().enabled = false;
+            //    instantiateSeeds = Instantiate(seeds, gameObject.transform.position, gameObject.transform.rotation);
+            //}
         }
     }
 
@@ -46,11 +46,11 @@ public class InitialSprout : MonoBehaviour
     {
         if (other.gameObject.tag == "Wind")
         {
-            GameObject go = other.gameObject;
-            if (Wind.ActualState == Wind.windState.Released)
-            {
-                Destroy(gameObject);
-            }
+            //GameObject go = other.gameObject;
+            //if (Wind.ActualState == Wind.windState.Released)
+            //{
+            //    Destroy(gameObject);
+            //}
         }
 
     }

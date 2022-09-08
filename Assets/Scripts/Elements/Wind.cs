@@ -12,13 +12,14 @@ public class Wind
     public enum windState
     {
         None,
+        Setted,
         Charging,
         Released,
     }
 
-    static windState _actualState = windState.None;
+    windState _actualState = windState.None;
 
-    public static windState ActualState { get { return _actualState; } set { _actualState = value; } }
+    public windState ActualState { get { return _actualState; } set { _actualState = value; } }
 
 
 }

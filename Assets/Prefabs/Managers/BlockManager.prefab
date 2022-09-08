@@ -46,8 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minimumPressTime: 0.25
   maximumPressTime: 0.8
-  windManager: {fileID: 0}
+  windManager: {fileID: 8797846129683063874, guid: 8a569228b3bd6a549a84965290643a07, type: 3}
   windPrefab: {fileID: 0}
+  createdWind: {fileID: 0}
 --- !u!114 &1730137027951698003
 MonoBehaviour:
   m_ObjectHideFlags: 0

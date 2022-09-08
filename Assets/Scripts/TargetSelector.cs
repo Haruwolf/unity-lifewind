@@ -14,10 +14,11 @@ public class TargetSelector : MonoBehaviour
     float maximumPressTime = 0.8f;
 
 
-    public WindManager windManager;
+    public GameObject windManager;
     float timePressed;
-    public WindActive windPrefab;
-    Wind wind = new Wind();
+    public GameObject managerClone;
+
+    public int managerCount;
 
     // Start is called before the first frame update
     void Start()
@@ -29,41 +30,31 @@ public class TargetSelector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (managerCount < 4)
         {
-            if (Wind.ActualState == Wind.windState.None)
+            if (Input.GetMouseButtonDown(0))
             {
+                managerCount = Mathf.Clamp(managerCount++, 0, 4);
+                managerClone = Instantiate(windManager.gameObject);
                 BlockSelected();
             }
-        }
 
-        if (Input.GetMouseButton(0))
-        {
-            
+            if (Input.GetMouseButton(0))
+            {
                 timePressed += Time.deltaTime;
                 if (timePressed > maximumPressTime)
                 {
-                    Wind.ActualState = Wind.windState.Charging;
                     ChargeWind();
                 }
 
-        }
+            }
 
-        if (Input.GetMouseButtonUp(0))
-        {
-            timePressed = 0;
-
-            if (Wind.ActualState == Wind.windState.Charging)
+            if (Input.GetMouseButtonUp(0))
             {
-                Wind.ActualState = Wind.windState.Released;
                 ReleaseWind();
-            }
-
-            if (Wind.ActualState == Wind.windState.None)
-            {
                 CancelWind();
-            }
 
+            }
         }
     }
 
@@ -76,7 +67,7 @@ public class TargetSelector : MonoBehaviour
             if (hitInfo.collider.gameObject != null)
             {
                 GameObject selectedTerrain = hitInfo.collider.gameObject;
-                windManager.setWindPos(selectedTerrain);
+                managerClone.GetComponent<WindManager>().setWindPos(selectedTerrain);
             }
         }
 
@@ -92,7 +83,7 @@ public class TargetSelector : MonoBehaviour
             if (hitInfo.collider.gameObject != null)
             {
                 GameObject selectedTerrain = hitInfo.collider.gameObject;
-                windManager.chargeWind(selectedTerrain);
+                managerClone.GetComponent<WindManager>().chargeWind(selectedTerrain);
             }
         }
     }
@@ -106,13 +97,14 @@ public class TargetSelector : MonoBehaviour
             if (hitInfo.collider.gameObject != null)
             {
                 GameObject selectedTerrain = hitInfo.collider.gameObject;
-                windManager.releaseWind(selectedTerrain);
+                managerClone.GetComponent<WindManager>().releaseWind(selectedTerrain);
+                managerCount = Mathf.Clamp(managerCount - 1, 0, 4);
             }
         }
     }
 
     private void CancelWind()
     {
-        windManager.canceledWind();
+        //windManager.canceledWind();
     }
 }
