@@ -17,7 +17,7 @@ public class FindWaterBlocks : MonoBehaviour
     {
         foreach(GameObject wBlocks in waterBlocks)
         {
-            if(wBlocks.GetComponent<BlockStates>().canSpawnCloud == true)
+            if(wBlocks.GetComponent<CloudMaker>().canSpawnCloud == true)
                 availableBlocks.Add(wBlocks);
         }
 
@@ -32,7 +32,7 @@ public class FindWaterBlocks : MonoBehaviour
     {
         int indexChoosed = Random.Range(0, availableBlocks.Count);
         GameObject wBlocks = availableBlocks[indexChoosed];
-        wBlocks.GetComponent<BlockStates>().canSpawnCloud = false;
+        wBlocks.GetComponent<CloudMaker>().canSpawnCloud = false;
         //wBlocks.GetComponent<BlockStates>().spawnCloud();
         availableBlocks.Clear();
         Invoke(nameof(checkCloudTiles), 7);

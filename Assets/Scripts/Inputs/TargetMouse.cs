@@ -18,8 +18,16 @@ public class TargetMouse : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        materials[0].color = Color.yellow;
-        materials[1].color = Color.yellow;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity))
+        {
+            if (hitInfo.collider.tag == "Grass" || hitInfo.collider.tag == "Water")
+            {
+                materials[0].color = Color.yellow;
+                materials[1].color = Color.yellow;
+            }
+        }
+
     }
 
     private void OnMouseExit()

@@ -46,17 +46,18 @@ public class TargetSelector : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hitInfo))
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity))
             {
                 if (hitInfo.collider != null)
                 {
-                    if (hitInfo.collider.gameObject.tag != "Water")
+                    if (hitInfo.collider.gameObject.tag == "Grass")
                         CreateWind();
 
-                    else
+                    if (hitInfo.collider.gameObject.tag == "Water")
                         CreateCloud(hitInfo.collider.gameObject);
                 }
             }
+
         }
 
         if (Input.GetMouseButton(0))
@@ -158,23 +159,14 @@ public class TargetSelector : MonoBehaviour
 
     private void ReleaseWind()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out RaycastHit hitInfo))
-        {
-            if (hitInfo.collider.gameObject != null)
-            {
-                GameObject selectedTerrain = hitInfo.collider.gameObject;
-                managerClone.GetComponent<WindManager>().releaseWind(selectedTerrain);
-                managerCount = Mathf.Clamp(managerCount - 1, 0, 4);
-            }
-        }
+        managerClone.GetComponent<WindManager>().releaseWind();
+        managerCount = Mathf.Clamp(managerCount - 1, 0, 4);
 
         actualState = createStates.None;
     }
 
     private void CancelWind()
     {
-        //windManager.canceledWind();
+        managerClone.GetComponent<WindManager>().canceledWind();
     }
 }

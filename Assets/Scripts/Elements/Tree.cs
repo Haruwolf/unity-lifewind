@@ -11,7 +11,13 @@ public class Tree: MonoBehaviour
     private void OnEnable()
     {
         plantGameObject = gameObject.transform.parent.GetComponent<Maciera>();
-        
+        GameManager.instance.treesOnScreen += 1;
+
+    }
+
+    private void OnDisable()
+    {
+        GameManager.instance.treesOnScreen -= 1;
     }
 
     private void OnTriggerStay(Collider other)

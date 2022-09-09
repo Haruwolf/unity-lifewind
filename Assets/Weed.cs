@@ -18,6 +18,14 @@ public class Weed : MonoBehaviour
             wLevel: 0,
             isIngrained: true,
             spawnSeed: false);
+
+        GameManager.instance.weedsOnScreen += 1;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.instance.weedsOnScreen -= 1;
+        
     }
 
     public void OnTriggerEnter(Collider other)
@@ -25,6 +33,7 @@ public class Weed : MonoBehaviour
         if (other.gameObject.tag == "Wind")
             if (other.gameObject.GetComponentInParent<WindActive>().windSpeed > 2 && other.gameObject.GetComponentInParent<WindActive>().wind.ActualState == Wind.windState.Released)
             {
+                GameManager.instance.fillBar += 0.25f;
                 Destroy(gameObject);
                 Ray ray = new Ray(transform.position, Vector3.down);
 

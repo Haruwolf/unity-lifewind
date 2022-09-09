@@ -5,10 +5,12 @@ using UnityEngine;
 public class Seed : MonoBehaviour
 {
     public Maciera plantGameObject;
+    Vector3 originalPos;
 
     private void OnEnable()
     {
         plantGameObject = gameObject.transform.parent.GetComponent<Maciera>();
+        originalPos = plantGameObject.transform.localPosition;
     }
 
 
@@ -18,6 +20,7 @@ public class Seed : MonoBehaviour
         {
             if (plantGameObject.plant.isIngrained == false && other.gameObject.GetComponentInParent<WindActive>().wind.ActualState == Wind.windState.Released)
             {
+                Debug.Log("Entered");
                 plantGameObject.transform.position = new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y, other.gameObject.transform.position.z);
             }
         }
@@ -32,16 +35,17 @@ public class Seed : MonoBehaviour
             }
 
         }
+
     }
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Wind" && other.gameObject.GetComponentInParent<WindActive>().wind.ActualState == Wind.windState.None)
+
+        if (other.gameObject.tag == "Wind")
         {
-            
-            plantGameObject.transform.SetParent(null);
+            Debug.Log("Got Out");
             setPlantOnCube(plantGameObject.transform.position);
-            
+
         }
     }
 
@@ -61,17 +65,18 @@ public class Seed : MonoBehaviour
                         {
                             plantGameObject.plant.isIngrained = true;
                             blockLanded.GetComponent<BlockState>().occupiedBlock = true;
+                            blockLanded.gameObject.tag = "OoB";
                             //blockLanded.GetComponent<BlockState>().AroundObjects();
                             plantGameObject.transform.position = new Vector3(blockLanded.gameObject.transform.position.x, blockLanded.gameObject.transform.position.y + 1, blockLanded.gameObject.transform.position.z);
                         }
                         break;
                     case "Water":
-                        Debug.Log(blockLanded.gameObject.tag);
-                        Destroy(plantGameObject.gameObject);
+                        plantGameObject.transform.position = originalPos;
+                        plantGameObject.plant.isIngrained = false;
                         break;
                     case "OoB":
-                        Debug.Log(blockLanded.gameObject.tag);
-                        Destroy(plantGameObject.gameObject);
+                        plantGameObject.transform.position = originalPos;
+                        plantGameObject.plant.isIngrained = false;
                         break;
 
                     default:
@@ -79,7 +84,13 @@ public class Seed : MonoBehaviour
                 }
 
             }
+           
+        }
 
+        if (hitInfo.collider == null)
+        {
+            plantGameObject.transform.position = originalPos;
+            plantGameObject.plant.isIngrained = false;
         }
     }
 

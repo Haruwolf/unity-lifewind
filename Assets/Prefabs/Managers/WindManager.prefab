@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cyclonePrefab: {fileID: 1751114071482553813, guid: 660ab7702c7208644a55ca2f626b20fe, type: 3}
-  breezePrefab: {fileID: 6080972213243413145, guid: 2d5f2417541631d40bd7e449ef431e99, type: 3}
+  breezePrefab: {fileID: 974894406548077521, guid: 03b53a04d01678949a609af21c2cff38, type: 3}
   windParentPrefab: {fileID: 2825915288988247718, guid: 9ca144e6957105649ac7a678d6050f0e, type: 3}
-  speedLaunch: 3
+  speedLaunch: 6
   startDirection: {x: 0, y: 0, z: 0}
   endDirection: {x: 0, y: 0, z: 0}
   holdDirection: {x: 0, y: 0, z: 0}

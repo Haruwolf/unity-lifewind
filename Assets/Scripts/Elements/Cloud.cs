@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Cloud : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class Cloud : MonoBehaviour
 
     float currentColor;
 
+    public Image crystalBar;
+    public GameObject canvas;
 
     public enum cloudState
     {
@@ -40,22 +43,52 @@ public class Cloud : MonoBehaviour
         rainPrefab = transform.GetChild(0).gameObject;
         rainPrefab.SetActive(false);
 
+        canvas = GameObject.Find("Canvas");
+        crystalBar = Instantiate(crystalBar, canvas.transform);
+        
+
+
     }
 
     public void fillCloudHP()
     {
-        if (cloudHP < cloudMaxHP)
+        Ray ray = new Ray(gameObject.transform.position, Vector3.down);
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity))
         {
-            cloudHP += 25.5f * Time.deltaTime;
-            currentColor -= 25.5f / 255 * Time.deltaTime;
-        }
+            if (hitInfo.collider.tag == "Water")
+            {
 
-        else
-        {
-            cloudHP = Mathf.Clamp(cloudHP, 0, 255);
-            //currentColor = Mathf.Clamp(currentColor, 0, 0);
-        }
+                if (hitInfo.collider.gameObject.GetComponent<CloudMaker>().riverCooldown == false)
+                {
+                    if (cloudHP < cloudMaxHP)
+                    {
+                        cloudHP += 25.5f * Time.deltaTime;
+                        hitInfo.collider.gameObject.GetComponent<CloudMaker>().riverHP -= 25.5f * Time.deltaTime;
+                        currentColor -= 25.5f / 255 * Time.deltaTime;
+                    }
 
+                    else
+                    {
+                        cloudHP = Mathf.Clamp(cloudHP, 0, 255);
+                        //currentColor = Mathf.Clamp(currentColor, 0, 0);
+                    }
+                    crystalBar.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+                    crystalBar.enabled = true;
+                    crystalBar.fillAmount = hitInfo.collider.gameObject.GetComponent<CloudMaker>().riverHP / 100;
+                }
+
+               
+
+
+                else
+                {
+                    cloudStateActual = cloudState.Released;
+
+
+                }
+            }
+        }
+        
     }
 
     // Update is called once per frame
@@ -72,7 +105,9 @@ public class Cloud : MonoBehaviour
             if (cloudHP < 0)
                 GetComponent<ParticleSystem>().Stop();
 
-            
+            Mathf.Clamp(GetComponent<Rigidbody>().drag = cloudHP / 25f, 1, 10);
+            crystalBar.enabled = false;
+
         }
 
         if (cloudHP < 200)

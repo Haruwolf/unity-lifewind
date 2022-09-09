@@ -42,6 +42,8 @@ public class WindManager : MonoBehaviour
 
         cycloneParticle.Stop();
         breezeParticle.Stop();
+
+
     }
 
     public void setWindPos(GameObject actualBlock)
@@ -76,33 +78,42 @@ public class WindManager : MonoBehaviour
 
     }
 
-    public void releaseWind(GameObject actualBlock)
+    public void releaseWind()
     {
         if (windClone.GetComponent<WindActive>().wind.ActualState == Wind.windState.Charging)
         {
+            gameObject.GetComponent<LineRenderer>().enabled = false;
             windClone.GetComponent<WindActive>().updateState(Wind.windState.Released);
-            
+            cyClone.GetComponent<ParticleSystem>().Stop();
             endDirection = cyClone.transform.position;
             endDirectionstatic = endDirection;
             breezeClone = windClone.transform.GetChild(1).gameObject;
             breezeClone.SetActive(true);
             breezeClone.transform.position = endDirection;
+            breezeClone.transform.localEulerAngles = new Vector3(0, 90, 0);
             breezeClone.GetComponent<ParticleSystem>().Play();
+            breezeClone.GetComponentInChildren<ParticleSystem>().Play();
             windTimeLife = 0;
             Rigidbody breezeRigidbody = breezeClone.GetComponent<Rigidbody>();
-            breezeRigidbody.AddForce((startDirection - endDirection).normalized * speedLaunch, ForceMode.VelocityChange);
+            float force = Mathf.Clamp(Vector3.Distance(endDirection, startDirection), 1f, 18f);
+            breezeRigidbody.AddForce((startDirection - endDirection).normalized * (force / 1.75f), ForceMode.VelocityChange);
             setWindTimer();
         }
+
+
     }
 
     public void canceledWind()
     {
-        cyClone.GetComponent<ParticleSystem>().Stop();
+        if (startDirection == endDirection)
+            Destroy(windClone);
+
+
     }
 
     private void setWindTimer()
     {
-        windTimeLife = Mathf.Clamp(Vector3.Distance(startDirection, endDirection), 2f, 6f);
+        windTimeLife = Mathf.Clamp(Vector3.Distance(startDirection, endDirection), 5f, 7f);
         setWindProperty(windTimeLife);
         Invoke(nameof(startWindTimer), windTimeLife);
     }
@@ -114,13 +125,23 @@ public class WindManager : MonoBehaviour
 
     void startWindTimer()
     {
-        breezeClone.GetComponent<ParticleSystem>().Stop();
-        cyClone.GetComponent<ParticleSystem>().Stop();
-        windClone.GetComponent<WindActive>().updateState(Wind.windState.None);
-        Destroy(gameObject, 2);
-        Destroy(windClone, 4);
+        if (windClone != null)
+        {
+            breezeClone.GetComponent<ParticleSystem>().Stop();
+            cyClone.GetComponent<ParticleSystem>().Stop();
+            windClone.GetComponent<WindActive>().updateState(Wind.windState.None);
+            Invoke(nameof(changePosition), 4);
+        }
 
     }
+
+    void changePosition()
+    {
+        windClone.transform.position = new Vector3(50, 50, 50);
+        Destroy(windClone, 1);
+        Destroy(gameObject, 1);
+    }
+
 
     //public void releaseWind(Vector3 endDirection)
     //{

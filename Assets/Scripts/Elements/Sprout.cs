@@ -11,7 +11,13 @@ public class Sprout: MonoBehaviour
     private void OnEnable()
     {
         plantGameObject = gameObject.transform.parent.GetComponent<Maciera>();
+        GameManager.instance.sproutsOnScreen += 1;
         
+    }
+
+    private void OnDisable()
+    {
+        //GameManager.instance.sproutsOnScreen -= 1;
     }
 
     private void OnTriggerStay(Collider other)

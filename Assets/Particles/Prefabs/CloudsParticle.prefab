@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7243208415880103172}
   - component: {fileID: 7243208415880103170}
   - component: {fileID: 7243208415880103171}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Raio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4819,7 +4819,7 @@ GameObject:
   - component: {fileID: 2439179488874625256}
   - component: {fileID: 7734372530187304678}
   - component: {fileID: 1159446952894930238}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CloudsParticle
   m_TagString: Cloud
   m_Icon: {fileID: 0}
@@ -9638,7 +9638,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 116
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &2439179488874625256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9680,6 +9680,7 @@ MonoBehaviour:
   cloudHP: 0
   cloudMaxHP: 255
   decrementHP: 2.5
+  crystalBar: {fileID: 5550475873460723449, guid: 6ed23ebc3fab76d4eac50a9217760787, type: 3}
   cloudStateActual: 0
 --- !u!1001 &4214828730654910889
 PrefabInstance:
@@ -9763,6 +9764,10 @@ PrefabInstance:
     - target: {fileID: 6844099018982422679, guid: 7077a8e1f1f91f84ea55fde60c64ac84, type: 3}
       propertyPath: m_Name
       value: Rain
+      objectReference: {fileID: 0}
+    - target: {fileID: 6844099018982422679, guid: 7077a8e1f1f91f84ea55fde60c64ac84, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7077a8e1f1f91f84ea55fde60c64ac84, type: 3}
