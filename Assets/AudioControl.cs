@@ -10,10 +10,10 @@ public class AudioControl : MonoBehaviour
 
     public void Awake()
     {
-        if(instance == null)
-        instance = this;
+        if (instance == null)
+            instance = this;
 
-        if(instance != null && instance != this)
+        if (instance != null && instance != this)
             Destroy(instance);
 
         audioSource = GetComponent<AudioSource>();

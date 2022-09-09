@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,5 +27,8 @@ public class GameManager : MonoBehaviour
     {
         fillBar = sproutsOnScreen * 0.15f + treesOnScreen * 0.25f - weedsOnScreen * 0.10f;
         crystalFilled.fillAmount = Mathf.Clamp(fillBar, 0, 1);
+
+        if (fillBar >= 1)
+            SceneManager.LoadScene(1);
     }
 }

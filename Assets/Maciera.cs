@@ -32,7 +32,7 @@ public class Maciera : MonoBehaviour
         sprout.SetActive(plant.plantState == Plant.plantStates.Sprout); 
         tree.SetActive(plant.plantState == Plant.plantStates.Tree);
 
-        if (plant.WaterLevel > 1 && plant.spawnSeeds == true && plant.plantState == Plant.plantStates.Seed)
+        if (plant.WaterLevel > 15 && plant.spawnSeeds == true && plant.plantState == Plant.plantStates.Tree)
         {
             plant.spawnSeeds = false;
             Instantiate(gameObject, gameObject.transform.position, gameObject.transform.rotation);

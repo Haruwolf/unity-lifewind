@@ -70,7 +70,7 @@ public class Cloud : MonoBehaviour
                     if (cloudHP < cloudMaxHP)
                     {
                         cloudHP += 25.5f * Time.deltaTime;
-                        hitInfo.collider.gameObject.GetComponent<CloudMaker>().riverHP -= 25.5f * Time.deltaTime;
+                        hitInfo.collider.gameObject.GetComponent<CloudMaker>().riverHP -= 10.5f * Time.deltaTime;
                         currentColor -= 25.5f / 255 * Time.deltaTime;
                     }
 

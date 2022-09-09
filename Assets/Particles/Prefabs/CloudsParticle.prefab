@@ -9679,8 +9679,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cloudHP: 0
   cloudMaxHP: 255
-  decrementHP: 2.5
+  decrementHP: 8
   crystalBar: {fileID: 5550475873460723449, guid: 6ed23ebc3fab76d4eac50a9217760787, type: 3}
+  canvas: {fileID: 0}
   cloudStateActual: 0
 --- !u!1001 &4214828730654910889
 PrefabInstance:

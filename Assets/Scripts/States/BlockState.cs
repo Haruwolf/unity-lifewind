@@ -42,7 +42,7 @@ public class BlockState : MonoBehaviour
             waterLevel += 1 * Time.deltaTime;
         }
 
-       if (waterLevel > 1 && canCreateWeeds == true && occupiedBlock == false)
+       if (waterLevel > 5 && canCreateWeeds == true && occupiedBlock == false)
         {
             canCreateWeeds = false;
             occupiedBlock = true;

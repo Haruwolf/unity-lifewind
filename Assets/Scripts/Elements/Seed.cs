@@ -67,8 +67,10 @@ public class Seed : MonoBehaviour
                         if (plantGameObject.plant.isIngrained == false)
                         {
                             plantGameObject.plant.isIngrained = true;
+                            ParticleSystem.MainModule mainModule = gameObject.GetComponent<ParticleSystem>().main;
+                            mainModule.startColor = Color.cyan;
                             blockLanded.GetComponent<BlockState>().occupiedBlock = true;
-                            blockLanded.gameObject.tag = "OoB";
+                            
                             //blockLanded.GetComponent<BlockState>().AroundObjects();
                             plantGameObject.transform.position = new Vector3(blockLanded.gameObject.transform.position.x, blockLanded.gameObject.transform.position.y + 1, blockLanded.gameObject.transform.position.z);
                         }

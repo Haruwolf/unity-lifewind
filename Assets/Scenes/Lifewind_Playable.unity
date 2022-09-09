@@ -232,7 +232,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.853944, b: 0.4943396, a: 1}
-  m_Intensity: 0.2
+  m_Intensity: 0.6
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1738,7 +1738,7 @@ GameObject:
   m_Component:
   - component: {fileID: 339734490}
   - component: {fileID: 339734489}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: ---PostProcessing---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14032,7 +14032,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.165
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -14510,23 +14510,27 @@ GameObject:
   m_Component:
   - component: {fileID: 2123201554}
   - component: {fileID: 2123201553}
-  - component: {fileID: 2123201552}
   - component: {fileID: 2123201555}
-  m_Layer: 3
+  - component: {fileID: 2123201552}
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &2123201552
-AudioListener:
+--- !u!114 &2123201552
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2123201551}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b7434bc3e480a240a6677878947efae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!20 &2123201553
 Camera:
   m_ObjectHideFlags: 0
@@ -14599,10 +14603,10 @@ MonoBehaviour:
   volumeTrigger: {fileID: 2123201554}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 64
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
-  antialiasingMode: 1
+  antialiasingMode: 2
   temporalAntialiasing:
     jitterSpread: 0.75
     sharpness: 0.25
