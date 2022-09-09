@@ -11,6 +11,9 @@ public class Seed : MonoBehaviour
     {
         plantGameObject = gameObject.transform.parent.GetComponent<Maciera>();
         originalPos = plantGameObject.transform.localPosition;
+        AudioControl.instance.audioSource.clip = (AudioClip)Resources.Load("PlantPop");
+        AudioControl.instance.audioSource.Play();
+        AudioControl.instance.audioSource.loop = false;
     }
 
 

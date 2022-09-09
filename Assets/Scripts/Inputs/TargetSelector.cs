@@ -145,6 +145,7 @@ public class TargetSelector : MonoBehaviour
 
     private void ChargeWind()
     {
+        
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out RaycastHit hitInfo))

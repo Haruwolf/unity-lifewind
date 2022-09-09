@@ -32,7 +32,7 @@ public class WindManager : MonoBehaviour
     GameObject cyClone;
     GameObject breezeClone;
     GameObject windClone;
-
+    AudioSource gameObjectSound;
 
 
     private void OnEnable()
@@ -42,6 +42,10 @@ public class WindManager : MonoBehaviour
 
         cycloneParticle.Stop();
         breezeParticle.Stop();
+
+
+        gameObjectSound = gameObject.AddComponent<AudioSource>();
+        gameObjectSound.volume = 0.25f;
 
 
     }
@@ -74,8 +78,20 @@ public class WindManager : MonoBehaviour
             line.SetPosition(0, startDirection);
             line.SetPosition(1, holdDirection);
             //Debug.DrawLine(startDirection, holdDirection, Color.black, 5, false);
+
+            setChargingWindSound();
         }
 
+    }
+
+    public void setChargingWindSound()
+    {
+        if (gameObjectSound.clip != (AudioClip)Resources.Load("VentoCarregando"))
+        {
+            gameObjectSound.clip = (AudioClip)Resources.Load("VentoCarregando");
+            gameObjectSound.Play();
+            gameObjectSound.loop = true;
+        }
     }
 
     public void releaseWind()
@@ -98,15 +114,27 @@ public class WindManager : MonoBehaviour
             float force = Mathf.Clamp(Vector3.Distance(endDirection, startDirection), 1f, 18f);
             breezeRigidbody.AddForce((startDirection - endDirection).normalized * (force / 1.75f), ForceMode.VelocityChange);
             setWindTimer();
+            setReleaseWindSound();
         }
 
 
     }
 
+    public void setReleaseWindSound()
+    {
+
+        gameObjectSound.clip = (AudioClip)Resources.Load("VentoMovimento_Unity");
+        gameObjectSound.Play();
+        gameObjectSound.loop = true;
+    }
+
     public void canceledWind()
     {
         if (startDirection == endDirection)
+        {
             Destroy(windClone);
+            gameObjectSound.Stop();
+        }
 
 
     }
@@ -131,6 +159,7 @@ public class WindManager : MonoBehaviour
             cyClone.GetComponent<ParticleSystem>().Stop();
             windClone.GetComponent<WindActive>().updateState(Wind.windState.None);
             Invoke(nameof(changePosition), 4);
+            gameObjectSound.Stop();
         }
 
     }

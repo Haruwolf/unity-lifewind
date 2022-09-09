@@ -33,8 +33,9 @@ public class Weed : MonoBehaviour
         if (other.gameObject.tag == "Wind")
             if (other.gameObject.GetComponentInParent<WindActive>().windSpeed > 2 && other.gameObject.GetComponentInParent<WindActive>().wind.ActualState == Wind.windState.Released)
             {
+                soundEffect();
                 GameManager.instance.fillBar += 0.25f;
-                Destroy(gameObject);
+                Destroy(gameObject,0.75f);
                 Ray ray = new Ray(transform.position, Vector3.down);
 
                 if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity))
@@ -49,6 +50,15 @@ public class Weed : MonoBehaviour
             }
 
 
+
+    }
+
+    void soundEffect()
+    {
+        AudioSource gameObjectSound = gameObject.AddComponent<AudioSource>();
+        gameObjectSound.clip = (AudioClip)Resources.Load("Destruicao");
+        gameObjectSound.Play();
+        gameObjectSound.loop = false;
 
     }
 }

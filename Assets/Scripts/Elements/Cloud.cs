@@ -22,9 +22,11 @@ public class Cloud : MonoBehaviour
     public Image crystalBar;
     public GameObject canvas;
 
+    AudioSource gameObjectSound;
+
     public enum cloudState
     {
-        Holding, 
+        Holding,
         Released
     }
 
@@ -34,7 +36,7 @@ public class Cloud : MonoBehaviour
         cloudHP = 1;
         cloudRb = GetComponent<Rigidbody>();
         cloudParticle = GetComponent<ParticleSystem>().main;
-        cloudParticle.startColor = new Color(1,1,1,1);
+        cloudParticle.startColor = new Color(1, 1, 1, 1);
         currentColor = 1;
 
         thunderPrefab = transform.GetChild(1).gameObject;
@@ -45,7 +47,12 @@ public class Cloud : MonoBehaviour
 
         canvas = GameObject.Find("Canvas");
         crystalBar = Instantiate(crystalBar, canvas.transform);
-        
+
+        gameObjectSound = gameObject.AddComponent<AudioSource>();
+        gameObjectSound.clip = (AudioClip)Resources.Load("CriandoNuvem");
+        gameObjectSound.Play();
+        gameObjectSound.loop = true;
+        gameObjectSound.volume = 0.25f;
 
 
     }
@@ -77,7 +84,7 @@ public class Cloud : MonoBehaviour
                     crystalBar.fillAmount = hitInfo.collider.gameObject.GetComponent<CloudMaker>().riverHP / 100;
                 }
 
-               
+
 
 
                 else
@@ -88,12 +95,43 @@ public class Cloud : MonoBehaviour
                 }
             }
         }
-        
+
+    }
+
+    void soundEffectRain()
+    {
+
+    }
+
+    void soundEffectThunder()
+    {
+        AudioSource gameObjectSound = gameObject.AddComponent<AudioSource>();
+        gameObjectSound.clip = (AudioClip)Resources.Load("Destruicao");
+        gameObjectSound.Play();
+        gameObjectSound.loop = true;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (gameObjectSound.clip == (AudioClip)Resources.Load("CriandoNuvem") && cloudStateActual == cloudState.Released)
+        {
+            if (cloudHP > 200 && (AudioClip)Resources.Load("CriandoNuvem") != (AudioClip)Resources.Load("HeavyRain"))
+            {
+                gameObjectSound.clip = (AudioClip)Resources.Load("HeavyRain");
+                gameObjectSound.Play();
+                gameObjectSound.loop = true;
+            }
+
+            if (cloudHP < 200 && AudioControl.instance.audioSource.clip != (AudioClip)Resources.Load("ChuvaFraca"))
+            {
+                gameObjectSound.clip = (AudioClip)Resources.Load("ChuvaFraca");
+                gameObjectSound.Play();
+                gameObjectSound.loop = true;
+
+            }
+        }
         if (cloudStateActual == cloudState.Released)
         {
             rainPrefab.SetActive(true);
