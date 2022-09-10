@@ -3036,7 +3036,7 @@ Animation:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 449713463}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 16b06917b48c77c4bb058d06b84db0c2, type: 2}
   m_Animations: []
@@ -3052,7 +3052,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 449713463}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 3d1c8d9200380ec4b947b8b33b136801, type: 2}
   m_CullingMode: 0
@@ -3702,7 +3702,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 609764940}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 0969956140fcad84aac718b6163a3490, type: 2}
   m_CullingMode: 0
@@ -7988,7 +7988,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5707e41d43586bd4e9897879f9150a1e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 29.225645
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5707e41d43586bd4e9897879f9150a1e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -8825,7 +8825,7 @@ Animation:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1451586249}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: ff6f0632d7cd3be4598bbdfc071136f7, type: 2}
   m_Animations: []
@@ -8841,7 +8841,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1451586249}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 570f6c27db6f2a14db7c7d346ff68cea, type: 2}
   m_CullingMode: 0
@@ -13069,7 +13069,7 @@ Animation:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1963498552}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 03e28b6474720d5408224ef3a703dd6e, type: 2}
   m_Animations:
