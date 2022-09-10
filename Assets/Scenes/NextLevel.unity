@@ -158,8 +158,8 @@ Camera:
   m_GameObject: {fileID: 303669199}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -364,7 +364,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 274210a4c85cb694fbcdc96c9cac3c23, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fb00fddf643418b4ca968cc5c9d53091, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
