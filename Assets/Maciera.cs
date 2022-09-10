@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Maciera : MonoBehaviour
@@ -33,6 +33,8 @@ public class Maciera : MonoBehaviour
         plant.DryLevel = 120;
         canvas = GameObject.Find("Canvas");
 
+        GameManager.instance.totalPlants += 1;
+
 
     }
 
@@ -60,7 +62,8 @@ public class Maciera : MonoBehaviour
     {
         if (plant.plantState == Plant.plantStates.Sprout || plant.plantState == Plant.plantStates.Tree && watering == false)
         {
-            plant.DryLevel -= 0.35f * Time.deltaTime;
+            plant.DryLevel -= 0.35f * GameManager.instance.weedBar * Time.deltaTime;
+            Debug.Log(plant.DryLevel);
 
 
             if (plant.DryLevel < 60)
@@ -92,8 +95,12 @@ public class Maciera : MonoBehaviour
 
         }
 
-        if (plant.DryLevel <= 1)
+        if (plant.DryLevel <= 117)
+        {
+            GameManager.instance.totalPlants -= 1;
+            GameManager.instance.checkPlants();
             Destroy(gameObject);
+        }
 
     }
 

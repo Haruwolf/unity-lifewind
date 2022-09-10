@@ -61,13 +61,13 @@ public class Plant
 
     public virtual void growStates(float wLevel)
     {
-        if (wLevel > 5 && plantState == plantStates.Seed)
+        if (wLevel > 3 && plantState == plantStates.Seed)
         {
             plantState = plantStates.Sprout;
             return;
         }
 
-        if (wLevel > 15 && plantState == plantStates.Sprout)
+        if (wLevel > 12 && plantState == plantStates.Sprout)
         {
             plantState = plantStates.Tree;
             return;

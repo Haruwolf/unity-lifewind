@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NextLevel.unity
     guid: 9d2b7ead6e002044baf3ff31c9412c25
+  - enabled: 1
+    path: Assets/Scenes/LifeWind_GameOver.unity
+    guid: 9fb8f7f774ce45b4a9499017a636445d
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 0427d5be72dda2747aa338397f61a873, type: 2}

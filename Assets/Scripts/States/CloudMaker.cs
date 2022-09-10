@@ -36,7 +36,7 @@ public class CloudMaker : MonoBehaviour
         }
 
         if (riverHP < 100)
-            riverHP += 0.1f * Time.deltaTime;
+            riverHP += 2f * Time.deltaTime;
 
     }
 

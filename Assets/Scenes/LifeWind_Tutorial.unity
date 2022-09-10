@@ -7968,7 +7968,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5707e41d43586bd4e9897879f9150a1e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99279106
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5707e41d43586bd4e9897879f9150a1e, type: 3}
       propertyPath: m_LocalRotation.x
@@ -7976,7 +7976,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5707e41d43586bd4e9897879f9150a1e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.11985815
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5707e41d43586bd4e9897879f9150a1e, type: 3}
       propertyPath: m_LocalRotation.z
@@ -7988,7 +7988,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5707e41d43586bd4e9897879f9150a1e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 706.232
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5707e41d43586bd4e9897879f9150a1e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -8018,10 +8018,11 @@ Animation:
   m_GameObject: {fileID: 1238858713}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 1cb7b2a5b626559439f571b9e33e6be3, type: 2}
+  m_Animation: {fileID: 7400000, guid: 007437e5fbcf84f41aa829c4dcb92758, type: 2}
   m_Animations:
   - {fileID: 0}
   - {fileID: 7400000, guid: 1cb7b2a5b626559439f571b9e33e6be3, type: 2}
+  - {fileID: 7400000, guid: 007437e5fbcf84f41aa829c4dcb92758, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
