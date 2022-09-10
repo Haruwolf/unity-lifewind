@@ -10,6 +10,12 @@ public class Tree: MonoBehaviour
 
     private void OnEnable()
     {
+        if (GameManager.instance.tut5 == false)
+        {
+            TutorialControl.Instance.setTutorial(5, false);
+            GameManager.instance.tut5 = true;
+        }
+
         plantGameObject = gameObject.transform.parent.GetComponent<Maciera>();
         GameManager.instance.treesOnScreen += 1;
         AudioControl.instance.audioSource.clip = (AudioClip)Resources.Load("PlantPop");

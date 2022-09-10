@@ -20,6 +20,12 @@ public class Weed : MonoBehaviour
             spawnSeed: false);
 
         GameManager.instance.weedsOnScreen += 1;
+
+        if (GameManager.instance.tut6 == false)
+        {
+            TutorialControl.Instance.setTutorial(6, true);
+            GameManager.instance.tut6 = true;
+        }
     }
 
     private void OnDisable()

@@ -32,6 +32,7 @@ public class Seed : MonoBehaviour
         {
             if (plantGameObject.plant.isIngrained == true)
             {
+                
                 plantGameObject.plant.WaterLevel += 0.5f * Time.deltaTime;
                 plantGameObject.plant.growStates(plantGameObject.plant.WaterLevel);
                 plantGameObject.checkGrow(plantGameObject.plant.WaterLevel);
@@ -40,6 +41,18 @@ public class Seed : MonoBehaviour
 
         }
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Cloud")
+        {
+            if (plantGameObject.plant.isIngrained == true && GameManager.instance.tut4 == false)
+            {
+                GameManager.instance.tut4 = true;
+                TutorialControl.Instance.setTutorial(4, false);
+            }
+        }
     }
 
     public void OnTriggerExit(Collider other)
@@ -70,7 +83,7 @@ public class Seed : MonoBehaviour
                         {
                             plantGameObject.plant.isIngrained = true;
                             blockLanded.GetComponent<BlockState>().occupiedBlock = true;
-
+                            TutorialControl.Instance.setTutorial(2, false);
                             //blockLanded.GetComponent<BlockState>().AroundObjects();
                             plantGameObject.transform.position = new Vector3(blockLanded.gameObject.transform.position.x, blockLanded.gameObject.transform.position.y + 1, blockLanded.gameObject.transform.position.z);
                             //blockLanded.gameObject.tag = "OoB";

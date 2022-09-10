@@ -13,6 +13,13 @@ public class GameManager : MonoBehaviour
     public float fillBar;
     public Image crystalFilled;
 
+    public bool tut1 = false;
+    public bool tut2 = false;
+    public bool tut3 = false;
+    public bool tut4 = false;
+    public bool tut5 = false;
+    public bool tut6 = false;
+
     private void Awake()
     {
         if (instance == null)

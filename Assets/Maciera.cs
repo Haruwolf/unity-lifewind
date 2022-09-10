@@ -33,6 +33,7 @@ public class Maciera : MonoBehaviour
         plant.DryLevel = 120;
         canvas = GameObject.Find("Canvas");
 
+
     }
 
     public void checkGrow(float wLevel)

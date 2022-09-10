@@ -122,6 +122,11 @@ public class Cloud : MonoBehaviour
                 gameObjectSound.clip = (AudioClip)Resources.Load("HeavyRain");
                 gameObjectSound.Play();
                 gameObjectSound.loop = true;
+                if (GameManager.instance.tut3 == false)
+                {
+                    TutorialControl.Instance.setTutorial(3, false);
+                    GameManager.instance.tut3 = true;
+                }
             }
 
             if (cloudHP < 200 && AudioControl.instance.audioSource.clip != (AudioClip)Resources.Load("ChuvaFraca"))
@@ -129,11 +134,17 @@ public class Cloud : MonoBehaviour
                 gameObjectSound.clip = (AudioClip)Resources.Load("ChuvaFraca");
                 gameObjectSound.Play();
                 gameObjectSound.loop = true;
+                if (GameManager.instance.tut3 == false)
+                {
+                    TutorialControl.Instance.setTutorial(3, false);
+                    GameManager.instance.tut3 = true;
+                }
 
             }
         }
         if (cloudStateActual == cloudState.Released)
         {
+            
             rainPrefab.SetActive(true);
             if (cloudHP > 200)
                 thunderPrefab.SetActive(true);
