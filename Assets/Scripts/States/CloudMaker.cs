@@ -38,8 +38,6 @@ public class CloudMaker : MonoBehaviour
         if (riverHP < 100)
             riverHP += 0.1f * Time.deltaTime;
 
-        Debug.Log(riverHP);
-
     }
 
     private void OnTriggerEnter(Collider other)

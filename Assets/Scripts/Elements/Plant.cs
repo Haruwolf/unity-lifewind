@@ -21,6 +21,24 @@ public class Plant
     public bool isIngrained;
     public bool spawnSeeds;
     private float _waterLevel;
+    private float _dryLevel;
+
+
+    public float DryLevel
+    {
+        get { return _dryLevel; }
+        set
+        {
+            if (value > 0)
+                _dryLevel = value;
+
+            if (value < 0)
+                _dryLevel = 0;
+
+            if (value > 120)
+                _dryLevel = 120;
+        }
+    }
 
     public float WaterLevel { get { return _waterLevel; } set
         {
@@ -56,11 +74,5 @@ public class Plant
         }
 
     }
-
-
-
-
-
-
 
 }

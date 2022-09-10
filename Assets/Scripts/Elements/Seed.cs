@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Seed : MonoBehaviour
 {
-    public Maciera plantGameObject;
+    Maciera plantGameObject;
     Vector3 originalPos;
 
     private void OnEnable()
@@ -35,6 +35,7 @@ public class Seed : MonoBehaviour
                 plantGameObject.plant.WaterLevel += 0.5f * Time.deltaTime;
                 plantGameObject.plant.growStates(plantGameObject.plant.WaterLevel);
                 plantGameObject.checkGrow(plantGameObject.plant.WaterLevel);
+
             }
 
         }
@@ -50,6 +51,7 @@ public class Seed : MonoBehaviour
             setPlantOnCube(plantGameObject.transform.position);
 
         }
+
     }
 
     public void setPlantOnCube(Vector3 plantPos)
@@ -67,12 +69,11 @@ public class Seed : MonoBehaviour
                         if (plantGameObject.plant.isIngrained == false)
                         {
                             plantGameObject.plant.isIngrained = true;
-                            ParticleSystem.MainModule mainModule = gameObject.GetComponent<ParticleSystem>().main;
-                            mainModule.startColor = Color.cyan;
                             blockLanded.GetComponent<BlockState>().occupiedBlock = true;
-                            
+
                             //blockLanded.GetComponent<BlockState>().AroundObjects();
                             plantGameObject.transform.position = new Vector3(blockLanded.gameObject.transform.position.x, blockLanded.gameObject.transform.position.y + 1, blockLanded.gameObject.transform.position.z);
+                            //blockLanded.gameObject.tag = "OoB";
                         }
                         break;
                     case "Water":
@@ -89,7 +90,7 @@ public class Seed : MonoBehaviour
                 }
 
             }
-           
+
         }
 
         if (hitInfo.collider == null)

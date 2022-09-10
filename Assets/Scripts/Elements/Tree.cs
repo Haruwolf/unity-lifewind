@@ -6,7 +6,7 @@ public class Tree: MonoBehaviour
 {
     public Plant plant;
     public WindActive windPrefab;
-    public Maciera plantGameObject;
+    Maciera plantGameObject;
 
     private void OnEnable()
     {
@@ -37,19 +37,12 @@ public class Tree: MonoBehaviour
                 plantGameObject.plant.WaterLevel += 0.5f * Time.deltaTime;
                 plantGameObject.plant.growStates(plantGameObject.plant.WaterLevel);
                 plantGameObject.checkGrow(plantGameObject.plant.WaterLevel);
+                plantGameObject.plant.DryLevel += 2 * Time.deltaTime;
             }
 
         }
     }
 
-    public void OnTriggerExit(Collider other)
-    {
-        //if (other.gameObject.tag == "Wind" && Wind.ActualState == Wind.windState.Released)
-        //{
-        //    plantGameObject.plant.isIngrained = true;
-        //    plantGameObject.transform.SetParent(null);
-        //} 
-    }
 
 
     private void OnTriggerEnter(Collider other)

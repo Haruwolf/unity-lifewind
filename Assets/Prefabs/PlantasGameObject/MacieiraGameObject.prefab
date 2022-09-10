@@ -46,23 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87040b27b5077647855f36d878bd97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dryRate: 0.35
   seed: {fileID: 5250090891182334868}
   sprout: {fileID: 6850346108394111055}
   tree: {fileID: 8588080211055398746}
---- !u!114 &4833496295760394825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5250090891182334868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6e39273188a6094e999fa3437eeaa9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  windPrefab: {fileID: 0}
-  plantGameObject: {fileID: 0}
+  macieraPrefab: {fileID: 3434593260836174248}
+  dryBar: {fileID: 5872033136169032667, guid: f95af8d3a9dc807479efef644d6fa153, type: 3}
+  watering: 0
 --- !u!54 &5134196744680748624
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -79,6 +69,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &4833496295760394825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5250090891182334868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6e39273188a6094e999fa3437eeaa9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantGameObject: {fileID: 0}
 --- !u!65 &3434593260496432095
 BoxCollider:
   m_ObjectHideFlags: 0

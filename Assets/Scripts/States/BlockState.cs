@@ -42,10 +42,10 @@ public class BlockState : MonoBehaviour
             waterLevel += 1 * Time.deltaTime;
         }
 
-       if (waterLevel > 5 && canCreateWeeds == true && occupiedBlock == false)
+       if (waterLevel > 10 && canCreateWeeds == true && occupiedBlock == false)
         {
             canCreateWeeds = false;
-            occupiedBlock = true;
+            //gameObject.tag = "OoB";
             Instantiate(weedGameObject, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 1, gameObject.transform.position.z), weedGameObject.transform.rotation);
         }
     }
