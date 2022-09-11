@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
     {
         
         weedBar = Mathf.Clamp(1 + weedsOnScreen * 0.2f , 1, totalTrees);
-        fillBar = Mathf.Clamp(treesOnScreen, 1, totalTrees);
+        fillBar = Mathf.Clamp(treesOnScreen, 0, totalTrees);
         
         //fillBar = Mathf.Clamp((sproutsOnScreen * 0.15f + treesOnScreen * 0.25f)+1, 1, 5);
         //Mathf.Clamp(fillBar, 1, 3);
@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
 
         crystal.transform.localScale = new Vector3(fillBar, fillBar, fillBar);
         treesText.text = $"{treesOnScreen.ToString()} / {Mathf.Round(totalTrees).ToString()}";
-        if (fillBar >= Mathf.Round(totalTrees) && nextLayout == false)
+        if (fillBar >= totalTrees && nextLayout == false)
         {
             nextLayout = true;
             gameObject.GetComponent<AudioSource>().clip = (AudioClip)Resources.Load("Victory");
