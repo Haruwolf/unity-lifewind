@@ -109,6 +109,9 @@ public class Cloud : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Time.deltaTime == 0)
+            cloudStateActual = cloudState.Released;
+
         if (gameObjectSound.clip == (AudioClip)Resources.Load("CriandoNuvem") && cloudStateActual == cloudState.Released)
         {
             if (cloudHP > 200 && (AudioClip)Resources.Load("CriandoNuvem") != (AudioClip)Resources.Load("HeavyRain"))
