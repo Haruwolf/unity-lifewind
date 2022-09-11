@@ -8,7 +8,7 @@ public class Cloud : MonoBehaviour
     public float cloudHP;
     public float cloudMaxHP = 255;
     public float decrementHP = 0.25f;
-
+    
     GameObject thunderPrefab;
     GameObject rainPrefab;
 
@@ -27,7 +27,8 @@ public class Cloud : MonoBehaviour
     public enum cloudState
     {
         Holding,
-        Released
+        Released, 
+        Destroyed,
     }
 
     public cloudState cloudStateActual;
@@ -79,7 +80,7 @@ public class Cloud : MonoBehaviour
                         cloudHP = Mathf.Clamp(cloudHP, 0, 255);
                         //currentColor = Mathf.Clamp(currentColor, 0, 0);
                     }
-                    crystalBar.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+                    crystalBar.transform.position = Camera.main.WorldToScreenPoint(new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 3, gameObject.transform.position.z));
                     crystalBar.enabled = true;
                     crystalBar.fillAmount = hitInfo.collider.gameObject.GetComponent<CloudMaker>().riverHP / 100;
                 }
@@ -151,10 +152,15 @@ public class Cloud : MonoBehaviour
 
             cloudHP -= decrementHP * Time.deltaTime;
             currentColor += decrementHP / 255 * Time.deltaTime;
-            if (cloudHP < 0)
+            if (cloudHP < 5)
+            {
+                cloudStateActual = cloudState.Destroyed;
                 GetComponent<ParticleSystem>().Stop();
+                TargetSelector.instance.cloudCount--;
+            }
 
-            Mathf.Clamp(GetComponent<Rigidbody>().drag = cloudHP / 25f, 1, 10);
+            Mathf.Clamp(GetComponent<Rigidbody>().drag = cloudHP / 25f, 6, 7);
+
             crystalBar.enabled = false;
 
         }
@@ -167,6 +173,8 @@ public class Cloud : MonoBehaviour
 
 
         cloudParticle.startColor = new Color(currentColor, currentColor, currentColor);
+        float newSize = Mathf.Clamp(cloudHP / 65, 1, 4f);
+        transform.localScale = new Vector3(newSize, newSize, newSize);
         //Debug.Log(cloudParticle.startColor.color);
 
 

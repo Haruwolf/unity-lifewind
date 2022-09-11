@@ -47,7 +47,7 @@ public class Weed : MonoBehaviour
                 blockLanded.GetComponent<BlockState>().canCreateWeeds = true;
                 blockLanded.GetComponent<BlockState>().waterLevel = 0;
                 ShakeEffect.instance.shakeScreen();
-                Destroy(gameObject, 0.75f);
+                Destroy(gameObject, 0.25f);
             }
 
 

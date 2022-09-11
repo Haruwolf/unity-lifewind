@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TargetSelector : MonoBehaviour
 {
+    public static TargetSelector instance;
     [SerializeField]
     [Range(0f, 0.5f)]
     [Header("Press Times")]
@@ -21,6 +22,7 @@ public class TargetSelector : MonoBehaviour
     GameObject cloudCreated;
 
     public int managerCount;
+    public int cloudCount;
 
     public enum createStates
     {
@@ -32,6 +34,15 @@ public class TargetSelector : MonoBehaviour
     createStates actualState = createStates.None;
 
     public GameObject cloudPrefab;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+
+        else
+            Destroy(this);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -51,10 +62,12 @@ public class TargetSelector : MonoBehaviour
                 if (hitInfo.collider != null)
                 {
                     if (hitInfo.collider.gameObject.tag == "Grass")
-                        CreateWind();
+                        if (managerCount < 3)
+                            CreateWind();
 
                     if (hitInfo.collider.gameObject.tag == "Water")
-                        CreateCloud(hitInfo.collider.gameObject);
+                        if (cloudCount < 2)
+                            CreateCloud(hitInfo.collider.gameObject);
                 }
             }
 
@@ -107,8 +120,9 @@ public class TargetSelector : MonoBehaviour
 
     void CreateCloud(GameObject actualBlock)
     {
+        cloudCount++;
         actualState = createStates.Clouding;
-        cloudCreated = Instantiate(cloudPrefab.gameObject, new Vector3(actualBlock.transform.position.x, actualBlock.transform.position.y + 5, actualBlock.transform.position.z), cloudPrefab.transform.rotation);
+        cloudCreated = Instantiate(cloudPrefab.gameObject, new Vector3(actualBlock.transform.position.x, actualBlock.transform.position.y + 7.5f, actualBlock.transform.position.z), cloudPrefab.transform.rotation);
         Debug.Log(actualState);
     }
 
@@ -145,7 +159,7 @@ public class TargetSelector : MonoBehaviour
 
     private void ChargeWind()
     {
-        
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out RaycastHit hitInfo))
