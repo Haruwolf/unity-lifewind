@@ -19,7 +19,7 @@ public class Tree: MonoBehaviour
         }
 
         plantGameObject = gameObject.transform.parent.GetComponent<Maciera>();
-        Instantiate(plantPop, gameObject.transform.position, plantGameObject.transform.rotation);
+        Instantiate(plantPop, new Vector3(plantGameObject.transform.position.x, plantGameObject.transform.position.y + 2, plantGameObject.transform.position.z), plantPop.transform.rotation);
         GameManager.instance.treesOnScreen += 1;
         AudioControl.instance.audioSource.clip = (AudioClip)Resources.Load("PlantPop");
         AudioControl.instance.audioSource.Play();

@@ -38,7 +38,7 @@ public class Weed : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Wind")
-            if (other.gameObject.GetComponentInParent<WindActive>().windSpeed > 3 && other.gameObject.GetComponentInParent<WindActive>().wind.ActualState == Wind.windState.Released)
+            if (other.gameObject.GetComponentInParent<WindActive>().windSpeed > 5 && other.gameObject.GetComponentInParent<WindActive>().wind.ActualState == Wind.windState.Released)
             {
                 
                 soundEffect();

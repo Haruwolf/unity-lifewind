@@ -30,7 +30,7 @@ public class ShakeEffect : MonoBehaviour
         Vector3 startPos = Camera.main.transform.position;
         float elapsedTime = 0f;
 
-        while (elapsedTime < 0.75f)
+        while (elapsedTime < 0.50f)
         {
             elapsedTime += Time.deltaTime;
             float strength = curve.Evaluate(elapsedTime);

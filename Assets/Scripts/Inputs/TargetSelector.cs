@@ -20,6 +20,7 @@ public class TargetSelector : MonoBehaviour
     public GameObject managerClone;
 
     GameObject cloudCreated;
+    GameObject actualGameBlockCloud;
 
     public int managerCount;
     public int cloudCount;
@@ -123,6 +124,7 @@ public class TargetSelector : MonoBehaviour
 
     void CreateCloud(GameObject actualBlock)
     {
+        actualGameBlockCloud = actualBlock;
         cloudCount++;
         actualState = createStates.Clouding;
         cloudCreated = Instantiate(cloudPrefab.gameObject, new Vector3(actualBlock.transform.position.x, actualBlock.transform.position.y + 7.5f, actualBlock.transform.position.z), cloudPrefab.transform.rotation);
@@ -134,7 +136,7 @@ public class TargetSelector : MonoBehaviour
         if (cloudCreated != null)
         {
             cloudCreated.GetComponent<Cloud>().cloudStateActual = Cloud.cloudState.Holding;
-            cloudCreated.GetComponent<Cloud>().fillCloudHP();
+            cloudCreated.GetComponent<Cloud>().fillCloudHP(actualGameBlockCloud);
             Debug.Log("charging cloud");
         }
     }
@@ -147,6 +149,7 @@ public class TargetSelector : MonoBehaviour
             actualState = createStates.None;
             cloudCreated = null;
         }
+        actualGameBlockCloud = null;
 
     }
 

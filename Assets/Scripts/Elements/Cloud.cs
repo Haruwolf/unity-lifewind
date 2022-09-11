@@ -8,7 +8,7 @@ public class Cloud : MonoBehaviour
     public float cloudHP;
     public float cloudMaxHP = 255;
     public float decrementHP = 0.25f;
-    
+
     GameObject thunderPrefab;
     GameObject rainPrefab;
 
@@ -27,7 +27,7 @@ public class Cloud : MonoBehaviour
     public enum cloudState
     {
         Holding,
-        Released, 
+        Released,
         Destroyed,
     }
 
@@ -58,46 +58,39 @@ public class Cloud : MonoBehaviour
 
     }
 
-    public void fillCloudHP()
+    public void fillCloudHP(GameObject actualBlock)
     {
-        Ray ray = new Ray(gameObject.transform.position, Vector3.down);
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity))
+
+        if (actualBlock.GetComponent<CloudMaker>().riverCooldown == false)
         {
-            if (hitInfo.collider.tag == "Water")
+            if (cloudHP <= cloudMaxHP)
             {
-
-                if (hitInfo.collider.gameObject.GetComponent<CloudMaker>().riverCooldown == false)
-                {
-                    if (cloudHP <= cloudMaxHP)
-                    {
-                        cloudHP += 20.5f * Time.deltaTime;
-                        hitInfo.collider.gameObject.GetComponent<CloudMaker>().riverHP -= 10.5f * Time.deltaTime;
-                        currentColor -= 25.5f / 255 * Time.deltaTime;
-                    }
-
-                    else
-                    {
-                        cloudHP = Mathf.Clamp(cloudHP, 0, 255);
-                        //currentColor = Mathf.Clamp(currentColor, 0, 0);
-                    }
-                    crystalBar.transform.position = Camera.main.WorldToScreenPoint(new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 3, gameObject.transform.position.z));
-                    crystalBar.enabled = true;
-                    crystalBar.fillAmount = hitInfo.collider.gameObject.GetComponent<CloudMaker>().riverHP / 100;
-                }
-
-
-
-
-                else
-                {
-                    cloudStateActual = cloudState.Released;
-
-
-                }
+                cloudHP += 20.5f * Time.deltaTime;
+                actualBlock.GetComponent<CloudMaker>().riverHP -= 10.5f * Time.deltaTime;
+                currentColor -= 25.5f / 255 * Time.deltaTime;
             }
+
+            else
+            {
+                cloudHP = Mathf.Clamp(cloudHP, 0, 255);
+                //currentColor = Mathf.Clamp(currentColor, 0, 0);
+            }
+            crystalBar.transform.position = Camera.main.WorldToScreenPoint(new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 3, gameObject.transform.position.z));
+            crystalBar.enabled = true;
+            crystalBar.fillAmount = actualBlock.GetComponent<CloudMaker>().riverHP / 100;
         }
 
+
+
+
+        else
+        {
+            cloudStateActual = cloudState.Released;
+
+
+        }
     }
+
 
     void soundEffectRain()
     {
@@ -145,7 +138,7 @@ public class Cloud : MonoBehaviour
         }
         if (cloudStateActual == cloudState.Released)
         {
-            
+
             rainPrefab.SetActive(true);
             if (cloudHP > 200)
                 thunderPrefab.SetActive(true);
