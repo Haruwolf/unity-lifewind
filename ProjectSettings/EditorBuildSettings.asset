@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Lifewind_Fase2.unity
     guid: afcefc7ce1f3d15478fedd034e6fde1d
   - enabled: 1
-    path: Assets/Scenes/Lifewind_Fase3.unity
+    path: Assets/Scenes/Lifewind_Fase4.unity
     guid: 73123df1ac0a951419bb49528ccb5733
   - enabled: 1
     path: Assets/Scenes/Lifewind_Playable.unity
