@@ -40,18 +40,21 @@ public class Weed : MonoBehaviour
         if (other.gameObject.tag == "Wind")
             if (other.gameObject.GetComponentInParent<WindActive>().windSpeed > 3 && other.gameObject.GetComponentInParent<WindActive>().wind.ActualState == Wind.windState.Released)
             {
+                
                 soundEffect();
                 GameManager.instance.fillBar += 0.25f;
                 blockLanded.GetComponent<BlockState>().occupiedBlock = false;
                 blockLanded.GetComponent<BlockState>().canCreateWeeds = true;
                 blockLanded.GetComponent<BlockState>().waterLevel = 0;
-
+                ShakeEffect.instance.shakeScreen();
                 Destroy(gameObject, 0.75f);
             }
 
 
 
     }
+
+    
 
     void soundEffect()
     {

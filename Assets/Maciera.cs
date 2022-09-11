@@ -96,12 +96,13 @@ public class Maciera : MonoBehaviour
 
         }
 
-        if (plant.DryLevel <= 117)
+        if (plant.DryLevel <= 3)
         {
             //Ray ray = new Ray(gameObject.transform.position, Vector3.down);
             if (blockLanded != null)
             {
                 blockLanded.gameObject.GetComponent<BlockState>().occupiedBlock = false;
+                ShakeEffect.instance.shakeScreen();
                 GameManager.instance.totalPlants -= 1;
                 GameManager.instance.checkPlants();
                 Destroy(gameObject);
