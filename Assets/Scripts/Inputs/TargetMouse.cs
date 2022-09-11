@@ -8,12 +8,14 @@ public class TargetMouse : MonoBehaviour
     private Material[] materials;
     private Color firstOriginalColor;
     private Color secondOriginalColor;
+    private Color thirdOriginalColor;
     // Start is called before the first frame update
     void Start()
     {
         materials = GetComponent<Renderer>().materials;
         firstOriginalColor = materials[0].color;
         secondOriginalColor = materials[1].color;
+        if (materials.Length > 2) thirdOriginalColor = materials[2].color;
     }
 
     private void OnMouseEnter()
@@ -25,6 +27,7 @@ public class TargetMouse : MonoBehaviour
             {
                 materials[0].color = Color.yellow;
                 materials[1].color = Color.yellow;
+                if (materials.Length > 2) materials[2].color = Color.yellow;
             }
         }
 
@@ -34,5 +37,6 @@ public class TargetMouse : MonoBehaviour
     {
         materials[0].color = firstOriginalColor;
         materials[1].color = secondOriginalColor;
+        if (materials.Length > 2) materials[2].color = thirdOriginalColor;
     }
 }
