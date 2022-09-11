@@ -7,6 +7,7 @@ public class Seed : MonoBehaviour
     Maciera plantGameObject;
     Vector3 originalPos;
     ParticleSystem.MainModule particle;
+
     
 
     private void OnEnable()
@@ -18,6 +19,7 @@ public class Seed : MonoBehaviour
         AudioControl.instance.audioSource.loop = false;
         particle = gameObject.GetComponent<ParticleSystem>().main;
         particle.startColor = Color.yellow;
+
     }
 
 
@@ -40,6 +42,7 @@ public class Seed : MonoBehaviour
                 plantGameObject.plant.WaterLevel += 0.5f * Time.deltaTime;
                 plantGameObject.plant.growStates(plantGameObject.plant.WaterLevel);
                 plantGameObject.checkGrow(plantGameObject.plant.WaterLevel);
+
 
             }
 
@@ -87,7 +90,7 @@ public class Seed : MonoBehaviour
                         {
                             if(blockLanded.GetComponent<BlockState>().occupiedBlock == false)
                             {
-                                particle.startColor = Color.green;
+                                particle.startColor = Color.blue;
                                 plantGameObject.plant.isIngrained = true;
                                 blockLanded.GetComponent<BlockState>().occupiedBlock = true;
                                 plantGameObject.blockLanded = blockLanded;

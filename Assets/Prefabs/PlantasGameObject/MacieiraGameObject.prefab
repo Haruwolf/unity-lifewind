@@ -53,6 +53,7 @@ MonoBehaviour:
   macieraPrefab: {fileID: 3434593260836174248}
   blockLanded: {fileID: 0}
   dryBar: {fileID: 5872033136169032667, guid: f95af8d3a9dc807479efef644d6fa153, type: 3}
+  wetBar: {fileID: 5872033136169032667, guid: a6fa8b9c87ad1eb4b88d2679cab03b6a, type: 3}
   watering: 0
 --- !u!54 &5134196744680748624
 Rigidbody:

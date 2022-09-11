@@ -166,7 +166,7 @@ public class Cloud : MonoBehaviour
             crystalBar.enabled = false;
 
         if (cloudStateActual == cloudState.Destroyed)
-            Destroy(gameObject);
+            Destroy(gameObject, 2);
 
         if (cloudHP < 200)
         {

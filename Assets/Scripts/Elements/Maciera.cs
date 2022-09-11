@@ -18,7 +18,11 @@ public class Maciera : MonoBehaviour
     Image dryBarClone;
     GameObject canvas;
 
+    public Image wetBar;
+    Image wetBarClone;
     public bool watering = false;
+
+    GameObject cloudShivering;
 
     private void OnEnable()
     {
@@ -59,8 +63,51 @@ public class Maciera : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Cloud")
+        {
+            if (wetBarClone == null)
+            {
+                wetBarClone = Instantiate(wetBar, canvas.transform);
+                wetBarClone.transform.position = Camera.main.WorldToScreenPoint(new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 3, gameObject.transform.position.z));
+                cloudShivering = other.gameObject;
+            }
+
+            else
+            {
+                wetBarClone.enabled = true;
+                wetBarClone.transform.position = Camera.main.WorldToScreenPoint(new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 3, gameObject.transform.position.z));
+                cloudShivering = other.gameObject;
+            }
+        }
+        
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Cloud")
+        {
+            if (wetBarClone != null)
+            {
+                wetBarClone.enabled = false;
+            }
+        }
+
+    }
+
     public void Update()
     {
+        if (cloudShivering != null)
+            if (cloudShivering.GetComponent<Cloud>().cloudStateActual == Cloud.cloudState.Destroyed)
+            {
+                if (wetBarClone != null)
+                {
+                    wetBarClone.enabled = false;
+                }
+                cloudShivering = null;
+            }
+
         if (plant.plantState == Plant.plantStates.Sprout || plant.plantState == Plant.plantStates.Tree && watering == false)
         {
             plant.DryLevel -= 0.35f * GameManager.instance.weedBar * Time.deltaTime;

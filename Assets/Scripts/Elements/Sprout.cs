@@ -41,32 +41,11 @@ public class Sprout: MonoBehaviour
                 plantGameObject.plant.growStates(plantGameObject.plant.WaterLevel);
                 plantGameObject.checkGrow(plantGameObject.plant.WaterLevel);
                 plantGameObject.plant.DryLevel += 2 * Time.deltaTime;
+
+                
             }
 
         }
     }
 
-
-
-    private void OnTriggerEnter(Collider other)
-    {
-        //if (plantGameObject.plant.isIngrained == true)
-        //{
-        //    switch (other.gameObject.tag)
-        //    {
-        //        case "Grass":
-        //            gameObject.transform.position = new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y, other.gameObject.transform.position.z);
-        //            break;
-        //        case "Water":
-        //            Destroy(gameObject);
-        //            break;
-        //        case "OoB":
-        //            Destroy(gameObject);
-        //            break;
-
-        //        default:  
-        //            break;
-        //    }
-        //}
-    }
 }
