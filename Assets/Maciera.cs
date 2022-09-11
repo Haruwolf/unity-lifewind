@@ -12,6 +12,7 @@ public class Maciera : MonoBehaviour
     public GameObject sprout;
     public GameObject tree;
     public GameObject macieraPrefab;
+    public GameObject blockLanded;
 
     public Image dryBar;
     Image dryBarClone;
@@ -44,7 +45,7 @@ public class Maciera : MonoBehaviour
         plant.growStates(plant.WaterLevel);
 
         seed.SetActive(plant.plantState == Plant.plantStates.Seed);
-        sprout.SetActive(plant.plantState == Plant.plantStates.Sprout); 
+        sprout.SetActive(plant.plantState == Plant.plantStates.Sprout);
         tree.SetActive(plant.plantState == Plant.plantStates.Tree);
 
         if (plant.spawnSeeds == true && plant.plantState == Plant.plantStates.Tree)
@@ -54,7 +55,7 @@ public class Maciera : MonoBehaviour
             maciera.transform.GetChild(0).gameObject.SetActive(true);
             maciera.transform.GetChild(1).gameObject.SetActive(false);
             maciera.transform.GetChild(2).gameObject.SetActive(false);
-            
+
         }
     }
 
@@ -97,12 +98,20 @@ public class Maciera : MonoBehaviour
 
         if (plant.DryLevel <= 117)
         {
-            GameManager.instance.totalPlants -= 1;
-            GameManager.instance.checkPlants();
-            Destroy(gameObject);
-        }
+            //Ray ray = new Ray(gameObject.transform.position, Vector3.down);
+            if (blockLanded != null)
+            {
+                blockLanded.gameObject.GetComponent<BlockState>().occupiedBlock = false;
+                GameManager.instance.totalPlants -= 1;
+                GameManager.instance.checkPlants();
+                Destroy(gameObject);
+            }
 
+
+        }
     }
 
 }
+
+
 

@@ -6,6 +6,7 @@ public class Seed : MonoBehaviour
 {
     Maciera plantGameObject;
     Vector3 originalPos;
+    
 
     private void OnEnable()
     {
@@ -81,12 +82,29 @@ public class Seed : MonoBehaviour
                     case "Grass":
                         if (plantGameObject.plant.isIngrained == false)
                         {
-                            plantGameObject.plant.isIngrained = true;
-                            blockLanded.GetComponent<BlockState>().occupiedBlock = true;
-                            TutorialControl.Instance.setTutorial(2, false);
-                            //blockLanded.GetComponent<BlockState>().AroundObjects();
-                            plantGameObject.transform.position = new Vector3(blockLanded.gameObject.transform.position.x, blockLanded.gameObject.transform.position.y + 1, blockLanded.gameObject.transform.position.z);
-                            //blockLanded.gameObject.tag = "OoB";
+                            if(blockLanded.GetComponent<BlockState>().occupiedBlock == false)
+                            {
+                                plantGameObject.plant.isIngrained = true;
+                                blockLanded.GetComponent<BlockState>().occupiedBlock = true;
+                                plantGameObject.blockLanded = blockLanded;
+                                if (GameManager.instance.tut2 == false)
+                                {
+                                    TutorialControl.Instance.setTutorial(2, false);
+                                    GameManager.instance.tut2 = true;
+                                }
+                                
+                                //blockLanded.GetComponent<BlockState>().AroundObjects();
+                                plantGameObject.transform.position = new Vector3(blockLanded.gameObject.transform.position.x, blockLanded.gameObject.transform.position.y + 1, blockLanded.gameObject.transform.position.z);
+                                //blockLanded.gameObject.tag = "OoB";
+                            }
+
+                            else
+                            {
+                                plantGameObject.transform.position = originalPos;
+                                plantGameObject.plant.isIngrained = false;
+                            }
+
+
                         }
                         break;
                     case "Water":

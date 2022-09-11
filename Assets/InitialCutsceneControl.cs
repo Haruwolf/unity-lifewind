@@ -13,7 +13,7 @@ public class InitialCutsceneControl : MonoBehaviour
 
     private void nextLayout()
     {
-        SceneManager.LoadSceneAsync(1);
+        SceneManager.LoadSceneAsync(2);
     }
     
 }

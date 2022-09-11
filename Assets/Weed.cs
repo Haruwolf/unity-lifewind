@@ -7,6 +7,7 @@ public class Weed : MonoBehaviour
     public Plant plant;
 
     public GameObject weed;
+    public GameObject blockLanded;
 
     private void OnEnable()
     {
@@ -41,18 +42,11 @@ public class Weed : MonoBehaviour
             {
                 soundEffect();
                 GameManager.instance.fillBar += 0.25f;
-                Destroy(gameObject,0.75f);
-                Ray ray = new Ray(transform.position, Vector3.down);
+                blockLanded.GetComponent<BlockState>().occupiedBlock = false;
+                blockLanded.GetComponent<BlockState>().canCreateWeeds = true;
+                blockLanded.GetComponent<BlockState>().waterLevel = 0;
 
-                if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity))
-                {
-                    if (hitInfo.collider.gameObject.tag == "Grass")
-                    {
-                        hitInfo.collider.gameObject.GetComponent<BlockState>().waterLevel = 0;
-                        hitInfo.collider.gameObject.GetComponent<BlockState>().occupiedBlock = false;
-                        hitInfo.collider.gameObject.GetComponent<BlockState>().canCreateWeeds = true;
-                    }
-                }
+                Destroy(gameObject, 0.75f);
             }
 
 

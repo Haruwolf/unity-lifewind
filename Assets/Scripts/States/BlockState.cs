@@ -37,7 +37,7 @@ public class BlockState : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-       if (other.gameObject.tag == "Cloud" && canCreateWeeds == true)
+       if (other.gameObject.tag == "Cloud" && canCreateWeeds == true && occupiedBlock == false)
         {
             waterLevel += 1 * Time.deltaTime;
         }
@@ -45,8 +45,10 @@ public class BlockState : MonoBehaviour
        if (waterLevel > 10 && canCreateWeeds == true && occupiedBlock == false)
         {
             canCreateWeeds = false;
+            occupiedBlock = true;
             //gameObject.tag = "OoB";
-            Instantiate(weedGameObject, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 1, gameObject.transform.position.z), weedGameObject.transform.rotation);
+            GameObject weed = Instantiate(weedGameObject, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 1, gameObject.transform.position.z), weedGameObject.transform.rotation);
+            weed.GetComponent<Weed>().blockLanded = gameObject;
         }
     }
 

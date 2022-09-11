@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
 
         crystal.transform.localScale = new Vector3(fillBar, fillBar, fillBar);
         if (fillBar >= 5)
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(3);
 
         if(Input.anyKey)
         {
@@ -62,6 +62,6 @@ public class GameManager : MonoBehaviour
     public void checkPlants()
     {
         if (totalPlants <= 0)
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(4);
     }
 }

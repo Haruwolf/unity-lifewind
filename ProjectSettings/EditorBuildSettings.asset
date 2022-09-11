@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 99b4f7b2fa2e780448fd2d3895658fbf
+  - enabled: 1
     path: Assets/Scenes/LifeWind_Tutorial.unity
     guid: 1b284b2db10caf041970bd91cd7fb913
   - enabled: 1
