@@ -12,6 +12,15 @@ EditorBuildSettings:
     path: Assets/Scenes/LifeWind_Tutorial.unity
     guid: 1b284b2db10caf041970bd91cd7fb913
   - enabled: 1
+    path: Assets/Scenes/Lifewind_Fase1.unity
+    guid: daa0f4ffb69df3c489d30eac8a46b58c
+  - enabled: 1
+    path: Assets/Scenes/Lifewind_Fase2.unity
+    guid: afcefc7ce1f3d15478fedd034e6fde1d
+  - enabled: 1
+    path: Assets/Scenes/Lifewind_Fase3.unity
+    guid: 73123df1ac0a951419bb49528ccb5733
+  - enabled: 1
     path: Assets/Scenes/Lifewind_Playable.unity
     guid: 584d02a1c9cd7364c95c2e803eca3a3b
   - enabled: 1
