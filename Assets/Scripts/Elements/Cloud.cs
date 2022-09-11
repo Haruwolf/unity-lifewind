@@ -114,17 +114,17 @@ public class Cloud : MonoBehaviour
 
         if (gameObjectSound.clip == (AudioClip)Resources.Load("CriandoNuvem") && cloudStateActual == cloudState.Released)
         {
-            if (cloudHP > 200 && (AudioClip)Resources.Load("CriandoNuvem") != (AudioClip)Resources.Load("HeavyRain"))
-            {
-                gameObjectSound.clip = (AudioClip)Resources.Load("HeavyRain");
-                gameObjectSound.Play();
-                gameObjectSound.loop = true;
-                if (GameManager.instance.tut3 == false)
-                {
-                    TutorialControl.Instance.setTutorial(3, false);
-                    GameManager.instance.tut3 = true;
-                }
-            }
+            //if (cloudHP > 200 && AudioControl.instance.audioSource.clip != (AudioClip)Resources.Load("HeavyRain"))
+            //{
+            //    gameObjectSound.clip = (AudioClip)Resources.Load("HeavyRain");
+            //    gameObjectSound.Play();
+            //    gameObjectSound.loop = true;
+            //    if (GameManager.instance.tut3 == false)
+            //    {
+            //        TutorialControl.Instance.setTutorial(3, false);
+            //        GameManager.instance.tut3 = true;
+            //    }
+            //}
 
             if (cloudHP < 200 && AudioControl.instance.audioSource.clip != (AudioClip)Resources.Load("ChuvaFraca"))
             {

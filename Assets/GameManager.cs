@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    bool nextLayout = false;
     public static GameManager instance;
     public int totalPlants;
     public int weedsOnScreen;
@@ -13,7 +14,7 @@ public class GameManager : MonoBehaviour
     public int treesOnScreen;
     public float fillBar;
     public Image crystalFilled;
-    public int totalBlocks;
+    public int totalTrees;
     public Text treesText;
     public float weedBar;
 
@@ -62,18 +63,21 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         
-        weedBar = Mathf.Clamp(1 + weedsOnScreen * 0.2f , 1, totalBlocks);
-        fillBar = Mathf.Clamp(treesOnScreen, 1, totalBlocks);
+        weedBar = Mathf.Clamp(1 + weedsOnScreen * 0.2f , 1, totalTrees);
+        fillBar = Mathf.Clamp(treesOnScreen, 1, totalTrees);
         
         //fillBar = Mathf.Clamp((sproutsOnScreen * 0.15f + treesOnScreen * 0.25f)+1, 1, 5);
         //Mathf.Clamp(fillBar, 1, 3);
         //crystalFilled.fillAmount = Mathf.Clamp(fillBar, 1, 3);
 
         crystal.transform.localScale = new Vector3(fillBar, fillBar, fillBar);
-        treesText.text = $"{treesOnScreen.ToString()} / {Mathf.Round(totalBlocks / 2).ToString()}";
-        if (fillBar >= Mathf.Round(totalBlocks / 2))
+        treesText.text = $"{treesOnScreen.ToString()} / {Mathf.Round(totalTrees).ToString()}";
+        if (fillBar >= Mathf.Round(totalTrees) && nextLayout == false)
         {
-            SceneManager.LoadScene(sceneIndex + 1);
+            nextLayout = true;
+            gameObject.GetComponent<AudioSource>().clip = (AudioClip)Resources.Load("Victory");
+            Invoke("changeScene",2);
+            
 
         }
 
@@ -86,10 +90,10 @@ public class GameManager : MonoBehaviour
 
     }
 
-    //void ChangeScene()
-    //{
-        
-    //}
+    void changeScene()
+    {
+        SceneManager.LoadScene(sceneIndex + 1);
+    }
 
 
     public void checkPlants()
