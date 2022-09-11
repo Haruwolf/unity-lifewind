@@ -75,8 +75,9 @@ public class Cloud : MonoBehaviour
                 cloudHP = Mathf.Clamp(cloudHP, 0, 255);
                 //currentColor = Mathf.Clamp(currentColor, 0, 0);
             }
-            crystalBar.transform.position = Camera.main.WorldToScreenPoint(new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 3, gameObject.transform.position.z));
+            crystalBar.transform.position = Camera.main.WorldToScreenPoint(new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 6, gameObject.transform.position.z));
             crystalBar.enabled = true;
+            crystalBar.transform.localScale = new Vector3(4, 4, 4);
             crystalBar.fillAmount = actualBlock.GetComponent<CloudMaker>().riverHP / 100;
         }
 
@@ -155,7 +156,7 @@ public class Cloud : MonoBehaviour
                 TargetSelector.instance.cloudCount--;
             }
 
-            Mathf.Clamp(GetComponent<Rigidbody>().drag = cloudHP / 25f, 6, 7);
+            Mathf.Clamp(GetComponent<Rigidbody>().drag = cloudHP / 25f, 6.5f, 6.5f);
 
             crystalBar.enabled = false;
 
