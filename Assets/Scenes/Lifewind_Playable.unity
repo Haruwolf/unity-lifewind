@@ -10628,19 +10628,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8588080211055398746, guid: 1b6df76483a706449b6cd3fd668b12b1, type: 3}
   m_PrefabInstance: {fileID: 3434593261109757009}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1414863291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1414863290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 826bb2620791c6b4a95bb5a56cf4c6c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  windPrefab: {fileID: -3376866281167894133, guid: 9ca144e6957105649ac7a678d6050f0e, type: 3}
 --- !u!54 &1414863292
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16128,10 +16115,6 @@ PrefabInstance:
     - target: {fileID: 6078313382576904949, guid: 1b6df76483a706449b6cd3fd668b12b1, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6119670215527781495, guid: 1b6df76483a706449b6cd3fd668b12b1, type: 3}
-      propertyPath: windPrefab
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6850346108394111055, guid: 1b6df76483a706449b6cd3fd668b12b1, type: 3}
       propertyPath: m_Layer

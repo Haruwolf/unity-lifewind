@@ -112,4 +112,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   windPrefab: {fileID: 0}
-  plantGameObject: {fileID: 0}
+  plantPop: {fileID: 0}

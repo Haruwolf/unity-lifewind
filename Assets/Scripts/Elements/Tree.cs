@@ -7,9 +7,11 @@ public class Tree: MonoBehaviour
     public Plant plant;
     public WindActive windPrefab;
     Maciera plantGameObject;
+    public GameObject plantPop;
 
     private void OnEnable()
     {
+        
         if (GameManager.instance.tut5 == false)
         {
             TutorialControl.Instance.setTutorial(5, false);
@@ -17,6 +19,7 @@ public class Tree: MonoBehaviour
         }
 
         plantGameObject = gameObject.transform.parent.GetComponent<Maciera>();
+        Instantiate(plantPop, gameObject.transform.position, plantGameObject.transform.rotation);
         GameManager.instance.treesOnScreen += 1;
         AudioControl.instance.audioSource.clip = (AudioClip)Resources.Load("PlantPop");
         AudioControl.instance.audioSource.Play();

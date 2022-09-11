@@ -131,16 +131,22 @@ public class TargetSelector : MonoBehaviour
 
     void ChargeCloud()
     {
-        cloudCreated.GetComponent<Cloud>().cloudStateActual = Cloud.cloudState.Holding;
-        cloudCreated.GetComponent<Cloud>().fillCloudHP();
-        Debug.Log("charging cloud");
+        if (cloudCreated != null)
+        {
+            cloudCreated.GetComponent<Cloud>().cloudStateActual = Cloud.cloudState.Holding;
+            cloudCreated.GetComponent<Cloud>().fillCloudHP();
+            Debug.Log("charging cloud");
+        }
     }
 
     void ReleaseCloud()
     {
-        cloudCreated.GetComponent<Cloud>().cloudStateActual = Cloud.cloudState.Released;
-        actualState = createStates.None;
-        cloudCreated = null;
+        if (cloudCreated != null)
+        {
+            cloudCreated.GetComponent<Cloud>().cloudStateActual = Cloud.cloudState.Released;
+            actualState = createStates.None;
+            cloudCreated = null;
+        }
 
     }
 

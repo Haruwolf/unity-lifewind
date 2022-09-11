@@ -7,10 +7,13 @@ public class Sprout: MonoBehaviour
     public Plant plant;
     public WindActive windPrefab;
     Maciera plantGameObject;
+    public GameObject plantPop;
 
     private void OnEnable()
     {
+        
         plantGameObject = gameObject.transform.parent.GetComponent<Maciera>();
+        Instantiate(plantPop, gameObject.transform.position, gameObject.transform.rotation);
         GameManager.instance.sproutsOnScreen += 1;
         AudioControl.instance.audioSource.clip = (AudioClip)Resources.Load("PlantPop");
         AudioControl.instance.audioSource.Play();
