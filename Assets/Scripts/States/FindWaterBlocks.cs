@@ -8,10 +8,10 @@ public class FindWaterBlocks : MonoBehaviour
     List<GameObject> availableBlocks = new List<GameObject>();
 
     // Start is called before the first frame update
-    void Start()
-    {
-        Invoke(nameof(checkCloudTiles), 5);
-    }
+    //void Start()
+    //{
+    //    Invoke(nameof(checkCloudTiles), 5);
+    //}
 
     void checkCloudTiles()
     {

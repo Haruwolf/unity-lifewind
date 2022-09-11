@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
 
     GameObject[] gameObjects;
 
+    int sceneIndex;
+
     private void Awake()
     {
         if (instance == null)
@@ -36,35 +38,52 @@ public class GameManager : MonoBehaviour
         if (instance != null && instance != this)
             Destroy(this);
 
-       
 
+        fillBar = 0;
+
+        sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        Debug.Log(sceneIndex);
+
+        //Fase1
+        if (sceneIndex != 2)
+        {
+            tut1 = true;
+            tut2 = true;
+            tut3 = true;
+            tut4 = true;
+            tut5 = true;
+            tut6 = true;
+
+        }
 
     }
 
 
     private void Update()
     {
-        weedBar = Mathf.Clamp(1 + weedsOnScreen * 0.2f , 1, 3);
-        fillBar = Mathf.Clamp(  treesOnScreen   , 1, totalBlocks);
+        weedBar = Mathf.Clamp(1 + weedsOnScreen * 0.2f , 1, totalBlocks);
+        fillBar = Mathf.Clamp(treesOnScreen, 1, totalBlocks);
         
         //fillBar = Mathf.Clamp((sproutsOnScreen * 0.15f + treesOnScreen * 0.25f)+1, 1, 5);
         //Mathf.Clamp(fillBar, 1, 3);
         //crystalFilled.fillAmount = Mathf.Clamp(fillBar, 1, 3);
 
         crystal.transform.localScale = new Vector3(fillBar, fillBar, fillBar);
-        if (fillBar >= totalBlocks)
-            SceneManager.LoadScene(3);
+        if (fillBar >= Mathf.Round(totalBlocks / 2))
+            SceneManager.LoadScene(sceneIndex + 1);
 
-        if(Input.anyKey)
-        {
-            gameObjects = GameObject.FindGameObjectsWithTag("Plant");
-            Debug.Log(gameObjects.Length);
-        }
+        //if(Input.anyKey)
+        //{
+        //    gameObjects = GameObject.FindGameObjectsWithTag("Plant");
+        //    Debug.Log(gameObjects.Length);
+        //}
+
+
     }
 
     public void checkPlants()
     {
         if (totalPlants <= 0)
-            SceneManager.LoadScene(4);
+            SceneManager.LoadScene("LifeWind_GameOver");
     }
 }

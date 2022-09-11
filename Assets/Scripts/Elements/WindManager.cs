@@ -50,6 +50,17 @@ public class WindManager : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (Time.deltaTime == 0)
+        {
+            if (windClone != null)
+                if (windClone.GetComponent<WindActive>().wind.ActualState == Wind.windState.Charging)
+                    releaseWind();
+        }
+    }
+
+
     public void setWindPos(GameObject actualBlock)
     {
         windClone = Instantiate(windParentPrefab, new Vector3(actualBlock.transform.position.x, actualBlock.transform.position.y + windHeight, actualBlock.transform.position.z), cycloneParticle.transform.rotation);

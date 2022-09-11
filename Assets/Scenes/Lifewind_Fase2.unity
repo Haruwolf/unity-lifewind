@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 51734475}
-  m_IndirectSpecularColor: {r: 0.75424093, g: 0.7368676, b: 0.7296074, a: 1}
+  m_IndirectSpecularColor: {r: 0.5432611, g: 0.55573416, b: 0.56966233, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2508,6 +2508,7 @@ MonoBehaviour:
   treesOnScreen: 0
   fillBar: 0
   crystalFilled: {fileID: 0}
+  totalBlocks: 16
   weedBar: 0
   crystal: {fileID: 103006344}
   tut1: 0
@@ -2912,9 +2913,9 @@ Transform:
   - {fileID: 1475174154}
   - {fileID: 1988895534}
   - {fileID: 1177407103}
+  - {fileID: 2002627984}
   - {fileID: 1832478938}
   - {fileID: 822407561}
-  - {fileID: 2002627984}
   - {fileID: 2055706128}
   - {fileID: 1242018794}
   m_Father: {fileID: 965398588}
