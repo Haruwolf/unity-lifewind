@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8133230230550430368}
   - component: {fileID: 1805998245530943409}
   - component: {fileID: 5160387027157850055}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Erva Daninha
   m_TagString: Weed
   m_Icon: {fileID: 0}
@@ -126,38 +126,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d84f874be7cdc28469a80be021dff762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.2521057
-      inSlope: 0.56353325
-      outSlope: 0.56353325
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.19122411
-      value: 0.35986686
-      inSlope: 0.057773083
-      outSlope: 0.057773083
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.99768066
-      value: -0.0014152527
-      inSlope: -0.44798708
-      outSlope: -0.44798708
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   weed: {fileID: 4076441677194446489}
   blockLanded: {fileID: 0}
