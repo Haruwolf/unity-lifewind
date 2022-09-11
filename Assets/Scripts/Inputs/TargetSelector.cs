@@ -54,49 +54,52 @@ public class TargetSelector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Time.timeScale != 0)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity))
+            if (Input.GetMouseButtonDown(0))
             {
-                if (hitInfo.collider != null)
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity))
                 {
-                    if (hitInfo.collider.gameObject.tag == "Grass")
-                        if (managerCount < 3)
-                            CreateWind();
+                    if (hitInfo.collider != null)
+                    {
+                        if (hitInfo.collider.gameObject.tag == "Grass")
+                            if (managerCount < 3)
+                                CreateWind();
 
-                    if (hitInfo.collider.gameObject.tag == "Water")
-                        if (cloudCount < 2)
-                            CreateCloud(hitInfo.collider.gameObject);
+                        if (hitInfo.collider.gameObject.tag == "Water")
+                            if (cloudCount < 2)
+                                CreateCloud(hitInfo.collider.gameObject);
+                    }
+                }
+
+            }
+
+            if (Input.GetMouseButton(0))
+            {
+                timePressed += Time.deltaTime;
+                if (timePressed > maximumPressTime)
+                {
+                    if (actualState == createStates.Winding)
+                        ChargeWind();
+
+                    if (actualState == createStates.Clouding)
+                        ChargeCloud();
                 }
             }
 
-        }
-
-        if (Input.GetMouseButton(0))
-        {
-            timePressed += Time.deltaTime;
-            if (timePressed > maximumPressTime)
+            if (Input.GetMouseButtonUp(0))
             {
                 if (actualState == createStates.Winding)
-                    ChargeWind();
+                {
+                    ReleaseWind();
+                    CancelWind();
+                }
 
                 if (actualState == createStates.Clouding)
-                    ChargeCloud();
+                    ReleaseCloud();
+
             }
-        }
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            if (actualState == createStates.Winding)
-            {
-                ReleaseWind();
-                CancelWind();
-            }
-
-            if (actualState == createStates.Clouding)
-                ReleaseCloud();
-
         }
 
 

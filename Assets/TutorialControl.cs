@@ -38,6 +38,7 @@ public class TutorialControl : MonoBehaviour
         nextButton.SetActive(galleryButtons);
         prevButton.SetActive(galleryButtons);
         closeButton.SetActive(true);
+        Time.timeScale = 0f;
 
     }
 
@@ -47,6 +48,7 @@ public class TutorialControl : MonoBehaviour
         closeButton.SetActive(false);
         nextButton.SetActive(false);
         prevButton.SetActive(false);
+        Time.timeScale = 1.0f;
     }
 
     public void openTutorial()
@@ -57,6 +59,7 @@ public class TutorialControl : MonoBehaviour
         closeButton.SetActive(true);
         nextButton.SetActive(true);
         prevButton.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void nextButtonFunction()

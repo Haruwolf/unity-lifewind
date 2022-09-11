@@ -68,7 +68,7 @@ public class Cloud : MonoBehaviour
 
                 if (hitInfo.collider.gameObject.GetComponent<CloudMaker>().riverCooldown == false)
                 {
-                    if (cloudHP < cloudMaxHP)
+                    if (cloudHP <= cloudMaxHP)
                     {
                         cloudHP += 25.5f * Time.deltaTime;
                         hitInfo.collider.gameObject.GetComponent<CloudMaker>().riverHP -= 10.5f * Time.deltaTime;
@@ -164,6 +164,12 @@ public class Cloud : MonoBehaviour
             crystalBar.enabled = false;
 
         }
+
+        if (cloudStateActual != cloudState.Holding)
+            crystalBar.enabled = false;
+
+        if (cloudStateActual == cloudState.Destroyed)
+            Destroy(gameObject);
 
         if (cloudHP < 200)
         {

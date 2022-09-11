@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
+    public float scrollSpeed;
+    public float top;
+    public float left;
+    public float right;
+    public float bottom;
+
+    public float limitX;
+    public float limitZ;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,27 +21,22 @@ public class CameraMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Mathf.Clamp(gameObject.transform.position.y, 25, 60);
-        Mathf.Clamp(gameObject.transform.position.z, -50, 0);
-        Mathf.Clamp(gameObject.transform.position.x, -8, 20);
-        if (Input.GetKey(KeyCode.W))
-        {
-            gameObject.transform.position += Vector3.forward * Time.deltaTime * 5;
-        }
+        //limitX += Mathf.Clamp(limitX, -6, 30);
+        //limitZ += Mathf.Clamp(limitZ, -8, -40);
+        //Vector3 clampPosition = new Vector3(limitX, transform.position.y, limitZ);
+        //transform.position = clampPosition;.
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            gameObject.transform.position += Vector3.left * Time.deltaTime * 5;
-        }
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -10, 40), transform.position.y, Mathf.Clamp(transform.position.z, -50, -6));
+        if (Input.mousePosition.y >= Screen.height * top)
+            transform.Translate(Vector3.left * Time.deltaTime * scrollSpeed, Space.World);;
 
-        if (Input.GetKey(KeyCode.D))
-        {
-            gameObject.transform.position += Vector3.right * Time.deltaTime * 5;
-        }
+        if (Input.mousePosition.y <= Screen.height * bottom)
+            transform.Translate(Vector3.right * Time.deltaTime * scrollSpeed, Space.World);
 
-        if (Input.GetKey(KeyCode.S))
-        {
-            gameObject.transform.position += Vector3.back * Time.deltaTime * 5;
-        }
+        if (Input.mousePosition.x >= Screen.width * right)
+            transform.Translate(Vector3.forward * Time.deltaTime * scrollSpeed, Space.World);
+
+        if (Input.mousePosition.x <= Screen.width * left)
+            transform.Translate(Vector3.back * Time.deltaTime * scrollSpeed, Space.World);
     }
 }
