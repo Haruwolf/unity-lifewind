@@ -111,8 +111,8 @@ public class WindManager : MonoBehaviour
             breezeClone.GetComponentInChildren<ParticleSystem>().Play();
             windTimeLife = 0;
             Rigidbody breezeRigidbody = breezeClone.GetComponent<Rigidbody>();
-            float force = Mathf.Clamp(Vector3.Distance(endDirection, startDirection), 1f, 18f);
-            breezeRigidbody.AddForce((startDirection - endDirection).normalized * (force / 1.75f), ForceMode.VelocityChange);
+            float force = Mathf.Clamp(Vector3.Distance(endDirection, startDirection), 0.5f, 18f);
+            breezeRigidbody.AddForce((startDirection - endDirection).normalized * (force / 2.95f), ForceMode.VelocityChange);
             setWindTimer();
             setReleaseWindSound();
         }

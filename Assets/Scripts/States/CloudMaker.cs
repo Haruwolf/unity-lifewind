@@ -22,7 +22,7 @@ public class CloudMaker : MonoBehaviour
 
     private void Update()
     {
-        if (riverHP < 0)
+        if (riverHP < 3)
             riverCooldown = true;
 
         if (riverCooldown == true)
