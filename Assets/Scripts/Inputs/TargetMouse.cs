@@ -14,7 +14,7 @@ public class TargetMouse : MonoBehaviour
     {
         materials = GetComponent<Renderer>().materials;
         firstOriginalColor = materials[0].color;
-        secondOriginalColor = materials[1].color;
+        if (materials.Length > 1) secondOriginalColor = materials[1].color;
         if (materials.Length > 2) thirdOriginalColor = materials[2].color;
     }
 
@@ -26,7 +26,7 @@ public class TargetMouse : MonoBehaviour
             if (hitInfo.collider.tag == "Grass" || hitInfo.collider.tag == "Water")
             {
                 materials[0].color = Color.yellow;
-                materials[1].color = Color.yellow;
+                if (materials.Length > 1) materials[1].color = Color.yellow;
                 if (materials.Length > 2) materials[2].color = Color.yellow;
             }
         }
@@ -36,7 +36,7 @@ public class TargetMouse : MonoBehaviour
     private void OnMouseExit()
     {
         materials[0].color = firstOriginalColor;
-        materials[1].color = secondOriginalColor;
+        if (materials.Length > 1) materials[1].color = secondOriginalColor;
         if (materials.Length > 2) materials[2].color = thirdOriginalColor;
     }
 }
