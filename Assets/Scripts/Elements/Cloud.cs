@@ -156,7 +156,7 @@ public class Cloud : MonoBehaviour
                 TargetSelector.instance.cloudCount--;
             }
 
-            Mathf.Clamp(GetComponent<Rigidbody>().drag = cloudHP / 25f, 6.5f, 6.5f);
+            //Mathf.Clamp(GetComponent<Rigidbody>().drag = cloudHP / 25f, 7f, 7f);
 
             crystalBar.enabled = false;
 
