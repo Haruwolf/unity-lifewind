@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public float fillBar;
     public Image crystalFilled;
     public int totalBlocks;
-
+    public Text treesText;
     public float weedBar;
 
     public GameObject crystal;
@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        
         weedBar = Mathf.Clamp(1 + weedsOnScreen * 0.2f , 1, totalBlocks);
         fillBar = Mathf.Clamp(treesOnScreen, 1, totalBlocks);
         
@@ -69,8 +70,12 @@ public class GameManager : MonoBehaviour
         //crystalFilled.fillAmount = Mathf.Clamp(fillBar, 1, 3);
 
         crystal.transform.localScale = new Vector3(fillBar, fillBar, fillBar);
+        treesText.text = $"{treesOnScreen.ToString()} / {Mathf.Round(totalBlocks / 2).ToString()}";
         if (fillBar >= Mathf.Round(totalBlocks / 2))
+        {
             SceneManager.LoadScene(sceneIndex + 1);
+
+        }
 
         //if(Input.anyKey)
         //{
@@ -80,6 +85,12 @@ public class GameManager : MonoBehaviour
 
 
     }
+
+    //void ChangeScene()
+    //{
+        
+    //}
+
 
     public void checkPlants()
     {
