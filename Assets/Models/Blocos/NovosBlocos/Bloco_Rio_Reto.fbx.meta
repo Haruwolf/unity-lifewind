@@ -3,7 +3,17 @@ guid: 651ca428b1cb40e41a6a67c1540c8c26
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grama
+    second: {fileID: 2100000, guid: 3b68594ec9b4ea646b72b0859c53ce70, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Terra
+    second: {fileID: 2100000, guid: 9fd4482f0e168be40a555979000f7ea1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -85,7 +95,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.01256
+    globalScale: 1.256
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
