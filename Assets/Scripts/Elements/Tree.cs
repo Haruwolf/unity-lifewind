@@ -46,7 +46,7 @@ public class Tree: MonoBehaviour
                 plantGameObject.plant.WaterLevel += 0.5f * Time.deltaTime;
                 plantGameObject.plant.growStates(plantGameObject.plant.WaterLevel);
                 plantGameObject.checkGrow(plantGameObject.plant.WaterLevel);
-                plantGameObject.plant.DryLevel += 2 * Time.deltaTime;
+                plantGameObject.plant.DryLevel += 8 * Time.deltaTime;
             }
 
         }

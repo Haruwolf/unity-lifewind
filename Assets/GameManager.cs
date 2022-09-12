@@ -76,7 +76,8 @@ public class GameManager : MonoBehaviour
         {
             nextLayout = true;
             gameObject.GetComponent<AudioSource>().clip = (AudioClip)Resources.Load("Victory");
-            Invoke("changeScene",2);
+            gameObject.GetComponent<AudioSource>().Play();
+            Invoke("changeScene",3);
             
 
         }

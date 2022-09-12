@@ -13,7 +13,7 @@ public class FinalCutsceneControl : MonoBehaviour
 
     private void nextLayout()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Menu");
     }
     
 }
