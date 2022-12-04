@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8133230230550430368}
   - component: {fileID: 1805998245530943409}
   - component: {fileID: 5160387027157850055}
+  - component: {fileID: 1225368981643635324}
   m_Layer: 2
   m_Name: Erva Daninha
   m_TagString: Weed
@@ -128,3 +129,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weed: {fileID: 4076441677194446489}
   blockLanded: {fileID: 0}
+--- !u!114 &1225368981643635324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4076441677194446489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0059e0ae818647e468a45015c7f16535, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -11,16 +11,16 @@ public class CloudPosition : MonoBehaviour
     {
 
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Wind" && other.gameObject.GetComponentInParent<WindActive>().wind.ActualState == Wind.windState.Released)
-        {
-            force = Vector3.zero;
-            force = WindManager.startDirectionstatic - WindManager.endDirectionstatic;
-            gameObject.GetComponent<Rigidbody>().AddForce(force, ForceMode.VelocityChange);
-            Debug.Log("entered");
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.tag == "Wind" && other.gameObject.GetComponentInParent<WindActive>().wind.ActualState == Wind.windState.Released)
+    //    {
+    //        force = Vector3.zero;
+    //        force = WindManager.startDirectionstatic - WindManager.endDirectionstatic;
+    //        gameObject.GetComponent<Rigidbody>().AddForce(force, ForceMode.VelocityChange);
+    //        Debug.Log("entered");
+    //    }
+    //}
 
 
 }
