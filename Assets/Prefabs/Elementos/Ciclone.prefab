@@ -4815,6 +4815,7 @@ GameObject:
   - component: {fileID: 1751114071482553814}
   - component: {fileID: 1751114071482553815}
   - component: {fileID: 1751114071482553812}
+  - component: {fileID: 2511908676789929422}
   m_Layer: 0
   m_Name: Ciclone
   m_TagString: Untagged
@@ -9609,3 +9610,15 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &2511908676789929422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751114071482553813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39500283497c7b54ba16c247a0a7e1b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
