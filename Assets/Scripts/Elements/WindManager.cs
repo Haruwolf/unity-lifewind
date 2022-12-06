@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +21,7 @@ public class WindManager : MonoBehaviour
 
     public ParticleSystem cycloneParticle;
     public ParticleSystem breezeParticle;
-    public AudioSource windSound;
+    public AudioSource windAudioSource;
 
     WindActive windState;
     ParticleSystem newCycloneParticle;
@@ -35,7 +36,17 @@ public class WindManager : MonoBehaviour
     public delegate void windDelegateEvent();
     public static event windDelegateEvent windEvent;
 
-   
+    public delegate void arrowDelegateEvent(Vector3 startDir, Vector3 holdDir, GameObject windManager, bool toggle);
+    public static event arrowDelegateEvent ToggleArrow;
+
+    public delegate void soundDelegateEvent(AudioSource audio, string soundName);
+    public static event soundDelegateEvent SoundEvent;
+
+    public const string ventoCarregando = "ventoCarregando"; //const = static, ambos podem ser acessados globalmente
+    public const string ventoSolto = "ventoSolto";
+    public const string quebrarLoop = "quebrarLoop";
+
+
 
     private void Update()
     {
@@ -43,7 +54,7 @@ public class WindManager : MonoBehaviour
         {
             if (windClone != null)
                 if (windClone.GetComponent<WindActive>().wind.ActualState == Wind.windState.Charging)
-                    releaseWind();
+                    SetReleaseWindState();
         }
 
         if (releasedWind)
@@ -52,9 +63,9 @@ public class WindManager : MonoBehaviour
             newBreeze.transform.position = Vector3.Lerp(endDirection, startDirection, windTimer / interpolationTime);
             if (windTimer >= interpolationTime && windClone != null)
             {
-                releasedWind = moveWind(false);
-                stopWindParticles();
-                clearWind();
+                releasedWind = WindReleasedState(false);
+                StopBreezeParticles();
+                ClearWind();
                 windEvent(); //Checar se quebrou a conexão, e tirar efetivamente o vento
                 
             }
@@ -63,17 +74,17 @@ public class WindManager : MonoBehaviour
         }
     }
 
-    public void setWindPos(GameObject actualBlock)
+    public void CreateWindPrefab(GameObject actualBlock)
     {
-        Vector3 windInitPos = calcWindPos(actualBlock.transform.position);
+        Vector3 windInitPos = CalcWindPrefabPos(actualBlock.transform.position);
         windClone = Instantiate(windParentPrefab, windInitPos, cycloneParticle.transform.rotation);
-        newCyclone = setCycloneState(windInitPos, windClone);
+        newCyclone = CreateNewCyclone(windInitPos, windClone);
         windState = windClone.GetComponent<WindActive>();
         windState.updateState(Wind.windState.Setted);
-        startDirection = newCyclone.transform.position; ;
+        startDirection = newCyclone.transform.position;
     }
 
-    GameObject setCycloneState(Vector3 windInitPos, GameObject windClone)
+    GameObject CreateNewCyclone(Vector3 windInitPos, GameObject windClone)
     {
         newCyclone = windClone.GetComponentInChildren<Cyclone>().gameObject;
         newCyclone.SetActive(true);
@@ -84,67 +95,27 @@ public class WindManager : MonoBehaviour
         return newCyclone;
     }
 
-    private Vector3 calcWindPos(Vector3 blockPos)
-    {
-        return new Vector3(blockPos.x, blockPos.y + windHeight, blockPos.z);
-    }
-
-    public void chargeWind(GameObject actualBlock)
+    public void SetWindCharge(GameObject actualBlock)
     {
         if (windState.wind.ActualState == Wind.windState.Setted || windState.wind.ActualState == Wind.windState.Charging)
         {
-            chargeCyclone(actualBlock.transform.position);
-            createArrow();
-            setChargingWindSound();
+            ChargeCyclone(actualBlock.transform.position);
+            ToggleArrow(startDirection, holdDirection, gameObject, true);
+            SoundEvent(windAudioSource, ventoCarregando);
         }
 
     }
 
-    void createArrow()
-    {
-        LineRenderer line = gameObject.GetComponent<LineRenderer>();
-        line.SetPosition(0, startDirection);
-        line.SetPosition(1, holdDirection);
-    }
-
-    void chargeCyclone(Vector3 blockPos)
+    void ChargeCyclone(Vector3 blockPos)
     {
         windClone.GetComponent<WindActive>().updateState(Wind.windState.Charging);
-        newCyclone.transform.position = calcWindPos(blockPos);
+        newCyclone.transform.position = CalcWindPrefabPos(blockPos);
         holdDirection = newCyclone.transform.position;
         float actualDistance = Mathf.Clamp(Vector3.Distance(holdDirection, startDirection) / 10, 0.5f, 3.0f);
         newCyclone.transform.localScale = new Vector3(actualDistance, actualDistance, actualDistance);
     }
 
-    public void setChargingWindSound()
-    {
-        if (windSound.clip != (AudioClip)Resources.Load("VentoCarregando"))
-        {
-            windSound.clip = (AudioClip)Resources.Load("VentoCarregando");
-            windSound.Play();
-            windSound.loop = true;
-        }
-    }
-
-    void toggleOffArrow()
-    {
-        gameObject.GetComponent<LineRenderer>().enabled = false;
-    }
-
-    public void releaseWind()
-    {
-        if (windState.wind.ActualState == Wind.windState.Charging)
-        {
-            toggleOffArrow();
-            windState.updateState(Wind.windState.Released);
-            endDirection = toggleOffCyclone();
-            setNewBreeze();      
-            releasedWind = moveWind(true);
-            setReleaseWindSound();
-        }
-    }
-
-    void setNewBreeze()
+    void SetNewBreeze()
     {
         newBreeze = windClone.GetComponentInChildren<WindBehavior>().gameObject;
         newBreeze.SetActive(true);
@@ -154,44 +125,51 @@ public class WindManager : MonoBehaviour
         newBreezeParticle.Play();
     }
 
-    Vector3 toggleOffCyclone()
+    public void SetReleaseWindState()
+    {
+        if (windState.wind.ActualState == Wind.windState.Charging)
+        {
+            ToggleArrow(Vector3.zero, Vector3.zero, gameObject, false);
+            windState.updateState(Wind.windState.Released);
+            endDirection = DestroyNewCyclone();
+            SetNewBreeze();      
+            releasedWind = WindReleasedState(true);
+            SoundEvent(windAudioSource, ventoSolto);
+        }
+    }
+
+    Vector3 DestroyNewCyclone()
     {
         newCycloneParticle.Stop();
         newCyclone.GetComponent<ParticleSystem>().Stop();
         return newCyclone.transform.position;
     }
 
-    public void setReleaseWindSound()
-    {
-
-        windSound.clip = (AudioClip)Resources.Load("VentoMovimento_Unity");
-        windSound.Play();
-        windSound.loop = true;
-    }
-
-    public void canceledWind()
+    public void CancelWind()
     {
         if (startDirection == endDirection)
         {
             Destroy(windClone);
-            windSound.Stop();
+            SoundEvent(windAudioSource, quebrarLoop);
         }
     }
-    private bool moveWind(bool state)
+    private bool WindReleasedState(bool state)
     {
         return state;
     }
 
-    void stopWindParticles()
+    void StopBreezeParticles()
     {
         newBreezeParticle.Stop();
-        windSound.loop = false;
+        SoundEvent(windAudioSource, quebrarLoop);
     }
 
-    void clearWind()
+    void ClearWind()
     {
         Destroy(windClone, clearTime);
         Destroy(gameObject, clearTime);
     }
+
+    private Vector3 CalcWindPrefabPos(Vector3 blockPos) => new Vector3(blockPos.x, blockPos.y + windHeight, blockPos.z);
 
 }

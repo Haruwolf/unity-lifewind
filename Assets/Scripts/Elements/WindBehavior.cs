@@ -46,9 +46,4 @@ public class WindBehavior : MonoBehaviour
             WindManager.windEvent -= breakConnection;
         }
     }
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    carryState = false;
-    //    destroyState = false;
-    //}
 }

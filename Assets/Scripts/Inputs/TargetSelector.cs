@@ -162,7 +162,7 @@ public class TargetSelector : MonoBehaviour
             if (hitInfo.collider.gameObject != null)
             {
                 GameObject selectedTerrain = hitInfo.collider.gameObject;
-                managerClone.GetComponent<WindManager>().setWindPos(selectedTerrain);
+                managerClone.GetComponent<WindManager>().CreateWindPrefab(selectedTerrain);
             }
         }
 
@@ -179,14 +179,14 @@ public class TargetSelector : MonoBehaviour
             if (hitInfo.collider.gameObject != null)
             {
                 GameObject selectedTerrain = hitInfo.collider.gameObject;
-                managerClone.GetComponent<WindManager>().chargeWind(selectedTerrain);
+                managerClone.GetComponent<WindManager>().SetWindCharge(selectedTerrain);
             }
         }
     }
 
     private void ReleaseWind()
     {
-        managerClone.GetComponent<WindManager>().releaseWind();
+        managerClone.GetComponent<WindManager>().SetReleaseWindState();
         managerCount = Mathf.Clamp(managerCount - 1, 0, 4);
 
         actualState = createStates.None;
@@ -194,6 +194,6 @@ public class TargetSelector : MonoBehaviour
 
     private void CancelWind()
     {
-        managerClone.GetComponent<WindManager>().canceledWind();
+        managerClone.GetComponent<WindManager>().CancelWind();
     }
 }

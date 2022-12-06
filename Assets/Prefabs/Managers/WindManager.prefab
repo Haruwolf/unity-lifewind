@@ -45,18 +45,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfce750cd291e0f48a1f136bbb10e4fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cyclonePrefab: {fileID: 1751114071482553813, guid: 660ab7702c7208644a55ca2f626b20fe, type: 3}
-  breezePrefab: {fileID: 974894406548077521, guid: 03b53a04d01678949a609af21c2cff38, type: 3}
   windParentPrefab: {fileID: 2825915288988247718, guid: 9ca144e6957105649ac7a678d6050f0e, type: 3}
-  speedLaunch: 6
   startDirection: {x: 0, y: 0, z: 0}
   endDirection: {x: 0, y: 0, z: 0}
   holdDirection: {x: 0, y: 0, z: 0}
-  direction: {x: 0, y: 0, z: 0}
   windHeight: 3.03
   cycloneParticle: {fileID: 1751114071482553815, guid: 660ab7702c7208644a55ca2f626b20fe, type: 3}
   breezeParticle: {fileID: 974894406548077523, guid: 03b53a04d01678949a609af21c2cff38, type: 3}
-  windSound: {fileID: 53620088121166287}
+  windAudioSource: {fileID: 53620088121166287}
+  interpolationTime: 5
+  clearTime: 4
 --- !u!120 &-4127528540798632959
 LineRenderer:
   m_ObjectHideFlags: 0
