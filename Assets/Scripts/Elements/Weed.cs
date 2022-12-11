@@ -12,7 +12,7 @@ public class Weed : MonoBehaviour
     private void OnEnable()
     {
         plant = new Plant(
-            plantState: Plant.plantStates.NotSet,
+            plantState: Plant.plantStates.SeedNotPlanted,
             iSprout: false,
             iWeed: true,
             canDestroy: true,

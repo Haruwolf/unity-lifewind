@@ -2,77 +2,87 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Plant
+public class Plant : MonoBehaviour, IPlant
 {
-    public enum plantStates
+    public enum PlantStates
     {
-        NotSet,
-        Seed,
+        SeedNotPlanted,
+        SeedPlanted,
         Sprout,
         Tree,
-        Weed,
     }
 
-    public plantStates plantState = Plant.plantStates.NotSet;
+    public PlantStates PlantStatus;
 
-    public bool initialSprout;
-    public bool isWeed;
-    public bool canBeDestroyed;
-    public bool isIngrained;
-    public bool spawnSeeds;
-    private float _waterLevel;
-    private float _dryLevel;
+    private int _waterLevel; 
+    private int _waterLevelMax;
+    private int _sproutLevel;
+    private int _treeLevel;
 
-
-    public float DryLevel
-    {
-        get { return _dryLevel; }
-        set
+    public GameObject SeedGameObject { get; set; }
+    public GameObject SproutGameObject { get; set; }
+    public GameObject TreeGameObject { get; set; }
+    public int WaterLevel { get { return _waterLevel; } set
         {
-            if (value > 0)
-                _dryLevel = value;
-
-            if (value < 0)
-                _dryLevel = 0;
-
-            if (value > 120)
-                _dryLevel = 120;
-        }
-    }
-
-    public float WaterLevel { get { return _waterLevel; } set
-        {
-            if (value < 20f)
+            if (value < _waterLevelMax)
                 _waterLevel = value;
             else
-                _waterLevel = 20f;
+                _waterLevel = _waterLevelMax;
         }
     }
 
-    public Plant(plantStates plantState, bool iSprout, bool iWeed, bool canDestroy, float wLevel, bool isIngrained, bool spawnSeed)
+    public int WaterLevelMax
     {
-        this.plantState = plantState;
-        initialSprout = iSprout;
-        canBeDestroyed = canDestroy;
-        WaterLevel = wLevel;
-        this.isIngrained = isIngrained;
-        this.spawnSeeds = spawnSeed;
+        get { return _waterLevelMax; }
+        set { _waterLevelMax = value; }
     }
 
-    public virtual void growStates(float wLevel)
+    public int SproutWaterLevel
     {
-        if (wLevel > 3 && plantState == plantStates.Seed)
+        get { return _sproutLevel; }
+        set
         {
-            plantState = plantStates.Sprout;
-            return;
-        }
+            if (value < 1)
+                _sproutLevel = 1;
 
-        if (wLevel > 12 && plantState == plantStates.Sprout)
-        {
-            plantState = plantStates.Tree;
-            return;
+            _sproutLevel = value;
         }
+    }
+
+    public int TreeWaterLevel
+    {
+        get { return _treeLevel; }
+        set
+        {
+            if (value < SproutWaterLevel)
+                _treeLevel = SproutWaterLevel + 1;
+
+            _treeLevel = value;
+        }
+    }
+
+    public virtual void CheckPlantState()
+    {
 
     }
 
+    public virtual void CheckGrow()
+    {
+
+    }
+
+    public virtual void AttributeGameObjects()
+    {
+
+    }
+
+    public virtual void SetInitialPlantState()
+    {
+
+    }
+
+    public virtual void AddTotalPlants()
+    {
+
+    }
 }

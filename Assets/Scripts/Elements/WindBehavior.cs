@@ -41,7 +41,7 @@ public class WindBehavior : MonoBehaviour
     {
         if (gameObjectJoint != null)
         {
-            gameObjectJoint = null;
+            Destroy(gameObjectJoint);
 
             WindManager.windEvent -= breakConnection;
         }
