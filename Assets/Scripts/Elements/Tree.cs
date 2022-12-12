@@ -4,53 +4,53 @@ using UnityEngine;
 
 public class Tree: MonoBehaviour
 {
-    public Plant plant;
-    public WindActive windPrefab;
-    BasePlant plantGameObject;
-    public GameObject plantPop;
+    //public Plant plant;
+    //public WindActive windPrefab;
+    ////BasePlant plantGameObject;
+    //public GameObject plantPop;
 
-    private void OnEnable()
-    {
+    //private void OnEnable()
+    //{
         
-        if (GameManager.instance.tut5 == false)
-        {
-            TutorialControl.Instance.setTutorial(5, false);
-            GameManager.instance.tut5 = true;
-        }
+    //    if (GameManager.instance.tut5 == false)
+    //    {
+    //        TutorialControl.Instance.setTutorial(5, false);
+    //        GameManager.instance.tut5 = true;
+    //    }
 
-        plantGameObject = gameObject.transform.parent.GetComponent<BasePlant>();
-        Instantiate(plantPop, new Vector3(plantGameObject.transform.position.x, plantGameObject.transform.position.y + 2, plantGameObject.transform.position.z), plantPop.transform.rotation);
-        GameManager.instance.treesOnScreen += 1;
-        AudioControl.instance.audioSource.clip = (AudioClip)Resources.Load("PlantPop");
-        AudioControl.instance.audioSource.Play();
-        AudioControl.instance.audioSource.loop = false;
+    //    plantGameObject = gameObject.transform.parent.GetComponent<BasePlant>();
+    //    Instantiate(plantPop, new Vector3(plantGameObject.transform.position.x, plantGameObject.transform.position.y + 2, plantGameObject.transform.position.z), plantPop.transform.rotation);
+    //    GameManager.instance.treesOnScreen += 1;
+    //    AudioControl.instance.audioSource.clip = (AudioClip)Resources.Load("PlantPop");
+    //    AudioControl.instance.audioSource.Play();
+    //    AudioControl.instance.audioSource.loop = false;
 
-    }
+    //}
 
-    private void OnDisable()
-    {
-        GameManager.instance.treesOnScreen -= 1;
-    }
+    //private void OnDisable()
+    //{
+    //    GameManager.instance.treesOnScreen -= 1;
+    //}
 
-    private void OnTriggerStay(Collider other)
-    {
-        //if (other.gameObject.tag == "Wind")
-        //{
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    //if (other.gameObject.tag == "Wind")
+    //    //{
             
-        //}
+    //    //}
 
-        if(other.gameObject.tag == "Cloud")
-        {
-            if (plantGameObject.plant.isIngrained == true)
-            {
-                plantGameObject.plant.WaterLevel += 0.5f * Time.deltaTime;
-                plantGameObject.plant.growStates(plantGameObject.plant.WaterLevel);
-                plantGameObject.checkGrow(plantGameObject.plant.WaterLevel);
-                plantGameObject.plant.DryLevel += 8 * Time.deltaTime;
-            }
+    //    if(other.gameObject.tag == "Cloud")
+    //    {
+    //        if (plantGameObject.plant.isIngrained == true)
+    //        {
+    //            plantGameObject.plant.WaterLevel += 0.5f * Time.deltaTime;
+    //            plantGameObject.plant.growStates(plantGameObject.plant.WaterLevel);
+    //            plantGameObject.checkGrow(plantGameObject.plant.WaterLevel);
+    //            plantGameObject.plant.DryLevel += 8 * Time.deltaTime;
+    //        }
 
-        }
-    }
+    //    }
+    //}
 
 
 

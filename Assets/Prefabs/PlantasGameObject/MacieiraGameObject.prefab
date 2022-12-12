@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3434593260836174250}
   - component: {fileID: 768493912636812772}
   - component: {fileID: 8972645215767301500}
+  - component: {fileID: 5127102542696614459}
   m_Layer: 0
   m_Name: MacieiraGameObject
   m_TagString: Untagged
@@ -46,15 +47,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87040b27b5077647855f36d878bd97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dryRate: 0.35
-  seed: {fileID: 5250090891182334868}
-  sprout: {fileID: 4015789777771793329}
-  tree: {fileID: 8456270247565533230}
-  macieraPrefab: {fileID: 3434593260836174248}
-  blockLanded: {fileID: 0}
-  dryBar: {fileID: 5872033136169032667, guid: f95af8d3a9dc807479efef644d6fa153, type: 3}
-  wetBar: {fileID: 5872033136169032667, guid: a6fa8b9c87ad1eb4b88d2679cab03b6a, type: 3}
-  watering: 0
+  PlantStatus: 0
+  seedGameObject: {fileID: 0}
+  sproutGameObject: {fileID: 0}
+  treeGameObject: {fileID: 0}
+  plantWaterLevel: 0
+  waterLevelMax: 0
+  sproutWaterLevel: 0
+  treeWaterLevel: 0
 --- !u!54 &768493912636812772
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -84,6 +84,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 10, z: 2}
   m_Center: {x: 0, y: 2, z: 0}
+--- !u!114 &5127102542696614459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3434593260836174248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6054ba92bc62e4b83d8410cfa3e78b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlantStatus: 0
 --- !u!54 &5134196744680748624
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -193,15 +206,5 @@ GameObject:
 --- !u!4 &5250090891182334865 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7455200688920388355, guid: e79bc0528f49a864498500bba44bf771, type: 3}
-  m_PrefabInstance: {fileID: 3434593260754370706}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4015789777771793329 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1734118786229635875, guid: e79bc0528f49a864498500bba44bf771, type: 3}
-  m_PrefabInstance: {fileID: 3434593260754370706}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8456270247565533230 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6552900886462341308, guid: e79bc0528f49a864498500bba44bf771, type: 3}
   m_PrefabInstance: {fileID: 3434593260754370706}
   m_PrefabAsset: {fileID: 0}

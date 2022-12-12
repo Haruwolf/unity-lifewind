@@ -9,25 +9,25 @@ public class Weed : MonoBehaviour
     public GameObject weed;
     public GameObject blockLanded;
 
-    private void OnEnable()
-    {
-        plant = new Plant(
-            plantState: Plant.plantStates.SeedNotPlanted,
-            iSprout: false,
-            iWeed: true,
-            canDestroy: true,
-            wLevel: 0,
-            isIngrained: true,
-            spawnSeed: false);
+    //private void OnEnable()
+    //{
+    //    plant = new Plant(
+    //        plantState: Plant.plantStates.SeedNotPlanted,
+    //        iSprout: false,
+    //        iWeed: true,
+    //        canDestroy: true,
+    //        wLevel: 0,
+    //        isIngrained: true,
+    //        spawnSeed: false);
 
-        GameManager.instance.weedsOnScreen += 1;
+    //    GameManager.instance.weedsOnScreen += 1;
 
-        if (GameManager.instance.tut6 == false)
-        {
-            TutorialControl.Instance.setTutorial(6, true);
-            GameManager.instance.tut6 = true;
-        }
-    }
+    //    if (GameManager.instance.tut6 == false)
+    //    {
+    //        TutorialControl.Instance.setTutorial(6, true);
+    //        GameManager.instance.tut6 = true;
+    //    }
+    //}
 
     private void OnDisable()
     {

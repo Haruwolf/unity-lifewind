@@ -12,7 +12,7 @@ public class Plant : MonoBehaviour, IPlant
         Tree,
     }
 
-    public PlantStates PlantStatus;
+    PlantStates PlantStatus;
 
     private int _waterLevel; 
     private int _waterLevelMax;

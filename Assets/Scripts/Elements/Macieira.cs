@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,19 +12,17 @@ public class Macieira : Plant
     public GameObject sproutGameObject;
     public GameObject treeGameObject;
 
-    [Rename("Status atual da planta")]
-    PlantStates plantStatus;
+    [InspectorName("Status da planta")]
+    public PlantStates plantStatus;
 
-    [Rename("Nível de água atual da planta")]
+
+    [Range(0, 50)]
     public int plantWaterLevel;
-
-    [Rename("Nível máximo de água da planta")]
+    [Range(30, 50)]
     public int waterLevelMax;
-
-    [Rename("Nível requerido de água para semente se transformar em muda")]
+    [Range(1, 30)]
     public int sproutWaterLevel;
-
-    [Rename("Nível requerido de água para muda se transformar em árvore")]
+    [Range(2, 30)]
     public int treeWaterLevel;
 
     private void OnEnable()
@@ -31,6 +30,11 @@ public class Macieira : Plant
         AttributeGameObjects();
         SetInitialPlantState();
         AddTotalPlants();       
+        CheckPlantState();
+    }
+
+    private void OnValidate()
+    {
         CheckPlantState();
     }
 
