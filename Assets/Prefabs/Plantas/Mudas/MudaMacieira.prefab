@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 8930815695635246448}
   - component: {fileID: 5503251528248287957}
   - component: {fileID: 7762953767788320287}
-  - component: {fileID: 21452176281225333}
-  - component: {fileID: 8883156737222239218}
   m_Layer: 0
   m_Name: MudaMacieira
   m_TagString: Untagged
@@ -86,30 +84,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &21452176281225333
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8123210745319143370}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.5, y: 3, z: 1.5}
-  m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &8883156737222239218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8123210745319143370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b411180bc7a0d046827be1cfdc5ed38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  windPrefab: {fileID: 0}
-  plantPop: {fileID: 0}

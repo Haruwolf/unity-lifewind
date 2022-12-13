@@ -26,12 +26,13 @@ public class WindBehavior : MonoBehaviour
 
     private void checkCollisions(Collider other)
     {
+
         if (carryState)
         {
             gameObjectJoint = other.gameObject.AddComponent<FixedJoint>();
             gameObjectJoint.connectedBody = gameObject.GetComponent<Rigidbody>();
         }
-            
+
 
         else if (destroyState)
             return;
