@@ -12,14 +12,6 @@ public class CloudMaker : MonoBehaviour
 
     public float cdTimer = 3;
 
-
-
-    //public void spawnCloud()
-    //{
-    //    Vector3 cloudPos = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
-    //    Instantiate(cloudGameObject, cloudPos, cloudGameObject.transform.rotation);
-    //}
-
     private void Update()
     {
         if (riverHP < 3)

@@ -3349,6 +3349,24 @@ MonoBehaviour:
   riverHP: 100
   riverCooldown: 0
   cdTimer: 3
+--- !u!114 &472206881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472206876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f7fe467303e14a4ea2202299ff5156c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantable: 0
+  blockType: 1
+  waterMaxLevel: 300
+  waterDropRate: 2
+  waterRechargeRate: 4
+  waterRechargeSpeed: 5
 --- !u!4 &472206883 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 701b62e1ac58c014a9b7b3995f3b32fd, type: 3}
@@ -4807,6 +4825,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7099013272395054131, guid: 499ee1f5bab80a54ba98221a22542f3f, type: 3}
+      propertyPath: cloudHeight
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7099013272395054131, guid: 499ee1f5bab80a54ba98221a22542f3f, type: 3}
       propertyPath: cloudPrefab
       value: 
       objectReference: {fileID: 7243208417592492166, guid: 0a71c5c2efae3814dba1d2e671e0b087, type: 3}
@@ -4814,6 +4836,14 @@ PrefabInstance:
       propertyPath: windManager
       value: 
       objectReference: {fileID: 8797846129683063874, guid: 8a569228b3bd6a549a84965290643a07, type: 3}
+    - target: {fileID: 7099013272395054131, guid: 499ee1f5bab80a54ba98221a22542f3f, type: 3}
+      propertyPath: windMaxCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7099013272395054131, guid: 499ee1f5bab80a54ba98221a22542f3f, type: 3}
+      propertyPath: cloudMaxCount
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7099013272395054131, guid: 499ee1f5bab80a54ba98221a22542f3f, type: 3}
       propertyPath: maximumPressTime
       value: 0.35
@@ -5732,6 +5762,24 @@ MonoBehaviour:
   riverHP: 100
   riverCooldown: 0
   cdTimer: 3
+--- !u!114 &777951045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777951040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f7fe467303e14a4ea2202299ff5156c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantable: 0
+  blockType: 1
+  waterMaxLevel: 300
+  waterDropRate: 2
+  waterRechargeRate: 4
+  waterRechargeSpeed: 5
 --- !u!4 &777951047 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2808707353229003160, guid: 79a47d88981603e42accc4bca7c0a9c5, type: 3}
@@ -6037,6 +6085,24 @@ MonoBehaviour:
   riverHP: 100
   riverCooldown: 0
   cdTimer: 3
+--- !u!114 &805827649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805827644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f7fe467303e14a4ea2202299ff5156c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantable: 0
+  blockType: 1
+  waterMaxLevel: 300
+  waterDropRate: 2
+  waterRechargeRate: 4
+  waterRechargeSpeed: 5
 --- !u!1 &812842489
 GameObject:
   m_ObjectHideFlags: 0
@@ -6098,7 +6164,6 @@ MonoBehaviour:
   notPlantedColor: {r: 0.8773585, g: 0.7282395, b: 0.12829298, a: 1}
   plantedColor: {r: 0.13656995, g: 0.5684051, b: 0.9339623, a: 1}
   offsetPlantPositionY: 0.486
-  offsetPlantPositionX: 0
 --- !u!114 &812842492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6958,6 +7023,24 @@ MonoBehaviour:
   riverHP: 100
   riverCooldown: 0
   cdTimer: 3
+--- !u!114 &859556398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859556393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f7fe467303e14a4ea2202299ff5156c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantable: 0
+  blockType: 1
+  waterMaxLevel: 300
+  waterDropRate: 2
+  waterRechargeRate: 4
+  waterRechargeSpeed: 5
 --- !u!1001 &859895365
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7519,6 +7602,24 @@ MonoBehaviour:
   riverHP: 100
   riverCooldown: 0
   cdTimer: 3
+--- !u!114 &887235905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887235900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f7fe467303e14a4ea2202299ff5156c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantable: 0
+  blockType: 1
+  waterMaxLevel: 300
+  waterDropRate: 2
+  waterRechargeRate: 4
+  waterRechargeSpeed: 5
 --- !u!1 &888773412
 GameObject:
   m_ObjectHideFlags: 0
@@ -7924,6 +8025,24 @@ MonoBehaviour:
   riverHP: 100
   riverCooldown: 0
   cdTimer: 3
+--- !u!114 &915813112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915813107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f7fe467303e14a4ea2202299ff5156c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantable: 0
+  blockType: 1
+  waterMaxLevel: 300
+  waterDropRate: 2
+  waterRechargeRate: 4
+  waterRechargeSpeed: 5
 --- !u!4 &915813114 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2808707353229003160, guid: 79a47d88981603e42accc4bca7c0a9c5, type: 3}
@@ -8665,6 +8784,24 @@ MonoBehaviour:
   riverHP: 100
   riverCooldown: 0
   cdTimer: 3
+--- !u!114 &979723839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979723834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f7fe467303e14a4ea2202299ff5156c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantable: 0
+  blockType: 1
+  waterMaxLevel: 300
+  waterDropRate: 2
+  waterRechargeRate: 4
+  waterRechargeSpeed: 5
 --- !u!4 &979723841 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2808707353229003160, guid: 79a47d88981603e42accc4bca7c0a9c5, type: 3}
@@ -9466,6 +9603,24 @@ MonoBehaviour:
   riverHP: 100
   riverCooldown: 0
   cdTimer: 3
+--- !u!114 &1127471613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127471608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f7fe467303e14a4ea2202299ff5156c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantable: 0
+  blockType: 1
+  waterMaxLevel: 300
+  waterDropRate: 2
+  waterRechargeRate: 4
+  waterRechargeSpeed: 5
 --- !u!4 &1127471615 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2808707353229003160, guid: 79a47d88981603e42accc4bca7c0a9c5, type: 3}
@@ -10474,6 +10629,24 @@ MonoBehaviour:
   riverHP: 100
   riverCooldown: 0
   cdTimer: 3
+--- !u!114 &1269106905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269106900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f7fe467303e14a4ea2202299ff5156c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantable: 0
+  blockType: 1
+  waterMaxLevel: 300
+  waterDropRate: 2
+  waterRechargeRate: 4
+  waterRechargeSpeed: 5
 --- !u!4 &1269106907 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2808707353229003160, guid: 79a47d88981603e42accc4bca7c0a9c5, type: 3}
@@ -10800,6 +10973,24 @@ MonoBehaviour:
   riverHP: 100
   riverCooldown: 0
   cdTimer: 3
+--- !u!114 &1342625443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1342625438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f7fe467303e14a4ea2202299ff5156c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantable: 0
+  blockType: 1
+  waterMaxLevel: 300
+  waterDropRate: 2
+  waterRechargeRate: 4
+  waterRechargeSpeed: 5
 --- !u!4 &1342625445 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 701b62e1ac58c014a9b7b3995f3b32fd, type: 3}
@@ -11850,6 +12041,24 @@ MonoBehaviour:
   riverHP: 100
   riverCooldown: 0
   cdTimer: 3
+--- !u!114 &1405574626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405574621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f7fe467303e14a4ea2202299ff5156c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantable: 0
+  blockType: 1
+  waterMaxLevel: 300
+  waterDropRate: 2
+  waterRechargeRate: 4
+  waterRechargeSpeed: 5
 --- !u!1001 &1420150623
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12440,6 +12649,24 @@ MonoBehaviour:
   riverHP: 100
   riverCooldown: 0
   cdTimer: 3
+--- !u!114 &1548174622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548174617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f7fe467303e14a4ea2202299ff5156c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantable: 0
+  blockType: 1
+  waterMaxLevel: 300
+  waterDropRate: 2
+  waterRechargeRate: 4
+  waterRechargeSpeed: 5
 --- !u!1001 &1564106729
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13217,6 +13444,24 @@ MonoBehaviour:
   riverHP: 100
   riverCooldown: 0
   cdTimer: 3
+--- !u!114 &1629942875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629942870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f7fe467303e14a4ea2202299ff5156c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantable: 0
+  blockType: 1
+  waterMaxLevel: 300
+  waterDropRate: 2
+  waterRechargeRate: 4
+  waterRechargeSpeed: 5
 --- !u!4 &1659820609 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1981015465128082790, guid: 3c8e2748b367b0a418691e7d76a00ecc, type: 3}
@@ -13526,6 +13771,24 @@ MonoBehaviour:
   riverHP: 100
   riverCooldown: 0
   cdTimer: 3
+--- !u!114 &1709725593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709725588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f7fe467303e14a4ea2202299ff5156c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantable: 0
+  blockType: 1
+  waterMaxLevel: 300
+  waterDropRate: 2
+  waterRechargeRate: 4
+  waterRechargeSpeed: 5
 --- !u!1001 &1736524658
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13675,6 +13938,24 @@ MonoBehaviour:
   riverHP: 100
   riverCooldown: 0
   cdTimer: 3
+--- !u!114 &1736524665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736524660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f7fe467303e14a4ea2202299ff5156c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantable: 0
+  blockType: 1
+  waterMaxLevel: 300
+  waterDropRate: 2
+  waterRechargeRate: 4
+  waterRechargeSpeed: 5
 --- !u!1001 &1749168865
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15065,6 +15346,24 @@ MonoBehaviour:
   riverHP: 100
   riverCooldown: 0
   cdTimer: 3
+--- !u!114 &1876292447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876292442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f7fe467303e14a4ea2202299ff5156c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantable: 0
+  blockType: 1
+  waterMaxLevel: 300
+  waterDropRate: 2
+  waterRechargeRate: 4
+  waterRechargeSpeed: 5
 --- !u!4 &1876292449 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2808707353229003160, guid: 79a47d88981603e42accc4bca7c0a9c5, type: 3}
@@ -16120,6 +16419,24 @@ MonoBehaviour:
   riverHP: 100
   riverCooldown: 0
   cdTimer: 3
+--- !u!114 &1977118687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977118682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f7fe467303e14a4ea2202299ff5156c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantable: 0
+  blockType: 1
+  waterMaxLevel: 300
+  waterDropRate: 2
+  waterRechargeRate: 4
+  waterRechargeSpeed: 5
 --- !u!4 &1977118689 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2808707353229003160, guid: 79a47d88981603e42accc4bca7c0a9c5, type: 3}
@@ -16585,6 +16902,24 @@ MonoBehaviour:
   riverHP: 100
   riverCooldown: 0
   cdTimer: 3
+--- !u!114 &2019461540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019461535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f7fe467303e14a4ea2202299ff5156c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantable: 0
+  blockType: 1
+  waterMaxLevel: 300
+  waterDropRate: 2
+  waterRechargeRate: 4
+  waterRechargeSpeed: 5
 --- !u!4 &2019461542 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2808707353229003160, guid: 79a47d88981603e42accc4bca7c0a9c5, type: 3}
@@ -17176,6 +17511,7 @@ GameObject:
   - component: {fileID: 2123201555}
   - component: {fileID: 2123201552}
   - component: {fileID: 2123201556}
+  - component: {fileID: 2123201557}
   m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -17373,6 +17709,38 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2123201557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2123201551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1001 &2129597979
 PrefabInstance:
   m_ObjectHideFlags: 0

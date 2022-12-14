@@ -9681,6 +9681,10 @@ MonoBehaviour:
   cloudHP: 0
   cloudMaxHP: 255
   decrementHP: 8
+  cloudMinSize: 1
+  cloudMaxSize: 4
+  cloudIncreaseRate: 34
+  cloudOffsetHP: 65
   crystalBar: {fileID: 5550475873460723449, guid: 6ed23ebc3fab76d4eac50a9217760787, type: 3}
   canvas: {fileID: 0}
   cloudStateActual: 0
