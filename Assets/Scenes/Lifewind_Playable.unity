@@ -16938,6 +16938,7 @@ GameObject:
   - component: {fileID: 2038584557}
   - component: {fileID: 2038584556}
   - component: {fileID: 2038584560}
+  - component: {fileID: 2038584561}
   m_Layer: 0
   m_Name: ---SoundManager---
   m_TagString: Untagged
@@ -17090,6 +17091,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ventoCarregando: {fileID: 8300000, guid: 2e478aafc3dcb8b4696e5556a3959085, type: 3}
   ventoMovimentando: {fileID: 8300000, guid: 0ec1b8e88c6b3ae4592b49ea34db30ad, type: 3}
+--- !u!114 &2038584561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038584555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 405a3e1bb85f4f94fb0295a83fdbf20f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chuvaCaindo: {fileID: 8300000, guid: bffa6877c611e384d9661760a0b282b8, type: 3}
+  criandoNuvem: {fileID: 8300000, guid: 17e3efd2e864a494b8b077fd5e71a245, type: 3}
 --- !u!1001 &2076201802
 PrefabInstance:
   m_ObjectHideFlags: 0

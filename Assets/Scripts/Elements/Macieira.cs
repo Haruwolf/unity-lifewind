@@ -42,6 +42,16 @@ public class Macieira : Plant
         SetInitialPlantState();
         AddTotalPlants();       
         CheckPlantState();
+
+
+        TryGetComponent<PlantLevel>(out var plantLevel);
+        plantLevel.plantEvent += CheckGrow;
+    }
+
+    private void OnDisable()
+    {
+        TryGetComponent<PlantLevel>(out var plantLevel);
+        plantLevel.plantEvent -= CheckGrow;
     }
 
     private void OnValidate()
@@ -73,6 +83,7 @@ public class Macieira : Plant
 
     public override void CheckGrow()
     {
+
         if (WaterLevel >= SproutWaterLevel)
         {
             plantStatus = PlantStates.Sprout;

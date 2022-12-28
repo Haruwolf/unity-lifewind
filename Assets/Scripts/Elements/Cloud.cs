@@ -5,42 +5,39 @@ using UnityEngine.UI;
 
 public class Cloud : MonoBehaviour
 {
+    public GameObject rainPrefab;
+
     public float cloudHP;
 
-    [Range(1,255)]
+    [Range(1, 255)]
     public float cloudMaxHP = 255;
-    [Range(0.1f, 1)]
-    public float decrementHP = 0.25f;
+
+    [Range(1, 50)]
+    public float decrementHP;
+
+    [Range(0.01f, 1)]
+    public float speedSizeRate;
 
     [Range(1, 5)]
     public int cloudMinSize;
 
-    [Range(1,5)]
+    [Range(1, 5)]
     public int cloudMaxSize;
 
     [Range(0, 50)]
-    public int cloudIncreaseRate;
+    public int cloudSizeRate;
 
     [Range(50, 100)]
-    public int cloudOffsetHP = 65;
-
-    [Range(50, 100)]
-    public float colorChangeRate= 25.5f;
-
-    GameObject thunderPrefab;
-    GameObject rainPrefab;
-
-    Rigidbody cloudRb;
-    Color cloudColor;
-    ParticleSystem.MainModule cloudParticle;
+    public int cloudScaleOffset = 65;
 
 
-    float currentColor;
+    public AudioSource audio;
+    public delegate void cloudSoundDelegateEvent(AudioSource audio, string soundName);
+    public static event cloudSoundDelegateEvent SoundEvent;
 
-    public Image crystalBar;
-    public GameObject canvas;
+    public const string criandoNuvem = "CriandoNuvem"; //const = static, ambos podem ser acessados globalmente
+    public const string chuvaCaindo = "ChuvaFraca";
 
-    AudioSource gameObjectSound;
 
     public enum cloudState
     {
@@ -52,65 +49,56 @@ public class Cloud : MonoBehaviour
     public cloudState cloudStateActual;
     private void OnEnable()
     {
-        cloudHP = 1;
-        cloudRb = GetComponent<Rigidbody>();
-        cloudParticle = GetComponent<ParticleSystem>().main;
-        cloudParticle.startColor = new Color(1, 1, 1, 1);
-        currentColor = 1;
+        TargetSelector.stateObserver += MakeItRain;
+    }
 
-        thunderPrefab = transform.GetChild(1).gameObject;
-        thunderPrefab.SetActive(false);
+    public void OnDisable()
+    {
+        TargetSelector.stateObserver -= MakeItRain;
+    }
 
-        rainPrefab = transform.GetChild(0).gameObject;
-        rainPrefab.SetActive(false);
+    public void MakeItRain()
+    {
+        rainPrefab.SetActive(true);
+        
 
-        canvas = GameObject.Find("Canvas");
-        crystalBar = Instantiate(crystalBar, canvas.transform);
+        if (cloudHP > 0)
+        {
+            cloudHP -= decrementHP * Time.deltaTime;
+            ShrinkCloud();
+            Invoke(nameof(MakeItRain), speedSizeRate);
+            SoundEvent(audio, chuvaCaindo);
+        }
 
-        gameObjectSound = gameObject.AddComponent<AudioSource>();
-        gameObjectSound.clip = (AudioClip)Resources.Load("CriandoNuvem");
-        gameObjectSound.Play();
-        gameObjectSound.loop = true;
-        gameObjectSound.volume = 0.25f;
-
-
+        else
+            Destroy(gameObject);
     }
 
     public void FillCloud(GameObject actualBlock)
     {
         if (cloudHP <= cloudMaxHP)
-        {
             GrowCloud();
-            TintCloud();
-        }
 
         else
             cloudHP = Mathf.Clamp(cloudHP, 0, cloudMaxHP);
-
-
     }
 
     private void GrowCloud()
     {
-        cloudHP += cloudIncreaseRate * Time.deltaTime;
-        float newSize = Mathf.Clamp(cloudHP / cloudOffsetHP, cloudMinSize, cloudMaxSize);
+        cloudHP += cloudSizeRate * Time.deltaTime;
+        float newSize = Mathf.Clamp(cloudHP / cloudScaleOffset, cloudMinSize, cloudMaxSize);
         transform.localScale = new Vector3(newSize, newSize, newSize);
-
-
+        SoundEvent(audio, criandoNuvem);
     }
 
-    private void TintCloud()
+    private void ShrinkCloud()
     {
-        currentColor -= colorChangeRate / cloudMaxHP * Time.deltaTime;
+        cloudHP -= cloudSizeRate * Time.deltaTime;
+        float newSize = Mathf.Clamp(cloudHP / cloudScaleOffset, cloudMinSize, cloudMaxSize);
+        transform.localScale = new Vector3(newSize, newSize, newSize);
     }
 
-    //colocar pra quando a nuvem estiver solta, diminuir o HP dela e consequentemente o tamanho e a cor.
-    //fazer chover
-    void Update()
-    {
-
-        cloudParticle.startColor = new Color(currentColor, currentColor, currentColor);
-
-
-    }
+    //Fazer a água regar as plantas
+    //Tirar erva daninha
+    //Colocar outros tipos de plantas
 }

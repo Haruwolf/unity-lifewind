@@ -29,6 +29,8 @@ public class TargetSelector : MonoBehaviour
     public int cloudMaxCount;
     public float cloudHeight;
 
+
+
     public enum createStates
     {
         Clouding,
@@ -48,6 +50,11 @@ public class TargetSelector : MonoBehaviour
         else
             Destroy(this);
     }
+
+    public delegate void ObserverStates();
+    public static ObserverStates stateObserver;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -166,6 +173,7 @@ public class TargetSelector : MonoBehaviour
         }
         actualGameBlockCloud = null;
         waterBlockSelected = null;
+        stateObserver();
 
     }
 
