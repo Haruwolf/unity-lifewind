@@ -60,14 +60,19 @@ public class WindManager : MonoBehaviour
         if (releasedWind)
         {
             windTimer += Time.deltaTime;
-            newBreeze.transform.position = Vector3.Lerp(endDirection, startDirection, windTimer / interpolationTime);
-            if (windTimer >= interpolationTime && windClone != null)
+
+            if (newBreeze != null)
             {
-                releasedWind = WindReleasedState(false);
-                StopBreezeParticles();
-                ClearWind();
-                windEvent(); //Checar se quebrou a conexão, e tirar efetivamente o vento
-                
+
+                newBreeze.transform.position = Vector3.Lerp(endDirection, startDirection, windTimer / interpolationTime);
+                if (windTimer >= interpolationTime && windClone != null)
+                {
+                    releasedWind = WindReleasedState(false);
+                    StopBreezeParticles();
+                    ClearWind();
+                    windEvent(); //Checar se quebrou a conexão, e tirar efetivamente o vento
+
+                }
             }
                 
 

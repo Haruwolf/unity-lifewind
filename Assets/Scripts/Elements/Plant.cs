@@ -7,6 +7,7 @@ public class Plant : MonoBehaviour, IPlant
     public enum PlantStates
     {
         SeedNotPlanted,
+        SeedCarried,
         SeedPlanted,
         Sprout,
         Tree,

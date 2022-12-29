@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlantLevel : MonoBehaviour
 {
     Plant plant;
-
+    Cloud cloudWatering;
     public delegate void PlantEvent();
     public PlantEvent plantEvent;
 
@@ -19,7 +19,9 @@ public class PlantLevel : MonoBehaviour
         other.TryGetComponent<Cloud>(out var cloud);
         if (cloud != null)
         {
+            cloudWatering = cloud;
             WaterPlant();
+            
         }
 
     }
@@ -28,8 +30,8 @@ public class PlantLevel : MonoBehaviour
     {
         plant.WaterLevel += 1;
         plantEvent();
+        if (cloudWatering != null)
+            Invoke(nameof(WaterPlant), 0.5f);
 
     }
-
-
 }

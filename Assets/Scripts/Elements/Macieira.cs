@@ -83,14 +83,15 @@ public class Macieira : Plant
 
     public override void CheckGrow()
     {
+        plantWaterLevel = WaterLevel;
 
-        if (WaterLevel >= SproutWaterLevel)
+        if (plantWaterLevel >= SproutWaterLevel && plantStatus == PlantStates.SeedPlanted)
         {
             plantStatus = PlantStates.Sprout;
             CheckPlantState();
         }
 
-        else if (WaterLevel >= TreeWaterLevel)
+        if (plantWaterLevel >= TreeWaterLevel && plantStatus == PlantStates.Sprout)
         {
             plantStatus = PlantStates.Tree;
             CheckPlantState();
@@ -102,19 +103,26 @@ public class Macieira : Plant
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<WindBehavior>(out WindBehavior wind))
-            WindManager.windEvent += IngrainPlant;
+        if (plantStatus == PlantStates.SeedNotPlanted)
+        {
+            if (other.TryGetComponent<WindBehavior>(out WindBehavior wind))
+            {
+                plantStatus = PlantStates.SeedCarried;
+                gameObject.transform.position = other.transform.position;
+                WindManager.windEvent += IngrainPlant;
+            }
+        }
     }
 
     private void IngrainPlant()
-    {
+    {    
         DestroyImmediate(gameObject.GetComponent<Carry>());
         SetPlantOnCube();
     }
 
     public override void CheckPlantState()
     {
-        seedGameObject.SetActive(plantStatus == PlantStates.SeedNotPlanted || plantStatus == PlantStates.SeedPlanted);
+        seedGameObject.SetActive(plantStatus == PlantStates.SeedNotPlanted || plantStatus == PlantStates.SeedPlanted || plantStatus == PlantStates.SeedCarried);
         CheckSeedState();
         sproutGameObject.SetActive(plantStatus == PlantStates.Sprout);
         treeGameObject.SetActive(plantStatus == PlantStates.Tree);
@@ -159,6 +167,8 @@ public class Macieira : Plant
     {
         Ray ray = new Ray(transform.position, Vector3.down);
 
+
+        //Colocar condição que a semente só retorna se não estiver plantada ou carregada pelo vento.
         if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity))
         {
             if (hitInfo.collider)

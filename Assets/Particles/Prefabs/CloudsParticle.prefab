@@ -9681,7 +9681,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rainPrefab: {fileID: 7243208417341346110}
   cloudHP: 0
-  cloudMaxHP: 255
+  cloudMaxHP: 50.4
   decrementHP: 50
   speedSizeRate: 0.085
   cloudMinSize: 1

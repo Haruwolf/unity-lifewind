@@ -35,35 +35,7 @@ public class BlockState : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-       if (other.gameObject.tag == "Cloud" && canCreateWeeds == true && occupiedBlock == false)
-        {
-            waterLevel += 1 * Time.deltaTime;
-        }
 
-       if (waterLevel > 10 && canCreateWeeds == true && occupiedBlock == false)
-        {
-            canCreateWeeds = false;
-            occupiedBlock = true;
-            //gameObject.tag = "OoB";
-            GameObject weed = Instantiate(weedGameObject, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 1, gameObject.transform.position.z), weedGameObject.transform.rotation);
-            weed.GetComponent<Weed>().blockLanded = gameObject;
-        }
-    }
-
-
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Plant")
-        {
-            //occupiedBlock = false;
-            //gameObject.tag = "Grass";
-            rendererGameObject.material.color = originalColor;
-        }
-
-    }
 
     //public void AroundObjects()
     //{

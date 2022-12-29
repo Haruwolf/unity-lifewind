@@ -26,15 +26,19 @@ public class WindBehavior : MonoBehaviour
 
     private void checkCollisions(Collider other)
     {
-
-        if (carryState)
+        other.TryGetComponent<FixedJoint>(out var joint);
+        if (carryState && joint == null)
         {
             gameObjectJoint = other.gameObject.AddComponent<FixedJoint>();
             gameObjectJoint.connectedBody = gameObject.GetComponent<Rigidbody>();
+
         }
 
 
         else if (destroyState)
+            return;
+
+        else
             return;
     }
 
