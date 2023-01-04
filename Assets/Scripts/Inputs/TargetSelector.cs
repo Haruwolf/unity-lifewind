@@ -20,10 +20,16 @@ public class TargetSelector : MonoBehaviour
     public GameObject managerClone;
 
     GameObject cloudCreated;
+    GameObject waterBlockSelected;
     GameObject actualGameBlockCloud;
 
-    public int managerCount;
+    public int windCount;
+    public int windMaxCount;
     public int cloudCount;
+    public int cloudMaxCount;
+    public float cloudHeight;
+
+
 
     public enum createStates
     {
@@ -45,6 +51,11 @@ public class TargetSelector : MonoBehaviour
             Destroy(this);
     }
 
+    public delegate void ObserverStates();
+    public static ObserverStates stateObserver;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,13 +75,18 @@ public class TargetSelector : MonoBehaviour
                 {
                     if (hitInfo.collider != null)
                     {
-                        if (hitInfo.collider.gameObject.tag == "Grass")
-                            if (managerCount < 3)
+                        hitInfo.collider.gameObject.TryGetComponent<Grass>(out Grass grass);
+                        hitInfo.collider.gameObject.TryGetComponent<Water>(out Water water);
+                        if (grass)
+                            if (windCount < windMaxCount)
                                 CreateWind();
 
-                        if (hitInfo.collider.gameObject.tag == "Water")
-                            if (cloudCount < 2)
+                        if (water)
+                            if (cloudCount < cloudMaxCount)
+                            {
                                 CreateCloud(hitInfo.collider.gameObject);
+                                waterBlockSelected = hitInfo.collider.gameObject;
+                            }
                     }
                 }
 
@@ -85,7 +101,7 @@ public class TargetSelector : MonoBehaviour
                         ChargeWind();
 
                     if (actualState == createStates.Clouding)
-                        ChargeCloud();
+                        ChargeCloudUseWater();
                 }
             }
 
@@ -109,11 +125,11 @@ public class TargetSelector : MonoBehaviour
     void CreateWind()
     {
         actualState = createStates.Winding;
-        if (managerCount < 4)
+        if (windCount < 4)
         {
             if (Input.GetMouseButtonDown(0))
             {
-                managerCount = Mathf.Clamp(managerCount++, 0, 4);
+                windCount = Mathf.Clamp(windCount++, 0, 4);
                 managerClone = Instantiate(windManager.gameObject);
                 BlockSelected();
             }
@@ -122,22 +138,26 @@ public class TargetSelector : MonoBehaviour
         }
     }
 
-    void CreateCloud(GameObject actualBlock)
+    void CreateCloud(GameObject blockSelected)
     {
-        actualGameBlockCloud = actualBlock;
+        actualGameBlockCloud = blockSelected;
         cloudCount++;
         actualState = createStates.Clouding;
-        cloudCreated = Instantiate(cloudPrefab.gameObject, new Vector3(actualBlock.transform.position.x, actualBlock.transform.position.y + 7.5f, actualBlock.transform.position.z), cloudPrefab.transform.rotation);
-        Debug.Log(actualState);
+        cloudCreated = Instantiate(cloudPrefab.gameObject, new Vector3(blockSelected.transform.position.x, blockSelected.transform.position.y + cloudHeight, blockSelected.transform.position.z), cloudPrefab.transform.rotation);
     }
 
-    void ChargeCloud()
+    void ChargeCloudUseWater()
     {
-        if (cloudCreated != null)
+        if (cloudCreated != null && waterBlockSelected != null)
         {
-            cloudCreated.GetComponent<Cloud>().cloudStateActual = Cloud.cloudState.Holding;
-            cloudCreated.GetComponent<Cloud>().fillCloudHP(actualGameBlockCloud);
-            Debug.Log("charging cloud");
+            waterBlockSelected.TryGetComponent<Water>(out Water water);
+            cloudCreated.TryGetComponent<Cloud>(out Cloud cloud);
+            if (cloud)
+            {
+                cloud.cloudStateActual = Cloud.cloudState.Holding;
+                water.createCloudUsingWater(cloud, actualGameBlockCloud);
+
+            }
         }
     }
 
@@ -148,8 +168,12 @@ public class TargetSelector : MonoBehaviour
             cloudCreated.GetComponent<Cloud>().cloudStateActual = Cloud.cloudState.Released;
             actualState = createStates.None;
             cloudCreated = null;
+            waterBlockSelected.TryGetComponent<Water>(out Water water);
+            water.rechargeRiver();
         }
         actualGameBlockCloud = null;
+        waterBlockSelected = null;
+        stateObserver();
 
     }
 
@@ -162,7 +186,7 @@ public class TargetSelector : MonoBehaviour
             if (hitInfo.collider.gameObject != null)
             {
                 GameObject selectedTerrain = hitInfo.collider.gameObject;
-                managerClone.GetComponent<WindManager>().CreateWindPrefab(selectedTerrain);
+                managerClone.GetComponent<Wind>().CreateWindPrefab(selectedTerrain);
             }
         }
 
@@ -179,21 +203,21 @@ public class TargetSelector : MonoBehaviour
             if (hitInfo.collider.gameObject != null)
             {
                 GameObject selectedTerrain = hitInfo.collider.gameObject;
-                managerClone.GetComponent<WindManager>().SetWindCharge(selectedTerrain);
+                managerClone.GetComponent<Wind>().SetWindCharge(selectedTerrain);
             }
         }
     }
 
     private void ReleaseWind()
     {
-        managerClone.GetComponent<WindManager>().SetReleaseWindState();
-        managerCount = Mathf.Clamp(managerCount - 1, 0, 4);
+        managerClone.GetComponent<Wind>().SetReleaseWindState();
+        windCount = Mathf.Clamp(windCount - 1, 0, 4);
 
         actualState = createStates.None;
     }
 
     private void CancelWind()
     {
-        managerClone.GetComponent<WindManager>().CancelWind();
+        managerClone.GetComponent<Wind>().CancelWind();
     }
 }
