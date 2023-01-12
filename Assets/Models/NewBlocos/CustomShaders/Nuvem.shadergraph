@@ -245,6 +245,20 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
+                    "m_Id": "51157633f0464565b345b6237463dcb3"
+                },
+                "m_SlotId": 3
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "a0cab7df044a4b6abb8c82950ee758ef"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
                     "m_Id": "51361e545b47436b9082485efa5cc918"
                 },
                 "m_SlotId": 3
@@ -1193,7 +1207,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 5.730000019073486,
+    "m_Value": 1.3300000429153443,
     "m_FloatType": 0,
     "m_RangeValues": {
         "x": 0.0,
@@ -1379,7 +1393,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "AngleOffset",
     "m_StageCapability": 3,
-    "m_Value": 13.619999885559082,
+    "m_Value": 5.599999904632568,
     "m_DefaultValue": 2.0,
     "m_Labels": []
 }
@@ -2887,7 +2901,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "d0d179841c494aebb87758d695558c55",
     "m_Id": 0,
-    "m_DisplayName": "ColorCenter",
+    "m_DisplayName": "CloudColor",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -3361,8 +3375,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -2234.0,
-            "y": -85.99999237060547,
+            "x": -2299.0,
+            "y": 126.99999237060547,
             "width": 175.0,
             "height": 34.0
         }
