@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8797846129683063872}
   - component: {fileID: -4127528540798632959}
   - component: {fileID: 53620088121166287}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wind
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ MonoBehaviour:
   startDirection: {x: 0, y: 0, z: 0}
   endDirection: {x: 0, y: 0, z: 0}
   holdDirection: {x: 0, y: 0, z: 0}
-  windHeight: 3.03
+  windHeight: 2.6
   cycloneParticle: {fileID: 1751114071482553815, guid: 660ab7702c7208644a55ca2f626b20fe, type: 3}
   breezeParticle: {fileID: 974894406548077523, guid: 03b53a04d01678949a609af21c2cff38, type: 3}
   windAudioSource: {fileID: 53620088121166287}
@@ -94,7 +94,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -106,7 +106,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.32316208
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -114,8 +114,8 @@ LineRenderer:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.49398804
-        value: 1
+        time: 0.43466187
+        value: 0.32569695
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -154,8 +154,8 @@ LineRenderer:
       m_Mode: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 30
-    numCapVertices: 50
+    numCornerVertices: 0
+    numCapVertices: 0
     alignment: 0
     textureMode: 1
     shadowBias: 0.5

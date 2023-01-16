@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7798213479732165483
+--- !u!1 &4492134175855088933
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7798213479732165482}
-  - component: {fileID: 7099013272395054131}
+  - component: {fileID: 4492134175855088939}
+  - component: {fileID: 4492134175855088938}
   m_Layer: 0
-  m_Name: InputGameManager
+  m_Name: ---ArrowManager---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7798213479732165482
+--- !u!4 &4492134175855088939
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7798213479732165483}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_GameObject: {fileID: 4492134175855088933}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7099013272395054131
+--- !u!114 &4492134175855088938
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7798213479732165483}
+  m_GameObject: {fileID: 4492134175855088933}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1e80e8095f7d3348bd56bccf4f1dd84, type: 3}
+  m_Script: {fileID: 11500000, guid: bb88867f64d78cb4d9aaf08ef8127597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimumPressTime: 0.25
-  maximumPressTime: 0.8
-  windManager: {fileID: 8797846129683063874, guid: 8a569228b3bd6a549a84965290643a07, type: 3}
-  managerClone: {fileID: 0}
-  windCount: 0
-  windMaxCount: 3
-  cloudCount: 0
-  cloudMaxCount: 3
-  cloudHeight: 7.5
-  cloudPrefab: {fileID: 7243208417592492166, guid: 0a71c5c2efae3814dba1d2e671e0b087, type: 3}

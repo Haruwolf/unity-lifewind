@@ -182,6 +182,6 @@ public class Wind : MonoBehaviour
         Destroy(gameObject, clearTime);
     }
 
-    private Vector3 CalcWindPrefabPos(Vector3 blockPos) => new Vector3(blockPos.x, blockPos.y + windHeight, blockPos.z);
+    private Vector3 CalcWindPrefabPos(Vector3 blockPos) => new Vector3(blockPos.x, blockPos.y, blockPos.z);
 
 }

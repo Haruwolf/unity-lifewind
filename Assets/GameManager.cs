@@ -18,8 +18,6 @@ public class GameManager : MonoBehaviour
     public Text treesText;
     public float weedBar;
 
-    public GameObject crystal;
-
     public bool tut1 = false;
     public bool tut2 = false;
     public bool tut3 = false;
@@ -70,7 +68,6 @@ public class GameManager : MonoBehaviour
         //Mathf.Clamp(fillBar, 1, 3);
         //crystalFilled.fillAmount = Mathf.Clamp(fillBar, 1, 3);
 
-        crystal.transform.localScale = new Vector3(fillBar, fillBar, fillBar);
         treesText.text = $"{treesOnScreen.ToString()} / {Mathf.Round(totalTrees).ToString()}";
         if (fillBar >= totalTrees && nextLayout == false)
         {
