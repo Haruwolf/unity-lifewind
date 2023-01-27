@@ -8,18 +8,21 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CocoNutrunk_Mat
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 88f0f1d9170cb464aa66f9382deb3b6d, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
-  stringTagMap:
-    RenderType: Opaque
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_635a2e64e80d43f3a151d5ac5802c359:
+        m_Texture: {fileID: 2800000, guid: e37b7ccdc6274ec4f8917f9d8e45b0cb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: e37b7ccdc6274ec4f8917f9d8e45b0cb, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -77,6 +80,16 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_02107b15108b40f4b3687ca378c23199: 0
+    - Vector1_0b307ac71b284648a052c68d0370f85d: 0.01
+    - Vector1_6d68a41b46b14916aba0847de964e634: 1.63
+    - Vector1_86da9559fce04ca5b46e7da12b95ecb6: 0.49
+    - Vector1_b841001508354570ad7380323c9b5c17: 0
+    - Vector1_bbb3629848fc4daca533790fb3a3d8e8: 0.5
+    - Vector1_cce30906644941c2b403d60e16b45079: 1
+    - Vector1_de439fccef4a40e3a74ea4dc4beab52f: 0
+    - Vector1_e54698e971444417ab8b124204e9051d: 1
+    - Vector1_f62773601bcf4adc834d3aca5551b684: -0.95
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -104,9 +117,13 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_113ba7d4ef4444258f30627449d9d469: {r: 1, g: 1, b: 1, a: 0}
+    - Color_7ca6f3c850aa49c380e2df3b82f9f1df: {r: 0.8773585, g: 0.6565139, b: 0.376602, a: 0}
+    - Color_a42fa062b7734af0a767df948db3f1b4: {r: 0.46226418, g: 0.27345923, b: 0.041429326, a: 0}
+    - Color_b7f4508cab104aceaf96619dc6783d31: {r: 0, g: 0.4981887, b: 1, a: 0}
     - _BaseColor: {r: 0.894, g: 0.7063094, b: 0.40007734, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 0, g: 0.20000005, b: 1, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &8586466004327292060
