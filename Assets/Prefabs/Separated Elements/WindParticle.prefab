@@ -4908,6 +4908,7 @@ GameObject:
   - component: {fileID: 974894406548077525}
   - component: {fileID: 974894406548077524}
   - component: {fileID: 8878967643883218409}
+  - component: {fileID: 9129235080175293693}
   m_Layer: 0
   m_Name: WindParticle
   m_TagString: Wind
@@ -9834,6 +9835,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b038e80fa716e6b4db8d5e548ba056c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9129235080175293693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974894406548077521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39500283497c7b54ba16c247a0a7e1b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &974894406787349078

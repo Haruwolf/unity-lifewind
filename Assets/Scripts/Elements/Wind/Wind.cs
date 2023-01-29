@@ -7,9 +7,8 @@ public class Wind : MonoBehaviour
 {
     public GameObject windParentPrefab;
 
-    public Vector3 startDirection;
-    public Vector3 endDirection;
-    public Vector3 holdDirection;
+    //[HideInInspector]
+    public Vector3 startDirection, endDirection, holdDirection;
 
     [SerializeField]
     [Range(0f, 10f)]
@@ -32,6 +31,8 @@ public class Wind : MonoBehaviour
 
     public float interpolationTime = 5;
     public float clearTime = 4;
+
+    public float windOffsetHeight = 0.25f;
 
     public delegate void windDelegateEvent();
     public static event windDelegateEvent windEvent;
@@ -69,8 +70,8 @@ public class Wind : MonoBehaviour
                 {
                     releasedWind = WindReleasedState(false);
                     StopBreezeParticles();
+                    if (windEvent != null) windEvent(); //Checar se quebrou a conexão, e tirar efetivamente o vento, se o evento estiver nulo, dá erro
                     ClearWind();
-                    windEvent(); //Checar se quebrou a conexão, e tirar efetivamente o vento
 
                 }
             }
@@ -82,7 +83,7 @@ public class Wind : MonoBehaviour
     public void CreateWindPrefab(GameObject actualBlock)
     {
         Vector3 windInitPos = CalcWindPrefabPos(actualBlock.transform.position);
-        windClone = Instantiate(windParentPrefab, windInitPos, cycloneParticle.transform.rotation);
+        windClone = Instantiate(windParentPrefab, windInitPos, windParentPrefab.transform.rotation);
         WindCloneConfigs(windClone);
         newCyclone = CreateNewCyclone(windInitPos, windClone);
         windState = windClone.GetComponent<WindStatus>();
@@ -123,8 +124,8 @@ public class Wind : MonoBehaviour
         windClone.GetComponent<WindStatus>().updateState(WindObject.windState.Charging);
         newCyclone.transform.position = CalcWindPrefabPos(blockPos);
         holdDirection = newCyclone.transform.position;
-        float actualDistance = Mathf.Clamp(Vector3.Distance(holdDirection, startDirection) / 10, 0.5f, 3.0f);
-        newCyclone.transform.localScale = new Vector3(actualDistance, actualDistance, actualDistance);
+        //float actualDistance = Mathf.Clamp(Vector3.Distance(holdDirection, startDirection) / 10, 1f, 2f);
+        //newCyclone.transform.localScale = new Vector3(actualDistance, actualDistance, actualDistance);
     }
 
     void SetNewBreeze()
@@ -132,7 +133,8 @@ public class Wind : MonoBehaviour
         newBreeze = windClone.GetComponentInChildren<Breeze>().gameObject;
         newBreeze.SetActive(true);
         newBreeze.transform.position = endDirection;
-        newBreeze.transform.localEulerAngles = new Vector3(0, 90, 0);
+        //newBreeze.transform.localEulerAngles = new Vector3(0, 90, 0);
+        newBreeze.transform.LookAt(startDirection);
         newBreezeParticle = newBreeze.GetComponentInChildren<ParticleSystem>();
         newBreezeParticle.Play();
     }
@@ -182,6 +184,6 @@ public class Wind : MonoBehaviour
         Destroy(gameObject, clearTime);
     }
 
-    private Vector3 CalcWindPrefabPos(Vector3 blockPos) => new Vector3(blockPos.x, blockPos.y, blockPos.z);
+    private Vector3 CalcWindPrefabPos(Vector3 blockPos) => new Vector3(blockPos.x, blockPos.y + windOffsetHeight, blockPos.z);
 
 }

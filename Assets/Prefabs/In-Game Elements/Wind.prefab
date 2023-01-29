@@ -50,8 +50,8 @@ MonoBehaviour:
   endDirection: {x: 0, y: 0, z: 0}
   holdDirection: {x: 0, y: 0, z: 0}
   windHeight: 2.6
-  cycloneParticle: {fileID: 1751114071482553815, guid: 660ab7702c7208644a55ca2f626b20fe, type: 3}
-  breezeParticle: {fileID: 974894406548077523, guid: 03b53a04d01678949a609af21c2cff38, type: 3}
+  cycloneParticle: {fileID: 8695049915846495128, guid: dee8ba2486040ee42b590c3361df3c2c, type: 3}
+  breezeParticle: {fileID: 3146238649075260407, guid: 137cb4ce0a51f694d886dceeddbc0125, type: 3}
   windAudioSource: {fileID: 53620088121166287}
   interpolationTime: 5
   clearTime: 4
