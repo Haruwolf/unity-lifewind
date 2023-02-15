@@ -1701,8 +1701,8 @@
     "m_ObjectId": "1d82725021544c19a293a2d224f3b012",
     "m_Title": "vertex displacement and normals",
     "m_Position": {
-        "x": 10.0,
-        "y": 10.0
+        "x": -2378.0,
+        "y": -373.0000305175781
     }
 }
 
@@ -4249,7 +4249,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "X",
     "m_StageCapability": 3,
-    "m_Value": 0.0,
+    "m_Value": -1.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
 }
@@ -4266,10 +4266,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -958.0000610351563,
-            "y": -339.0000305175781,
+            "x": -510.9999694824219,
+            "y": -191.0,
             "width": 128.0,
-            "height": 124.99999237060547
+            "height": 125.0
         }
     },
     "m_Slots": [
