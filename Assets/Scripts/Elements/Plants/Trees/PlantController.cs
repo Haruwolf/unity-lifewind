@@ -6,43 +6,68 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEngine.ParticleSystem;
 
-public class AppleTree : Plant
+[RequireComponent(typeof(Plant))]
+[RequireComponent(typeof(Carry))]
+[RequireComponent(typeof(PlantLevel))]
+public class PlantController : Plant
 { 
-    Plant plantObject;
-    public GameObject seedGameObject;
-    public GameObject sproutGameObject;
-    public GameObject treeGameObject;
+    private Plant plantObject;
 
-    [InspectorName("Status da planta")]
-    public PlantStates plantStatus;
+    [SerializeField]
+    [Tooltip("Adicione aqui os prefabs de semente, muda e árvore respectivamente.")]
+    private GameObject seedGameObject, sproutGameObject, treeGameObject;
 
+    [SerializeField]
+    [Header("Status da planta")]
+    [Tooltip("Altere aqui qual o status atual da planta durante o jogo para semente, muda ou árvore.")]
+    private PlantStates plantStatus;
 
+    [SerializeField]
     [Range(0, 100)]
-    public int plantWaterLevel;
+    [Tooltip("Nível atual da água da planta, não precisa ser alterado, está no inspector para própositos de assistir a velocidade em que o nível de água sobe durante o jogo.")]
+    private int plantWaterLevel;
+
+    [SerializeField]
     [Range(30, 100)]
-    public int waterLevelMax;
+    [Tooltip("Altere aqui qual o nível máximo de água da planta.")]
+    private int waterLevelMax;
+
+    [SerializeField]
     [Range(1, 98)]
-    public int sproutWaterLevel;
+    [Tooltip("Nível de água necessário para a semente brotar para muda.")]
+    private int sproutWaterLevel;
+
+    [SerializeField]
     [Range(2, 99)]
-    public int treeWaterLevel;
-    Vector3 originalPos;
+    [Tooltip("Nível de água necessário para a muda brotar para árvore")]
+    private int treeWaterLevel;
 
-    [InspectorName("Semente Solta")]
-    public Color notPlantedColor;
-    [InspectorName("Semente Plantada")]
-    public Color plantedColor;
+    private Vector3 originalPos;
 
+    [SerializeField]
+    [Header("Cores dos status da semente")]
+    [Tooltip("Cor da semente quando não está plantada.")]
+    [ColorUsage(true)]
+    private Color notPlantedColor;
+
+    [SerializeField]
+    [ColorUsage(true)]
+    [Tooltip("Cor da semente quando está plantada.")]
+    private Color plantedColor;
+
+    [Space(10)]
+    [SerializeField]
     [Range(0,3)]
-    public float offsetPlantPositionY;
+    [Tooltip("Altere aqui a margem de posicionamento vertical da planta.")]
+    private float offsetPlantPositionY;
 
-    #region Inicializa��o de objeto
+    #region Inicializa��o de objeto
     private void OnEnable()
     {
         AttributeGameObjects();
         SetInitialPlantState();
         AddTotalPlants();       
         CheckPlantState();
-
 
         TryGetComponent<PlantLevel>(out var plantLevel);
         plantLevel.plantEvent += CheckGrow;
@@ -99,7 +124,7 @@ public class AppleTree : Plant
     }
     #endregion
 
-    #region L�gica para a �rvore ser plantada
+    #region L�gica para a �rvore ser plantada
 
     private void OnTriggerEnter(Collider other)
     {
@@ -168,7 +193,7 @@ public class AppleTree : Plant
         Ray ray = new Ray(transform.position, Vector3.down);
 
 
-        //Colocar condi��o que a semente s� retorna se n�o estiver plantada ou carregada pelo vento.
+        //Colocar condi��o que a semente s� retorna se n�o estiver plantada ou carregada pelo vento.
         if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity))
         {
             if (hitInfo.collider)

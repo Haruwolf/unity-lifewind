@@ -333,6 +333,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 40.3, y: -46.3, z: 9.3}
+--- !u!1 &59458154
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7cfdb3fdca2f2714e8ed4110970d61c1, type: 3}
+  m_PrefabInstance: {fileID: 170161835}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 625981594}
+  m_Layer: 0
+  m_Name: 'cloud (Missing Prefab with guid: 7cfdb3fdca2f2714e8ed4110970d61c1)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &136051119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1540,11 +1556,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 076f2f7a7dafb0c4b922f93742f3371a, type: 3}
---- !u!4 &625981594 stripped
+--- !u!4 &625981594
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7cfdb3fdca2f2714e8ed4110970d61c1, type: 3}
   m_PrefabInstance: {fileID: 170161835}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59458154}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 983525836}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &670218666
 GameObject:
   m_ObjectHideFlags: 0
@@ -2156,11 +2181,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!224 &1084584885 stripped
+--- !u!224 &1084584885
 RectTransform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 8084865070795196678, guid: 6ed23ebc3fab76d4eac50a9217760787, type: 3}
   m_PrefabInstance: {fileID: 4637129843818022305}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608959954}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 375601389}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1145361071
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3218,6 +3257,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 236284477193177222, guid: 54de5f1b72b48a542b1c6d19078ff049, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1970219987321059996, guid: 54de5f1b72b48a542b1c6d19078ff049, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -3262,12 +3305,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1970219987321059997, guid: 54de5f1b72b48a542b1c6d19078ff049, type: 3}
+      propertyPath: notPlantedColor.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1970219987321059999, guid: 54de5f1b72b48a542b1c6d19078ff049, type: 3}
       propertyPath: m_Name
       value: AppleTree
       objectReference: {fileID: 0}
+    - target: {fileID: 8944589924021936289, guid: 54de5f1b72b48a542b1c6d19078ff049, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8944589924021936294, guid: 54de5f1b72b48a542b1c6d19078ff049, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.82
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54de5f1b72b48a542b1c6d19078ff049, type: 3}
+--- !u!1 &1608959954
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4269102174571598121, guid: 6ed23ebc3fab76d4eac50a9217760787, type: 3}
+  m_PrefabInstance: {fileID: 4637129843818022305}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1084584885}
+  m_Layer: 0
+  m_Name: 'RiverBar (Missing Prefab with guid: 6ed23ebc3fab76d4eac50a9217760787)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1684009512
 GameObject:
   m_ObjectHideFlags: 0
