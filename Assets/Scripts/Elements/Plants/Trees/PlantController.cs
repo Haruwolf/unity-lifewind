@@ -2,6 +2,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEngine.ParticleSystem;
@@ -10,6 +11,7 @@ using static UnityEngine.ParticleSystem;
 [RequireComponent(typeof(Plant))]
 [RequireComponent(typeof(PlantLevel))]
 [RequireComponent(typeof(PlantCollisionConfig))]
+[RequireComponent(typeof(PlantRegenerateSeeds))]
 [AddComponentMenu(nameof(Carry))]
 public class PlantController : Plant
 { 
@@ -28,6 +30,22 @@ public class PlantController : Plant
     [Range(0, 100)]
     [Tooltip("Nível atual da água da planta, não precisa ser alterado, está no inspector para própositos de assistir a velocidade em que o nível de água sobe durante o jogo.")]
     private int plantWaterLevel;
+
+    [HideInInspector]
+    public int PlantWaterLevel
+    {
+        get {return plantWaterLevel; }
+        set {
+            plantWaterLevel = value;
+            if (plantWaterLevel >= waterLevelMax)
+            {
+                OnMaxedLevel?.Invoke();
+            }
+        }
+    }
+
+    [HideInInspector]
+    public UnityEvent OnMaxedLevel;
 
     [SerializeField]
     [Range(30, 100)]
@@ -101,6 +119,7 @@ public class PlantController : Plant
         WaterLevelMax = waterLevelMax;
         SproutWaterLevel = sproutWaterLevel;
         TreeWaterLevel = treeWaterLevel;
+        PlantWaterLevel = plantWaterLevel;
     }
 
     public override void AddTotalPlants()
@@ -110,15 +129,15 @@ public class PlantController : Plant
 
     public override void CheckGrow()
     {
-        plantWaterLevel = WaterLevel;
+        PlantWaterLevel = WaterLevel;
 
-        if (plantWaterLevel >= SproutWaterLevel && plantStatus == PlantStates.SeedPlanted)
+        if (PlantWaterLevel >= SproutWaterLevel && plantStatus == PlantStates.SeedPlanted)
         {
             plantStatus = PlantStates.Sprout;
             CheckPlantState();
         }
 
-        if (plantWaterLevel >= TreeWaterLevel && plantStatus == PlantStates.Sprout)
+        if (PlantWaterLevel >= TreeWaterLevel && plantStatus == PlantStates.Sprout)
         {
             plantStatus = PlantStates.Tree;
             CheckPlantState();
@@ -194,8 +213,6 @@ public class PlantController : Plant
     {
         Ray ray = new Ray(transform.position, Vector3.down);
 
-
-        //Colocar condi��o que a semente s� retorna se n�o estiver plantada ou carregada pelo vento.
         if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity))
         {
             if (hitInfo.collider)
@@ -238,17 +255,6 @@ public class PlantController : Plant
     }
 
     #endregion
-
-    //Balanceamento de mecanica
-    //if (plant.spawnSeeds == true && plant.plantState == Plant.plantStates.Tree)
-    //{
-    //    plant.spawnSeeds = false;
-    //    GameObject maciera = Instantiate(macieraPrefab, transform.position, transform.rotation);
-    //    maciera.transform.GetChild(0).gameObject.SetActive(true);
-    //    maciera.transform.GetChild(1).gameObject.SetActive(false);
-    //    maciera.transform.GetChild(2).gameObject.SetActive(false);
-
-    //}
 
 }
 
