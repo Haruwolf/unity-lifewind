@@ -7,8 +7,10 @@ using UnityEngine.UI;
 using static UnityEngine.ParticleSystem;
 
 [RequireComponent(typeof(Plant))]
-[RequireComponent(typeof(Carry))]
+[AddComponentMenu(nameof(Carry))]
 [RequireComponent(typeof(PlantLevel))]
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(BoxCollider))]
 public class PlantController : Plant
 { 
     private Plant plantObject;
