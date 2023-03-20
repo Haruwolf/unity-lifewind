@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 6792159722835385783}
   - component: {fileID: 2578014028133032794}
   - component: {fileID: 7808527350620929875}
+  - component: {fileID: 7179536482297453989}
   m_Layer: 0
   m_Name: AppleTree
   m_TagString: Untagged
@@ -381,6 +382,9 @@ MonoBehaviour:
   treeGameObject: {fileID: 1206128062468512175}
   plantStatus: 0
   plantWaterLevel: 0
+  OnMaxedLevel:
+    m_PersistentCalls:
+      m_Calls: []
   waterLevelMax: 50
   sproutWaterLevel: 15
   treeWaterLevel: 30
@@ -399,6 +403,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c54e536b6a88ba14993aebc289e7f5ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7179536482297453989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2813654791069762462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 665fc4ae6a2a37e408337268fa7f2b77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantController: {fileID: 2578014028133032794}
+  plantToRegenerate: {fileID: 2813654791069762462}
 --- !u!1 &3324021380616655341
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,13 +966,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ab6d535ed8c3d143bc508ee288245fd, type: 3}
---- !u!4 &3997652181985959511 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1914277622265919602, guid: 1ab6d535ed8c3d143bc508ee288245fd, type: 3}
-  m_PrefabInstance: {fileID: 3308564767151826469}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4337340095668864237 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1286677053157139144, guid: 1ab6d535ed8c3d143bc508ee288245fd, type: 3}
+  m_PrefabInstance: {fileID: 3308564767151826469}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3997652181985959511 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1914277622265919602, guid: 1ab6d535ed8c3d143bc508ee288245fd, type: 3}
   m_PrefabInstance: {fileID: 3308564767151826469}
   m_PrefabAsset: {fileID: 0}
