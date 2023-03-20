@@ -7,12 +7,11 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEngine.ParticleSystem;
 
-
+[AddComponentMenu(nameof(Carry))]
 [RequireComponent(typeof(Plant))]
 [RequireComponent(typeof(PlantLevel))]
 [RequireComponent(typeof(PlantCollisionConfig))]
 [RequireComponent(typeof(PlantRegenerateSeeds))]
-[AddComponentMenu(nameof(Carry))]
 public class PlantController : Plant
 { 
     private Plant plantObject;
@@ -37,10 +36,11 @@ public class PlantController : Plant
         get {return plantWaterLevel; }
         set {
             plantWaterLevel = value;
-            if (plantWaterLevel >= waterLevelMax)
-            {
-                OnMaxedLevel?.Invoke();
-            }
+            // if (plantWaterLevel >= WaterLevelMax && OnMaxedLevel != null)
+            // {
+            //     Debug.Log("Teste");
+            //     OnMaxedLevel.RemoveAllListeners();
+            // }
         }
     }
 
@@ -144,7 +144,7 @@ public class PlantController : Plant
             {
                 plantStatus = PlantStates.SeedCarried;
                 gameObject.transform.position = other.transform.position;
-                Wind.windEvent += IngrainPlant;
+                Wind.OnWindFinished += IngrainPlant;
             }
         }
     }
@@ -219,7 +219,7 @@ public class PlantController : Plant
         CheckPlantState();
         grass.plantable = false;
         gameObject.transform.position = CalcSeedPos(blockLanded);
-        Wind.windEvent -= IngrainPlant;
+        Wind.OnWindFinished -= IngrainPlant;
     }
 
     Vector3 CalcSeedPos(GameObject blockLanded)

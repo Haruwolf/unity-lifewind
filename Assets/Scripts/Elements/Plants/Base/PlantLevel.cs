@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlantLevel : MonoBehaviour
 {
+    //Quem tem que fazer isso é a nuvem.
     Plant plant;
     Cloud cloudWatering;
     public delegate void PlantEvent();
@@ -12,6 +13,7 @@ public class PlantLevel : MonoBehaviour
     private void Start()
     {
         plant = GetComponent<Plant>();
+        Debug.Log("Teste");
     }
 
     private void OnTriggerEnter(Collider other)

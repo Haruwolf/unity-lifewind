@@ -12,7 +12,8 @@ public class PlantRegenerateSeeds : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        plantController.OnMaxedLevel.AddListener(delegate {RegenerateSeeds();});
+        //plantController.OnMaxedLevel.AddListener(delegate {RegenerateSeeds();});
+        //Debug.Log("teste");
     }
 
     private void RegenerateSeeds()

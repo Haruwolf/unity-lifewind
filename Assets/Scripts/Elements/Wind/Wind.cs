@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Wind : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class Wind : MonoBehaviour
     public float windOffsetHeight = 0.25f;
 
     public delegate void windDelegateEvent();
-    public static event windDelegateEvent windEvent;
+    public static event windDelegateEvent OnWindFinished;
 
     public delegate void arrowDelegateEvent(Vector3 startDir, Vector3 holdDir, GameObject windManager, bool toggle);
     public static event arrowDelegateEvent ToggleArrow;
@@ -68,10 +69,18 @@ public class Wind : MonoBehaviour
                 newBreeze.transform.position = Vector3.Lerp(endDirection, startDirection, windTimer / interpolationTime);
                 if (windTimer >= interpolationTime && windClone != null)
                 {
+                    try {
+                    //Descobrir que tipo de evento est√° atrelado a isso.
                     releasedWind = WindReleasedState(false);
                     StopBreezeParticles();
-                    if (windEvent != null) windEvent(); //Checar se quebrou a conex„o, e tirar efetivamente o vento, se o evento estiver nulo, d· erro
+                    OnWindFinished?.Invoke(); // Obt√©m uma matriz de delegados dos m√©todos inscritos no evento
                     ClearWind();
+                    }
+
+                    catch (Exception e)
+                    {
+                        Debug.Log(e.Message);
+                    }
 
                 }
             }

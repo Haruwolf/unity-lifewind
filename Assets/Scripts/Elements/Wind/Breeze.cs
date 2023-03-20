@@ -13,25 +13,26 @@ public class Breeze : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         tryGettingComponents(other);
-        Wind.windEvent += breakConnection;
     }
 
     private void tryGettingComponents(Collider other)
     {
         carryState = other.gameObject.TryGetComponent<Carry>(out Carry carry);
         destroyState = other.gameObject.TryGetComponent<Remove>(out Remove remove);
-        goCollided = other;
         checkCollisions(other);
     }
 
     private void checkCollisions(Collider other)
     {
         other.TryGetComponent<FixedJoint>(out var joint);
-        if (carryState && joint == null)
+        if (joint == null)
         {
-            gameObjectJoint = other.gameObject.AddComponent<FixedJoint>();
-            gameObjectJoint.connectedBody = gameObject.GetComponent<Rigidbody>();
-
+            if (carryState == true)
+            {
+                Wind.OnWindFinished += breakConnection;
+                gameObjectJoint = other.gameObject.AddComponent<FixedJoint>();
+                gameObjectJoint.connectedBody = gameObject.GetComponent<Rigidbody>();
+            }
         }
 
 
@@ -46,9 +47,8 @@ public class Breeze : MonoBehaviour
     {
         if (gameObjectJoint != null)
         {
+            Wind.OnWindFinished -= breakConnection;
             Destroy(gameObjectJoint);
-
-            Wind.windEvent -= breakConnection;
         }
     }
 }
