@@ -6,11 +6,11 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEngine.ParticleSystem;
 
+
 [RequireComponent(typeof(Plant))]
-[AddComponentMenu(nameof(Carry))]
 [RequireComponent(typeof(PlantLevel))]
-[RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(BoxCollider))]
+[RequireComponent(typeof(PlantCollisionConfig))]
+[AddComponentMenu(nameof(Carry))]
 public class PlantController : Plant
 { 
     private Plant plantObject;
@@ -32,17 +32,17 @@ public class PlantController : Plant
     [SerializeField]
     [Range(30, 100)]
     [Tooltip("Altere aqui qual o nível máximo de água da planta.")]
-    private int waterLevelMax;
+    private int waterLevelMax = 50;
 
     [SerializeField]
     [Range(1, 98)]
     [Tooltip("Nível de água necessário para a semente brotar para muda.")]
-    private int sproutWaterLevel;
+    private int sproutWaterLevel = 15;
 
     [SerializeField]
     [Range(2, 99)]
     [Tooltip("Nível de água necessário para a muda brotar para árvore")]
-    private int treeWaterLevel;
+    private int treeWaterLevel = 30;
 
     private Vector3 originalPos;
 
@@ -50,7 +50,7 @@ public class PlantController : Plant
     [Header("Cores dos status da semente")]
     [Tooltip("Cor da semente quando não está plantada.")]
     [ColorUsage(true)]
-    private Color notPlantedColor;
+    private Color notPlantedColor = Color.white;
 
     [SerializeField]
     [ColorUsage(true)]
@@ -61,7 +61,7 @@ public class PlantController : Plant
     [SerializeField]
     [Range(0,3)]
     [Tooltip("Altere aqui a margem de posicionamento vertical da planta.")]
-    private float offsetPlantPositionY;
+    private float offsetPlantPositionY = 0.4f;
 
     #region Inicializa��o de objeto
     private void OnEnable()
