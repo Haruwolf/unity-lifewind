@@ -19,7 +19,7 @@ public class PlantController : Plant
 
     [SerializeField]
     [Tooltip("Adicione aqui os prefabs de semente, muda e árvore respectivamente.")]
-    private GameObject seedGameObject, sproutGameObject, treeGameObject;
+    private GameObject seedGameObject, seedPlantedGameObject, sproutGameObject, treeGameObject;
 
     [SerializeField]
     [Header("Status da planta")]
@@ -63,17 +63,6 @@ public class PlantController : Plant
     private int treeWaterLevel = 30;
 
     private Vector3 originalPos;
-
-    [SerializeField]
-    [Header("Cores dos status da semente")]
-    [Tooltip("Cor da semente quando não está plantada.")]
-    [ColorUsage(true)]
-    private Color notPlantedColor = Color.white;
-
-    [SerializeField]
-    [ColorUsage(true)]
-    [Tooltip("Cor da semente quando está plantada.")]
-    private Color plantedColor;
 
     [Space(10)]
     [SerializeField]
@@ -168,7 +157,8 @@ public class PlantController : Plant
 
     public override void CheckPlantState()
     {
-        seedGameObject.SetActive(plantStatus == PlantStates.SeedNotPlanted || plantStatus == PlantStates.SeedPlanted || plantStatus == PlantStates.SeedCarried);
+        seedGameObject.SetActive(plantStatus == PlantStates.SeedNotPlanted || plantStatus == PlantStates.SeedCarried);
+        seedPlantedGameObject.SetActive(plantStatus == PlantStates.SeedPlanted);
         CheckSeedState();
         sproutGameObject.SetActive(plantStatus == PlantStates.Sprout);
         treeGameObject.SetActive(plantStatus == PlantStates.Tree);
@@ -178,7 +168,6 @@ public class PlantController : Plant
     {
         if (seedGameObject.activeInHierarchy)
         {
-            seedGameObject.TryGetComponent<ParticleSystem>(out ParticleSystem particle);
             gameObject.TryGetComponent<Carry>(out Carry carry);
             if (plantStatus == PlantStates.SeedNotPlanted)
             {
@@ -186,7 +175,6 @@ public class PlantController : Plant
                 {
                     gameObject.AddComponent<Carry>();
                 }
-                SetParticleColor(particle, notPlantedColor);
                 
             }
 
@@ -197,16 +185,9 @@ public class PlantController : Plant
                     Destroy(gameObject.GetComponent<Carry>());
                     SetPlantOnCube();
                 }
-                SetParticleColor(particle, plantedColor);
             }
 
         }
-    }
-
-    void SetParticleColor(ParticleSystem particle, Color particleColor)
-    {
-        var main = particle.main;
-        main.startColor = particleColor;
     }
 
     public void SetPlantOnCube()
