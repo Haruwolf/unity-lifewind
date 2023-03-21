@@ -5,14 +5,17 @@ using UnityEngine;
 public class PlantLevel : MonoBehaviour
 {
     //Quem tem que fazer isso é a nuvem.
-    Plant plant;
+    PlantController plant;
+
+    Plant plantComponent;
     Cloud cloudWatering;
     public delegate void PlantEvent();
     public PlantEvent plantEvent;
 
     private void Start()
     {
-        plant = GetComponent<Plant>();
+        plant = GetComponent<PlantController>();
+        // plantComponent = plant.GetPlantObject();
         Debug.Log("Teste");
     }
 
@@ -30,8 +33,8 @@ public class PlantLevel : MonoBehaviour
 
     void WaterPlant()
     {
-        plant.WaterLevel += 1;
-        plantEvent();
+        // plantComponent.PlantWaterLevel += 1;
+        plantEvent?.Invoke();
         if (cloudWatering != null)
             Invoke(nameof(WaterPlant), 0.5f);
 

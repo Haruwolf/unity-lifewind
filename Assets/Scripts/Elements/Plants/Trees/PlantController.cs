@@ -12,10 +12,10 @@ using static UnityEngine.ParticleSystem;
 [RequireComponent(typeof(PlantLevel))]
 [RequireComponent(typeof(PlantCollisionConfig))]
 [RequireComponent(typeof(PlantRegenerateSeeds))]
-public class PlantController : Plant
+public class PlantController : MonoBehaviour
 { 
-    private Plant plantObject;
-
+    private Plant plant;
+    
     [SerializeField]
     [Tooltip("Adicione aqui os prefabs de semente, muda e árvore respectivamente.")]
     private GameObject seedGameObject, seedPlantedGameObject, sproutGameObject, treeGameObject;
@@ -23,7 +23,7 @@ public class PlantController : Plant
     [SerializeField]
     [Header("Status da planta")]
     [Tooltip("Altere aqui qual o status atual da planta durante o jogo para semente, muda ou árvore.")]
-    private PlantStates plantStatus;
+    private Plant.PlantStates plantStates;
 
     [SerializeField]
     [Range(0, 100)]
@@ -31,26 +31,30 @@ public class PlantController : Plant
     private int plantWaterLevel;
 
     [HideInInspector]
-    public int PlantWaterLevel
-    {
-        get {return plantWaterLevel; }
-        set {
-            plantWaterLevel = value;
-            // if (plantWaterLevel >= WaterLevelMax && OnMaxedLevel != null)
-            // {
-            //     Debug.Log("Teste");
-            //     OnMaxedLevel.RemoveAllListeners();
-            // }
-        }
-    }
-
-    [HideInInspector]
     public UnityEvent OnMaxedLevel;
+
+    private bool onEventFired = false;
 
     [SerializeField]
     [Range(30, 100)]
     [Tooltip("Altere aqui qual o nível máximo de água da planta.")]
     private int waterLevelMax = 50;
+
+    [HideInInspector]
+    public int PlantWaterLevel
+    {
+        get {return plantWaterLevel; }
+        set {
+            plantWaterLevel = value;
+            if (plantWaterLevel >= plantObject.WaterLevelMax && onEventFired == false)
+            {   
+                onEventFired = true;
+                OnMaxedLevel?.Invoke();
+                OnMaxedLevel.RemoveAllListeners();
+            }
+        }
+    }
+
 
     [SerializeField]
     [Range(1, 98)]
@@ -73,14 +77,14 @@ public class PlantController : Plant
     #region Inicializa��o de objeto
     private void OnEnable()
     {
-        AttributeGameObjects();
-        SetInitialPlantState();
+        CreatePlantObject();
         AddTotalPlants();       
         CheckPlantState();
 
         TryGetComponent<PlantLevel>(out var plantLevel);
         plantLevel.plantEvent += CheckGrow;
     }
+
 
     private void OnDisable()
     {
@@ -93,22 +97,18 @@ public class PlantController : Plant
         CheckPlantState();
     }
 
-    public override void AttributeGameObjects()
+    public void CreatePlantObject()
     {
-        SeedGameObject = seedGameObject;
-        SproutGameObject = sproutGameObject;
-        TreeGameObject = treeGameObject;
-    }
-
-    public override void SetInitialPlantState()
-    {
-        originalPos = gameObject.transform.position;
-        plantStatus = PlantStates.SeedNotPlanted;
-        WaterLevel = 0;
-        WaterLevelMax = waterLevelMax;
-        SproutWaterLevel = sproutWaterLevel;
-        TreeWaterLevel = treeWaterLevel;
-        PlantWaterLevel = plantWaterLevel;
+        plant = new Plant(
+            plantStates: this.plantStates,
+            seed: seedGameObject,
+            sprout: sproutGameObject,
+            tree: treeGameObject,
+            wLevel: plantWaterLevel,
+            wLevelMax: waterLevelMax,
+            wSproutLevel: sproutWaterLevel,
+            wTreeLevel: treeWaterLevel
+        );
     }
 
     public override void AddTotalPlants()
@@ -118,7 +118,7 @@ public class PlantController : Plant
 
     public override void CheckGrow()
     {
-        PlantWaterLevel = WaterLevel;
+        PlantWaterLevel = plantObject.WaterLevel;
 
         if (PlantWaterLevel >= SproutWaterLevel && plantStatus == PlantStates.SeedPlanted)
         {

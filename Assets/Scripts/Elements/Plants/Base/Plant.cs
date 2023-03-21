@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Plant : MonoBehaviour, IPlant
+public class Plant : IPlant
 {
     public enum PlantStates
     {
@@ -13,7 +13,7 @@ public class Plant : MonoBehaviour, IPlant
         Tree,
     }
 
-    PlantStates PlantStatus;
+    private PlantStates PlantStatus;
 
     private int _waterLevel; 
     private int _waterLevelMax;
@@ -30,6 +30,11 @@ public class Plant : MonoBehaviour, IPlant
             else
                 _waterLevel = _waterLevelMax;
         }
+    }
+
+    public PlantStates GetPlantStates()
+    {
+        return PlantStatus;
     }
 
     public int WaterLevelMax
@@ -62,28 +67,15 @@ public class Plant : MonoBehaviour, IPlant
         }
     }
 
-    public virtual void CheckPlantState()
+    public Plant(PlantStates plantStates, GameObject seed, GameObject sprout, GameObject tree, int wLevel, int wLevelMax, int wSproutLevel, int wTreeLevel)
     {
-
-    }
-
-    public virtual void CheckGrow()
-    {
-
-    }
-
-    public virtual void AttributeGameObjects()
-    {
-
-    }
-
-    public virtual void SetInitialPlantState()
-    {
-
-    }
-
-    public virtual void AddTotalPlants()
-    {
-
+        PlantStatus = plantStates;
+        SeedGameObject = seed;
+        SproutGameObject = sprout;
+        TreeGameObject = tree;
+        WaterLevel = wLevel;
+        WaterLevelMax = wLevelMax;
+        SproutWaterLevel = wSproutLevel;
+        TreeWaterLevel = wTreeLevel;
     }
 }

@@ -1890,6 +1890,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7ceeb30287e5abf41b435d4f50acc6b1, type: 3}
   m_PrefabInstance: {fileID: 839608370}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &841543228 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5483752849271691951, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
+  m_PrefabInstance: {fileID: 1501375865}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &888773412
 GameObject:
   m_ObjectHideFlags: 0
@@ -3083,6 +3088,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7422286063358758036, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
+      propertyPath: waterLevelMax
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7666610373525025382, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
+      propertyPath: plantToRegenerate
+      value: 
+      objectReference: {fileID: 841543228}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
 --- !u!1001 &1504345075
