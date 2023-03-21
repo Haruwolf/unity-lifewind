@@ -15,7 +15,7 @@ using static UnityEngine.ParticleSystem;
 public class PlantController : MonoBehaviour
 { 
     private Plant plant;
-    
+
     [SerializeField]
     [Tooltip("Adicione aqui os prefabs de semente, muda e árvore respectivamente.")]
     private GameObject seedGameObject, seedPlantedGameObject, sproutGameObject, treeGameObject;
@@ -111,12 +111,12 @@ public class PlantController : MonoBehaviour
         );
     }
 
-    public override void AddTotalPlants()
+    public void AddTotalPlants()
     {
         GameManager.instance.totalPlants += 1;
     }
 
-    public override void CheckGrow()
+    public void CheckGrow()
     {
         PlantWaterLevel = plantObject.WaterLevel;
 
