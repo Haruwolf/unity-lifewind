@@ -10,7 +10,7 @@ public class PlantLevel : MonoBehaviour
     Plant plantComponent;
     Cloud cloudWatering;
     public delegate void PlantEvent();
-    public PlantEvent plantEvent;
+    public PlantEvent OnPlantWatered;
 
     private void Start()
     {
@@ -34,7 +34,7 @@ public class PlantLevel : MonoBehaviour
     void WaterPlant()
     {
         // plantComponent.PlantWaterLevel += 1;
-        plantEvent?.Invoke();
+        OnPlantWatered?.Invoke();
         if (cloudWatering != null)
             Invoke(nameof(WaterPlant), 0.5f);
 

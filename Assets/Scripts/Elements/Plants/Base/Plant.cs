@@ -13,17 +13,28 @@ public class Plant : IPlant
         Tree,
     }
 
-    private PlantStates PlantStatus;
+    private PlantStates _plantState;
 
-    private int _waterLevel; 
+    public PlantStates PlantState
+    {
+        get { return _plantState; }
+        set { _plantState = value; }
+    }
+
+    private int _waterLevel;
     private int _waterLevelMax;
     private int _sproutLevel;
     private int _treeLevel;
 
     public GameObject SeedGameObject { get; set; }
+    public GameObject SeedPlantedGameObject { get; set; }
     public GameObject SproutGameObject { get; set; }
     public GameObject TreeGameObject { get; set; }
-    public int WaterLevel { get { return _waterLevel; } set
+    public GameObject PlantGameObject { get; set; }
+    public int WaterLevel
+    {
+        get { return _waterLevel; }
+        set
         {
             if (value < _waterLevelMax)
                 _waterLevel = value;
@@ -32,9 +43,9 @@ public class Plant : IPlant
         }
     }
 
-    public PlantStates GetPlantStates()
+    public PlantStates GetPlantState()
     {
-        return PlantStatus;
+        return PlantState;
     }
 
     public int WaterLevelMax
@@ -67,15 +78,48 @@ public class Plant : IPlant
         }
     }
 
-    public Plant(PlantStates plantStates, GameObject seed, GameObject sprout, GameObject tree, int wLevel, int wLevelMax, int wSproutLevel, int wTreeLevel)
+    public Plant(PlantStates plantState, GameObject seed, GameObject seedPlanted, GameObject sprout, GameObject tree, GameObject plant, int wLevel, int wLevelMax, int wSproutLevel, int wTreeLevel)
     {
-        PlantStatus = plantStates;
+        PlantState = plantState;
         SeedGameObject = seed;
+        SeedPlantedGameObject = seedPlanted;
         SproutGameObject = sprout;
         TreeGameObject = tree;
+        PlantGameObject = plant;
         WaterLevel = wLevel;
         WaterLevelMax = wLevelMax;
         SproutWaterLevel = wSproutLevel;
         TreeWaterLevel = wTreeLevel;
+    }
+
+    public GameObject GetSeedGameObject()
+    {
+        return SeedGameObject;
+    }
+
+    public GameObject GetPlantGameObject()
+    {
+        return PlantGameObject;
+    }
+
+    public GameObject GetSeedPlantedGameObject()
+    {
+        return SeedPlantedGameObject;
+    }
+
+    public GameObject GetSproutGameObject()
+    {
+        return SproutGameObject;
+    }
+
+    public GameObject GetTreeGameObject()
+    {
+        return TreeGameObject;
+    }
+
+    public PlantStates ChangePlantState(PlantStates plantState)
+    {
+        PlantState = plantState;
+        return PlantState;
     }
 }

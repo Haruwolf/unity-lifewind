@@ -9,13 +9,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1508727764881537486}
-  - component: {fileID: 6506154423741873725}
-  - component: {fileID: 7430572122834223028}
-  - component: {fileID: 2141215815096970349}
-  - component: {fileID: 8993214840402430093}
-  - component: {fileID: 7666610373525025382}
-  - component: {fileID: 7422286063358758036}
-  - component: {fileID: 5653241758885728792}
+  - component: {fileID: 8770181135477660523}
+  - component: {fileID: 265702425750780925}
+  - component: {fileID: 2615519454799473113}
+  - component: {fileID: 6527496535146434943}
+  - component: {fileID: 8803197692139886536}
+  - component: {fileID: 7762082052965994972}
+  - component: {fileID: 6889563528307314346}
+  - component: {fileID: 385720764845613472}
+  - component: {fileID: 6431429598418366135}
   m_Layer: 0
   m_Name: Eucaliptyus
   m_TagString: Untagged
@@ -41,7 +43,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6506154423741873725
+--- !u!114 &8770181135477660523
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -50,10 +52,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 5483752849271691951}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d44554af5272564796bec2c38264dd9, type: 3}
+  m_Script: {fileID: 11500000, guid: b87040b27b5077647855f36d878bd97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &7430572122834223028
+  OnPlantCreated:
+    m_PersistentCalls:
+      m_Calls: []
+  seedGameObject: {fileID: 9122134895468227903}
+  seedPlantedGameObject: {fileID: 5519802099085041450}
+  sproutGameObject: {fileID: 5098538967412549094}
+  treeGameObject: {fileID: 5979075915710344834}
+  plantGameObject: {fileID: 5483752849271691951}
+  plantStates: 0
+  plantWaterLevel: 0
+  waterLevelMax: 50
+  sproutWaterLevel: 15
+  treeWaterLevel: 30
+  offsetPlantPositionY: 0.4
+--- !u!65 &265702425750780925
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -66,7 +82,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &2141215815096970349
+--- !u!54 &2615519454799473113
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -82,7 +98,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8993214840402430093
+--- !u!114 &6527496535146434943
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 137a027c3a0797b42b48f2088067d84d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7666610373525025382
+--- !u!114 &8803197692139886536
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,12 +119,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5483752849271691951}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 665fc4ae6a2a37e408337268fa7f2b77, type: 3}
+  m_Script: {fileID: 11500000, guid: b771e809ed6ff494b92f4600f2bc59f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plantController: {fileID: 7422286063358758036}
-  plantToRegenerate: {fileID: 5483752849271691951}
---- !u!114 &7422286063358758036
+--- !u!114 &7762082052965994972
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,23 +131,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 5483752849271691951}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b87040b27b5077647855f36d878bd97a, type: 3}
+  m_Script: {fileID: 11500000, guid: a813d658a9477494198f1d9a48d22d83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seedGameObject: {fileID: 9122134895468227903}
-  seedPlantedGameObject: {fileID: 5519802099085041450}
-  sproutGameObject: {fileID: 5098538967412549094}
-  treeGameObject: {fileID: 5979075915710344834}
-  plantStatus: 0
-  plantWaterLevel: 0
-  OnMaxedLevel:
+  plantController: {fileID: 8770181135477660523}
+  OnChangedState:
     m_PersistentCalls:
       m_Calls: []
-  waterLevelMax: 50
-  sproutWaterLevel: 15
-  treeWaterLevel: 30
-  offsetPlantPositionY: 0
---- !u!114 &5653241758885728792
+--- !u!114 &6889563528307314346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5483752849271691951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eff5b6a9a2a65da41bdb048e456148e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateGrowState: {fileID: 7762082052965994972}
+--- !u!114 &385720764845613472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5483752849271691951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6f69228a201b584eb229f0dee360672, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantUpdateGrowState: {fileID: 7762082052965994972}
+  plantController: {fileID: 8770181135477660523}
+--- !u!114 &6431429598418366135
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
