@@ -15,6 +15,7 @@ public class PlantIngrainSeed : MonoBehaviour
         SetPlantOnCube();
     }
 
+    //Adicionar uma propriedade para alterar o tamanho 
     public void SetPlantOnCube()
     {
         Ray ray = new Ray(transform.position, Vector3.down);

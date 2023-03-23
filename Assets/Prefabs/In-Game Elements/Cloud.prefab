@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7577399522009840255}
   - component: {fileID: 257696981868622923}
   - component: {fileID: 7400147102443147092}
+  - component: {fileID: 6433606399800024107}
   m_Layer: 2
   m_Name: Cloud
   m_TagString: Untagged
@@ -150,6 +151,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c54e536b6a88ba14993aebc289e7f5ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6433606399800024107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7560103573904390916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59e85f3e563ffa343b152e7c08df61ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wateringRate: 1
+  wateringSpeed: 0.25
 --- !u!1001 &1667749336695297540
 PrefabInstance:
   m_ObjectHideFlags: 0
