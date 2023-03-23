@@ -28,9 +28,20 @@ public class BreezeCarriesSeed : MonoBehaviour
     //     }
     // }
 
+    [SerializeField]
+    private Wind wind;
+
+    private void OnEnable()
+    {
+        wind = GetComponentInParent<GetWind>().GetWindObject();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         other.TryGetComponent<PlantUpdateGrowState>(out PlantUpdateGrowState updateState);
+        if (updateState == null)
+            return;
+        
         Plant.PlantStates actualState = updateState.GetActualPlantState();
 
         if (actualState == Plant.PlantStates.SeedNotPlanted)
@@ -56,7 +67,7 @@ public class BreezeCarriesSeed : MonoBehaviour
     private void IngrainPlantOnWindFinished(GameObject otherGameObject)
     {
         otherGameObject.TryGetComponent<PlantIngrainSeed>(out PlantIngrainSeed plantSeed);
-        Wind.OnWindFinished += plantSeed.IngrainPlant;
+        wind.OnWindFinished.AddListener(plantSeed.IngrainPlant);       
     }
 
 }

@@ -13,7 +13,7 @@ public class PlantUpdateVisuallyState : MonoBehaviour
 
     private GameObject seedGameObject, seedPlantedGameObject, sproutGameObject, treeGameObject, plantGameObject;
 
-    private void Start()
+    private void OnEnable()
     {
         plantUpdateGrowState.OnChangedState.AddListener(CheckPlantState);
         plantController.OnPlantCreated.AddListener(SetGameObjectsList);

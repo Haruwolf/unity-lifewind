@@ -5,10 +5,16 @@ using System;
 
 public class Breeze : MonoBehaviour
 {
+    private Wind wind;
     bool carryState = false;
     bool destroyState = false;
     FixedJoint gameObjectJoint;
     Collider goCollided;
+
+    private void OnEnable()
+    {
+        wind = GetComponentInParent<GetWind>().GetWindObject();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -29,7 +35,7 @@ public class Breeze : MonoBehaviour
         {
             if (carryState == true)
             {
-                Wind.OnWindFinished += breakConnection;
+                wind.OnWindFinished.AddListener(breakConnection);
                 gameObjectJoint = other.gameObject.AddComponent<FixedJoint>();
                 gameObjectJoint.connectedBody = gameObject.GetComponent<Rigidbody>();
             }
@@ -47,7 +53,6 @@ public class Breeze : MonoBehaviour
     {
         if (gameObjectJoint != null)
         {
-            Wind.OnWindFinished -= breakConnection;
             Destroy(gameObjectJoint);
         }
     }

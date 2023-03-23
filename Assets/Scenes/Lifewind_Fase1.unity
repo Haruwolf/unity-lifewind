@@ -3028,6 +3028,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1338639703271869344, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1508727764881537486, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -3073,6 +3077,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5098538967412549094, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5098538967412549094, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -3080,9 +3088,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Eucaliptyus
       objectReference: {fileID: 0}
+    - target: {fileID: 5483752849271691951, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519802099085041450, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5519802099085041450, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5858902339708921235, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5979075915710344834, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5979075915710344834, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
       propertyPath: m_IsActive
@@ -3096,6 +3120,14 @@ PrefabInstance:
       propertyPath: plantToRegenerate
       value: 
       objectReference: {fileID: 841543228}
+    - target: {fileID: 7894150809145017022, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122134895468227903, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
 --- !u!1001 &1504345075

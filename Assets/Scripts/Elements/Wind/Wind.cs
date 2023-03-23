@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using System;
 
 public class Wind : MonoBehaviour
@@ -34,9 +35,7 @@ public class Wind : MonoBehaviour
     public float clearTime = 4;
 
     public float windOffsetHeight = 0.25f;
-
-    public delegate void windDelegateEvent();
-    public static event windDelegateEvent OnWindFinished;
+    public UnityEvent OnWindFinished;
 
     public delegate void arrowDelegateEvent(Vector3 startDir, Vector3 holdDir, GameObject windManager, bool toggle);
     public static event arrowDelegateEvent ToggleArrow;
@@ -52,47 +51,53 @@ public class Wind : MonoBehaviour
 
     private void Update()
     {
-        if (Time.deltaTime == 0)
+        CheckWindChargingState();
+        MoveBreeze();
+        CheckIfWindFinished();
+    }
+
+    private void CheckWindChargingState()
+    {
+        if (Time.deltaTime == 0 && windClone != null && windClone.GetComponent<WindStatus>().wind.ActualState == WindObject.windState.Charging)
         {
-            if (windClone != null)
-                if (windClone.GetComponent<WindStatus>().wind.ActualState == WindObject.windState.Charging)
-                    SetReleaseWindState();
-        }
-
-        if (releasedWind)
-        {
-            windTimer += Time.deltaTime;
-
-            if (newBreeze != null)
-            {
-
-                newBreeze.transform.position = Vector3.Lerp(endDirection, startDirection, windTimer / interpolationTime);
-                if (windTimer >= interpolationTime && windClone != null)
-                {
-                    try {
-                    //Descobrir que tipo de evento está atrelado a isso.
-                    releasedWind = WindReleasedState(false);
-                    StopBreezeParticles();
-                    OnWindFinished?.Invoke(); // Obtém uma matriz de delegados dos métodos inscritos no evento
-                    ClearWind();
-                    }
-
-                    catch (Exception e)
-                    {
-                        Debug.Log(e.Message);
-                    }
-
-                }
-            }
-                
-
+            SetReleaseWindState();
         }
     }
+
+    private void MoveBreeze()
+    {
+        if (releasedWind && newBreeze != null)
+        {
+            windTimer += Time.deltaTime;
+            newBreeze.transform.position = Vector3.Lerp(endDirection, startDirection, windTimer / interpolationTime);
+        }
+    }
+
+    private void CheckIfWindFinished()
+    {
+        if (releasedWind && newBreeze != null && windTimer >= interpolationTime && windClone != null)
+        {
+            try
+            {
+                //Descobrir que tipo de evento está atrelado a isso.
+                releasedWind = WindReleasedState(false);
+                StopBreezeParticles();
+                OnWindFinished?.Invoke(); // Obtém uma matriz de delegados dos métodos inscritos no evento
+                OnWindFinished.RemoveAllListeners();
+                ClearWind();
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e.Message);
+            }
+        }
+    }
+
 
     public void CreateWindPrefab(GameObject actualBlock)
     {
         Vector3 windInitPos = CalcWindPrefabPos(actualBlock.transform.position);
-        windClone = Instantiate(windParentPrefab, windInitPos, windParentPrefab.transform.rotation);
+        windClone = Instantiate(windParentPrefab, gameObject.transform);
         WindCloneConfigs(windClone);
         newCyclone = CreateNewCyclone(windInitPos, windClone);
         windState = windClone.GetComponent<WindStatus>();
@@ -105,6 +110,12 @@ public class Wind : MonoBehaviour
         windClone.transform.SetParent(gameObject.transform);
         windClone.name = "Wind";
     }
+
+    public Wind GetWind()
+    {
+        return gameObject.GetComponent<Wind>();
+    }
+
 
     GameObject CreateNewCyclone(Vector3 windInitPos, GameObject windClone)
     {
@@ -155,7 +166,7 @@ public class Wind : MonoBehaviour
             ToggleArrow(Vector3.zero, Vector3.zero, gameObject, false);
             windState.updateState(WindObject.windState.Released);
             endDirection = DestroyNewCyclone();
-            SetNewBreeze();      
+            SetNewBreeze();
             releasedWind = WindReleasedState(true);
             SoundEvent(windAudioSource, ventoSolto);
         }

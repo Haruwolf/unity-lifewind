@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7577399522009840255}
   - component: {fileID: 257696981868622923}
   - component: {fileID: 7400147102443147092}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cloud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,6 +162,10 @@ PrefabInstance:
       value: Rain
       objectReference: {fileID: 0}
     - target: {fileID: 8290707842627696612, guid: 7b6f5527edd53f446adccb8b7c6c91dd, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8290707842627696612, guid: 7b6f5527edd53f446adccb8b7c6c91dd, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -243,6 +247,10 @@ PrefabInstance:
     - target: {fileID: 2316112981805311160, guid: 12ee3cce81e98224ebe4bc92a7050c5b, type: 3}
       propertyPath: m_Name
       value: Lightning
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316112981805311160, guid: 12ee3cce81e98224ebe4bc92a7050c5b, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2316112981805311160, guid: 12ee3cce81e98224ebe4bc92a7050c5b, type: 3}
       propertyPath: m_IsActive

@@ -48,11 +48,11 @@ public class PlantUpdateGrowState : MonoBehaviour
             else if (plantState == Plant.PlantStates.Sprout && plant.WaterLevel >= plant.TreeWaterLevel)
             {
                 plant.ChangePlantState(Plant.PlantStates.Tree);
-            }
-
-            Plant.PlantStates actualState = GetActualPlantState();
-            OnChangedState?.Invoke(actualState);
+            }           
         }
+
+        Plant.PlantStates actualState = GetActualPlantState();
+        OnChangedState?.Invoke(actualState);
     }
 
 }

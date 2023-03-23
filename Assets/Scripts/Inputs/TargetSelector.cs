@@ -75,6 +75,7 @@ public class TargetSelector : MonoBehaviour
                 {
                     if (hitInfo.collider != null)
                     {
+                        Debug.Log(hitInfo.collider);
                         hitInfo.collider.gameObject.TryGetComponent<Grass>(out Grass grass);
                         hitInfo.collider.gameObject.TryGetComponent<Water>(out Water water);
                         if (grass)

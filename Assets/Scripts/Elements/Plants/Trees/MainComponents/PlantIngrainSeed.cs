@@ -19,23 +19,33 @@ public class PlantIngrainSeed : MonoBehaviour
     {
         Ray ray = new Ray(transform.position, Vector3.down);
 
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity))
+        Collider[] hitColliders = Physics.OverlapSphere(gameObject.transform.position, 0.25F);
+        foreach (Collider col in hitColliders)
         {
-            if (hitInfo.collider)
-            {
-                GameObject blockLanded = hitInfo.collider.gameObject;
-                blockLanded.TryGetComponent<Grass>(out Grass grass);
 
-                if (grass && grass.plantable)
-                    PlantSeed(grass, blockLanded);
+            col.gameObject.TryGetComponent<Grass>(out Grass grass);
+            if (grass != null)
+            {
+                if (grass.plantable)
+                {
+                    PlantSeed(grass, col.gameObject);
+                    return;
+                }
 
                 else
                     ReturnOriginalPos();
             }
+
         }
 
-        else
-            ReturnOriginalPos();
+
+    }
+
+    bool m_Started = true;
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(gameObject.transform.position, 0.25F);
     }
 
     void PlantSeed(Grass grass, GameObject blockLanded)
@@ -43,13 +53,14 @@ public class PlantIngrainSeed : MonoBehaviour
         Plant plant = updateGrowState.GetPlant();
         plant.ChangePlantState(Plant.PlantStates.SeedPlanted);
         updateGrowState.CheckGrow();
+        gameObject.transform.position = blockLanded.transform.position;
         SetGrassPlantable(grass, false);
-        RemoveIngrainPlantOnWindFinished();
     }
 
     void ReturnOriginalPos()
     {
         Plant plant = updateGrowState.GetPlant();
+        Debug.Log(plant);
         plant.ChangePlantState(Plant.PlantStates.SeedNotPlanted);
         updateGrowState.CheckGrow();
         ResetPlantPosition();
@@ -58,11 +69,6 @@ public class PlantIngrainSeed : MonoBehaviour
     private void SetGrassPlantable(Grass grass, bool plantable)
     {
         grass.plantable = plantable;
-    }
-
-    private void RemoveIngrainPlantOnWindFinished()
-    {
-        Wind.OnWindFinished -= IngrainPlant;
     }
 
     private void ResetPlantPosition()
