@@ -16,7 +16,7 @@ public class PlantUpdateVisuallyState : MonoBehaviour
     private void OnEnable()
     {
         plantUpdateGrowState.OnChangedState.AddListener(CheckPlantState);
-        plantController.OnPlantCreated.AddListener(SetGameObjectsList);
+        plantController.onPlantCreated.AddListener(SetGameObjectsList);
     }
 
     private void SetGameObjectsList()

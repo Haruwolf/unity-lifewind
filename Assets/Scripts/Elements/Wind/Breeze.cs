@@ -25,7 +25,6 @@ public class Breeze : MonoBehaviour
     {
         carryState = other.gameObject.TryGetComponent<Carry>(out Carry carry);
         destroyState = other.gameObject.TryGetComponent<Remove>(out Remove remove);
-        Debug.Log(carryState);
         checkCollisions(other);
     }
 
@@ -52,7 +51,6 @@ public class Breeze : MonoBehaviour
 
     void breakConnection()
     {
-        Debug.Log(gameObjectJoint);
         if (gameObjectJoint != null)
         {
             Destroy(gameObjectJoint);

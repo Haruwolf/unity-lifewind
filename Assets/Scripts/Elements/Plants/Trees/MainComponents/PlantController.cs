@@ -1,18 +1,13 @@
-using System.Collections;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using static UnityEngine.ParticleSystem;
 
 public class PlantController : MonoBehaviour
 { 
     private Plant m_Plant;
 
     [HideInInspector] 
-    public UnityEvent OnPlantCreated;
+    public UnityEvent onPlantCreated;
 
     [SerializeField]
     [Tooltip("Adicione aqui os prefabs de semente, muda e árvore respectivamente.")]
@@ -43,19 +38,13 @@ public class PlantController : MonoBehaviour
     [Tooltip("Nível de água necessário para a muda brotar para árvore")]
     private int treeWaterLevel = 30;
 
-    [Space(10)]
-    [SerializeField]
-    [Range(0,3)]
-    [Tooltip("Altere aqui a margem de posicionamento vertical da planta.")]
-    private float offsetPlantPositionY = 0.4f;
-
     private void OnEnable()
     {
         CreatePlantObject();
         AddTotalPlants();
     }
 
-    public void CreatePlantObject()
+    private void CreatePlantObject()
     {
         m_Plant = new Plant(
             plantState: this.plantStates,
@@ -70,7 +59,7 @@ public class PlantController : MonoBehaviour
             wTreeLevel: treeWaterLevel
         );
         
-        OnPlantCreated?.Invoke();
+        onPlantCreated?.Invoke();
     }
 
     public Plant GetPlantObject()
@@ -78,11 +67,17 @@ public class PlantController : MonoBehaviour
         return m_Plant;
     }
 
-    public void AddTotalPlants()
+    private void AddTotalPlants()
     {
         GameManager.instance.totalPlants += 1;
     }
 
+    private void Update()
+    {
+        
+        Debug.Log(gameObject.name + " "+ m_Plant.GetPlantState());
+        Debug.Log(gameObject.name + " "+ m_Plant.WaterLevel);
+    }
 }
 
 

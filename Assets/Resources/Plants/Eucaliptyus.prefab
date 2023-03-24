@@ -56,7 +56,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87040b27b5077647855f36d878bd97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlantCreated:
+  onPlantCreated:
     m_PersistentCalls:
       m_Calls: []
   seedGameObject: {fileID: 9122134895468227903}
@@ -66,10 +66,9 @@ MonoBehaviour:
   plantGameObject: {fileID: 5483752849271691951}
   plantStates: 0
   plantWaterLevel: 0
-  waterLevelMax: 50
+  waterLevelMax: 30
   sproutWaterLevel: 15
   treeWaterLevel: 30
-  offsetPlantPositionY: 0.4
 --- !u!65 &265702425750780925
 BoxCollider:
   m_ObjectHideFlags: 0

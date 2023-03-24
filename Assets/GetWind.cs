@@ -12,7 +12,6 @@ public class GetWind : MonoBehaviour
     void OnEnable()
     {
         wind = gameObject.GetComponentInParent<Wind>()?.GetWind();
-        Debug.Log(gameObject.transform.parent.name);
         Wind = wind;
     }
 

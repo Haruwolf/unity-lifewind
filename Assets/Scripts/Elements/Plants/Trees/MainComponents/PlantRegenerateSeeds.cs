@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,13 +16,12 @@ public class PlantRegenerateSeeds : MonoBehaviour
 
     private void OnEnable()
     {
-        plantController.OnPlantCreated.AddListener(AddListenerOnMaxedWater);
+        plantController.onPlantCreated.AddListener(AddListenerOnMaxedWater);
     }
 
     private void AddListenerOnMaxedWater()
     {
         m_Plant = plantController.GetPlantObject();
-        var actualState = m_Plant.GetPlantState();
         m_Plant?.onMaxedWatering.AddListener(delegate { RegenerateSeeds(m_Plant); });
 
     }
@@ -29,6 +29,8 @@ public class PlantRegenerateSeeds : MonoBehaviour
     private void RegenerateSeeds(Plant plant)
     {
         var actualState = plant.GetPlantState();
+        Debug.Log(actualState);
+        Debug.Log(gameObject.name + plant.WaterLevel);
         
         if (actualState != Plant.PlantStates.Tree)
             return;
@@ -37,13 +39,13 @@ public class PlantRegenerateSeeds : MonoBehaviour
             Instantiate(Resources.Load<GameObject>("Plants/"+gameObject.name), 
                 gameObject.transform.position, 
                 transform.rotation);
-        
-        ChangeGameObjectName(newSeed);
+
+        //ChangeGameObjectName(newSeed);
     }
 
     private void ChangeGameObjectName(GameObject regenSeed)
     {
         regenSeed.name = plantToRegenerate.name;
     }
-
+    
 }

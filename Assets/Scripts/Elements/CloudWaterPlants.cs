@@ -39,8 +39,10 @@ public class CloudWaterPlants : MonoBehaviour
 
     private void OnPlantWatered()
     {
+        //Aparentemente ele tá molhando as plantas mesmo em um desses estados
         if (actualPlantStates != Plant.PlantStates.SeedNotPlanted || actualPlantStates != Plant.PlantStates.SeedCarried)
         {
+            Debug.Log("watering");
             plant.WaterLevel += wateringRate;
             updateGrowState.CheckGrow();
             Invoke(nameof(OnPlantWatered), wateringSpeed);

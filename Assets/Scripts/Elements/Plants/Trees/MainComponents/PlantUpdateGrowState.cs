@@ -17,7 +17,7 @@ public class PlantUpdateGrowState : MonoBehaviour
     private void OnEnable()
     {
         //Os listeners precisam ser adicionados antes do objeto ser criado.
-        plantController.OnPlantCreated.AddListener(SetPlant);
+        plantController.onPlantCreated.AddListener(SetPlant);
     }
 
     private void SetPlant()
