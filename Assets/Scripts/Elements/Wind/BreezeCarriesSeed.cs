@@ -42,7 +42,7 @@ public class BreezeCarriesSeed : MonoBehaviour
         if (updateState == null)
             return;
         
-        Plant.PlantStates actualState = updateState.GetActualPlantState();
+        var actualState = updateState.GetActualPlantState();
 
         if (actualState == Plant.PlantStates.SeedNotPlanted)
         {

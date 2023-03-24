@@ -16,7 +16,8 @@ public class PlantUpdateGrowState : MonoBehaviour
 
     private void OnEnable()
     {
-        plantController.OnPlantCreated.AddListener(delegate { SetPlant(); });
+        //Os listeners precisam ser adicionados antes do objeto ser criado.
+        plantController.OnPlantCreated.AddListener(SetPlant);
     }
 
     private void SetPlant()
@@ -36,7 +37,7 @@ public class PlantUpdateGrowState : MonoBehaviour
 
     public void CheckGrow()
     {
-        Plant.PlantStates plantState = GetActualPlantState();
+        var plantState = GetActualPlantState();
 
         if (plant.WaterLevel >= plant.SproutWaterLevel)
         {

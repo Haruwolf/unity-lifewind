@@ -7,10 +7,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEngine.ParticleSystem;
 
-[AddComponentMenu(nameof(Carry))]
 public class PlantController : MonoBehaviour
 { 
-    private Plant plant;
+    private Plant m_Plant;
 
     [HideInInspector] 
     public UnityEvent OnPlantCreated;
@@ -22,12 +21,12 @@ public class PlantController : MonoBehaviour
     [SerializeField]
     [Header("Status da planta")]
     [Tooltip("Altere aqui qual o status atual da planta durante o jogo para semente, muda ou árvore.")]
-    private Plant.PlantStates plantStates;
+    private Plant.PlantStates plantStates = Plant.PlantStates.SeedNotPlanted;
 
     [SerializeField]
     [Range(0, 100)]
     [Tooltip("Nível atual da água da planta, não precisa ser alterado, está no inspector para própositos de assistir a velocidade em que o nível de água sobe durante o jogo.")]
-    private int plantWaterLevel;
+    private int plantWaterLevel = 0;
 
     [SerializeField]
     [Range(30, 100)]
@@ -58,7 +57,7 @@ public class PlantController : MonoBehaviour
 
     public void CreatePlantObject()
     {
-        plant = new Plant(
+        m_Plant = new Plant(
             plantState: this.plantStates,
             seed: seedGameObject,
             seedPlanted: seedPlantedGameObject,
@@ -70,13 +69,13 @@ public class PlantController : MonoBehaviour
             wSproutLevel: sproutWaterLevel,
             wTreeLevel: treeWaterLevel
         );
-
+        
         OnPlantCreated?.Invoke();
     }
 
     public Plant GetPlantObject()
     {
-        return plant;
+        return m_Plant;
     }
 
     public void AddTotalPlants()

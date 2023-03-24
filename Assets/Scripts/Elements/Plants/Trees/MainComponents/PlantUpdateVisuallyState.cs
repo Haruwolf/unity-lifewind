@@ -33,34 +33,7 @@ public class PlantUpdateVisuallyState : MonoBehaviour
     {
         seedGameObject.SetActive(newState == Plant.PlantStates.SeedNotPlanted || newState == Plant.PlantStates.SeedCarried);
         seedPlantedGameObject.SetActive(newState == Plant.PlantStates.SeedPlanted);
-        CheckSeedState(newState);
         sproutGameObject.SetActive(newState == Plant.PlantStates.Sprout);
         treeGameObject.SetActive(newState == Plant.PlantStates.Tree);
-    }
-
-    public void CheckSeedState(Plant.PlantStates newState)
-    {
-        if (seedGameObject.activeInHierarchy)
-        {
-            plantGameObject.TryGetComponent<Carry>(out Carry carry);
-            if (newState == Plant.PlantStates.SeedNotPlanted)
-            {
-                if (!carry)
-                {
-                    gameObject.AddComponent<Carry>();
-                }
-                
-            }
-
-            else
-            {
-                if (carry)
-                {
-                    Destroy(gameObject.GetComponent<Carry>());
-                    //SetPlantOnCube();
-                }
-            }
-
-        }
     }
 }

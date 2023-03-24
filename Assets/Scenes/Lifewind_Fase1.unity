@@ -3124,6 +3124,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8770181135477660523, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
+      propertyPath: waterLevelMax
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 9122134895468227903, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
       propertyPath: m_Layer
       value: 2

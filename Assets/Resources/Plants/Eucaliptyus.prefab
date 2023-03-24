@@ -17,7 +17,8 @@ GameObject:
   - component: {fileID: 7762082052965994972}
   - component: {fileID: 6889563528307314346}
   - component: {fileID: 385720764845613472}
-  - component: {fileID: 6431429598418366135}
+  - component: {fileID: 5579358463079761390}
+  - component: {fileID: 800097673945347949}
   m_Layer: 0
   m_Name: Eucaliptyus
   m_TagString: Untagged
@@ -165,7 +166,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plantUpdateGrowState: {fileID: 7762082052965994972}
   plantController: {fileID: 8770181135477660523}
---- !u!114 &6431429598418366135
+--- !u!114 &5579358463079761390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5483752849271691951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 665fc4ae6a2a37e408337268fa7f2b77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantController: {fileID: 8770181135477660523}
+  plantToRegenerate: {fileID: 5483752849271691951}
+--- !u!114 &800097673945347949
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

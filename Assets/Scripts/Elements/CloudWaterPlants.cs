@@ -20,6 +20,8 @@ public class CloudWaterPlants : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
+
+        //Separar isso aqui em duas funções
         col.gameObject.TryGetComponent<PlantController>(out PlantController plantContrl);
         col.gameObject.TryGetComponent<PlantUpdateGrowState>(out PlantUpdateGrowState plantGrow);
 
@@ -40,7 +42,6 @@ public class CloudWaterPlants : MonoBehaviour
         if (actualPlantStates != Plant.PlantStates.SeedNotPlanted || actualPlantStates != Plant.PlantStates.SeedCarried)
         {
             plant.WaterLevel += wateringRate;
-            Debug.Log(plant.WaterLevel);
             updateGrowState.CheckGrow();
             Invoke(nameof(OnPlantWatered), wateringSpeed);
         }
