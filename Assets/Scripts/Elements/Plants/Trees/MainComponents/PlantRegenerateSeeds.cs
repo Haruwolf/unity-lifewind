@@ -28,19 +28,19 @@ public class PlantRegenerateSeeds : MonoBehaviour
 
     private void RegenerateSeeds(Plant plant)
     {
-        var actualState = plant.GetPlantState();
-        Debug.Log(actualState);
-        Debug.Log(gameObject.name + plant.WaterLevel);
-        
-        if (actualState != Plant.PlantStates.Tree)
+        GameObject plantPrefab = Resources.Load<GameObject>("Plants/" + gameObject.name);
+        if (plantPrefab == null)
+        {
+            Debug.LogError("Failed to load plant prefab for " + gameObject.name);
             return;
+        }
         
         GameObject newSeed =
-            Instantiate(Resources.Load<GameObject>("Plants/"+gameObject.name), 
+            Instantiate(plantPrefab, 
                 gameObject.transform.position, 
                 transform.rotation);
 
-        //ChangeGameObjectName(newSeed);
+        ChangeGameObjectName(newSeed);
     }
 
     private void ChangeGameObjectName(GameObject regenSeed)

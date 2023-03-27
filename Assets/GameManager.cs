@@ -41,7 +41,6 @@ public class GameManager : MonoBehaviour
         fillBar = 0;
 
         sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        Debug.Log(sceneIndex);
 
         //Fase1
         if (sceneIndex != 2)

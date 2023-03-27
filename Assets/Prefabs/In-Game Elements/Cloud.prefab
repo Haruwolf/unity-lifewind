@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wateringRate: 1
-  wateringSpeed: 0.25
+  wateringSpeed: 1
 --- !u!1001 &1667749336695297540
 PrefabInstance:
   m_ObjectHideFlags: 0

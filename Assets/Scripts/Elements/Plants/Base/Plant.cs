@@ -40,7 +40,7 @@ public class Plant : IPlant
         get => _waterLevel;
         set
         {
-            if (value <= _waterLevelMax)
+            if (value < _waterLevelMax)
                 _waterLevel = value;
             
             else
@@ -48,6 +48,7 @@ public class Plant : IPlant
                 _waterLevel = _waterLevelMax;
                 onMaxedWatering?.Invoke();
                 onMaxedWatering?.RemoveAllListeners();
+                
             }
                 
         }

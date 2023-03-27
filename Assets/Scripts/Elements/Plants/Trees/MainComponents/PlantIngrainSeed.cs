@@ -18,10 +18,10 @@ public class PlantIngrainSeed : MonoBehaviour
     //Adicionar uma propriedade para alterar o tamanho 
     public void SetPlantOnCube()
     {
-        Ray ray = new Ray(transform.position, Vector3.down);
+        var ray = new Ray(transform.position, Vector3.down);
 
         Collider[] hitColliders = Physics.OverlapSphere(gameObject.transform.position, 0.25F);
-        foreach (Collider col in hitColliders)
+        foreach (var col in hitColliders)
         {
 
             col.gameObject.TryGetComponent<Grass>(out Grass grass);
@@ -35,6 +35,11 @@ public class PlantIngrainSeed : MonoBehaviour
 
                 else
                     ReturnOriginalPos();
+            }
+
+            else
+            {
+                ReturnOriginalPos();
             }
 
         }
@@ -54,14 +59,21 @@ public class PlantIngrainSeed : MonoBehaviour
         Plant plant = updateGrowState.GetPlant();
         plant.ChangePlantState(Plant.PlantStates.SeedPlanted);
         updateGrowState.CheckGrow();
+        RemoveCarry();
         gameObject.transform.position = blockLanded.transform.position;
         SetGrassPlantable(grass, false);
+    }
+
+    void RemoveCarry()
+    {
+        gameObject.TryGetComponent<Carry>(out var carry);
+        if (carry != null)
+            Destroy(carry);
     }
 
     void ReturnOriginalPos()
     {
         Plant plant = updateGrowState.GetPlant();
-        Debug.Log(plant);
         plant.ChangePlantState(Plant.PlantStates.SeedNotPlanted);
         updateGrowState.CheckGrow();
         ResetPlantPosition();
@@ -72,9 +84,18 @@ public class PlantIngrainSeed : MonoBehaviour
         grass.plantable = plantable;
     }
 
+    private void CheckCarry()
+    {
+        gameObject.TryGetComponent<Carry>(out var carry);
+
+        if (carry == null)
+            gameObject.AddComponent<Carry>();
+    }
+
     private void ResetPlantPosition()
     {
         GameObject plantGameObject = updateGrowState.GetPlant().GetPlantGameObject();
+        CheckCarry();
         plantGameObject.TryGetComponent<PlantOriginalPos>(out PlantOriginalPos posSaved);
         plantGameObject.transform.position = posSaved.GetOriginalPos();
     }

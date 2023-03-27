@@ -10,42 +10,51 @@ public class CloudWaterPlants : MonoBehaviour
     private Plant plant;
     private PlantUpdateGrowState updateGrowState;
     private Plant.PlantStates actualPlantStates;
+    private PlantController m_PlantController;
+    private PlantUpdateGrowState m_PlantUpdateGrowState;
 
     [SerializeField]
     private int wateringRate = 1;
 
     [SerializeField]
-    private float wateringSpeed = 0.25f;
-
+    private float wateringSpeed = 5;
+    
 
     private void OnTriggerEnter(Collider col)
     {
-
-        //Separar isso aqui em duas funções
         col.gameObject.TryGetComponent<PlantController>(out PlantController plantContrl);
         col.gameObject.TryGetComponent<PlantUpdateGrowState>(out PlantUpdateGrowState plantGrow);
+        
+        if (plantContrl == null)
+            return;
+        
+        m_PlantController = plantContrl;
+        m_PlantUpdateGrowState = plantGrow;
+        plant = m_PlantController.GetPlantObject();
+    }
 
-        if (plantContrl)
-        {
-            updateGrowState = plantGrow;
-            plant = plantContrl.GetPlantObject();
-            actualPlantStates = updateGrowState.GetActualPlantState();
-            OnPlantWatered();
+    private void OnTriggerStay(Collider col)
+    {
+        if (!m_PlantController)
+        { 
+            return;
         }
 
-
+        updateGrowState = m_PlantUpdateGrowState;
+        actualPlantStates = updateGrowState.GetActualPlantState();
+        OnPlantWatered();
 
     }
 
     private void OnPlantWatered()
     {
-        //Aparentemente ele tá molhando as plantas mesmo em um desses estados
-        if (actualPlantStates != Plant.PlantStates.SeedNotPlanted || actualPlantStates != Plant.PlantStates.SeedCarried)
+        if (actualPlantStates == Plant.PlantStates.SeedNotPlanted || actualPlantStates == Plant.PlantStates.SeedCarried)
         {
-            Debug.Log("watering");
-            plant.WaterLevel += wateringRate;
-            updateGrowState.CheckGrow();
-            Invoke(nameof(OnPlantWatered), wateringSpeed);
+            return;
         }
+        
+        plant.WaterLevel += wateringRate * (int)wateringSpeed;
+        updateGrowState.CheckGrow();
+
     }
 }

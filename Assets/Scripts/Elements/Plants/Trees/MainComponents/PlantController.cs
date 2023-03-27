@@ -71,13 +71,7 @@ public class PlantController : MonoBehaviour
     {
         GameManager.instance.totalPlants += 1;
     }
-
-    private void Update()
-    {
-        
-        Debug.Log(gameObject.name + " "+ m_Plant.GetPlantState());
-        Debug.Log(gameObject.name + " "+ m_Plant.WaterLevel);
-    }
+    
 }
 
 

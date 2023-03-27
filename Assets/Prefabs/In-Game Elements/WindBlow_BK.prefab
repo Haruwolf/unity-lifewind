@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3146238648706929119}
   - component: {fileID: 958482757390634139}
   - component: {fileID: 5106991310984220230}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Vento
   m_TagString: Wind
   m_Icon: {fileID: 0}
@@ -4914,7 +4914,7 @@ GameObject:
   - component: {fileID: 8241882139349696493}
   - component: {fileID: 1974746575849043961}
   - component: {fileID: 3677210014546653956}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WindBlow_BK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9813,7 +9813,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b038e80fa716e6b4db8d5e548ba056c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wind: {fileID: 0}
 --- !u!65 &8241882139349696493
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9867,7 +9866,7 @@ GameObject:
   - component: {fileID: 3146238649105448079}
   - component: {fileID: 3146238649105448073}
   - component: {fileID: 3146238649105448078}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Dust
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14761,7 +14760,7 @@ GameObject:
   - component: {fileID: 3146238649356475005}
   - component: {fileID: 3146238649356475007}
   - component: {fileID: 3146238649356475004}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Leaf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
