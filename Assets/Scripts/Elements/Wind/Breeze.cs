@@ -1,59 +1,60 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class Breeze : MonoBehaviour
 {
-    private Wind wind;
-    bool carryState = false;
-    bool destroyState = false;
-    FixedJoint gameObjectJoint;
-    Collider goCollided;
+    private GameObject m_ParentChilds;
+    private Wind m_Wind;
 
     private void OnEnable()
     {
-        wind = GetComponentInParent<GetWind>().GetWindObject();
+        m_Wind = GetComponentInParent<GetWind>().GetWindObject();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        tryGettingComponents(other);
+        CheckCollision(other);
+        Debug.Log(gameObject.activeInHierarchy);
     }
 
-    private void tryGettingComponents(Collider other)
+    private void CheckCollision(Collider other)
     {
-        carryState = other.gameObject.TryGetComponent<Carry>(out Carry carry);
-        destroyState = other.gameObject.TryGetComponent<Remove>(out Remove remove);
-        checkCollisions(other);
-    }
-
-    private void checkCollisions(Collider other)
-    {
-        other.TryGetComponent<FixedJoint>(out var joint);
-        if (joint != null)
-            Destroy(joint);
         
-        if (carryState == true)
+        //Precisa checar quando os ventos estão colidindo um com o outro e possuem uma semente, ou o objeto é destruido ou volta pra posição original.
+        other.gameObject.TryGetComponent(out Carry carry);
+
+        if (!carry)
         {
-                wind.OnWindFinished.AddListener(breakConnection);
-                gameObjectJoint = other.gameObject.AddComponent<FixedJoint>();
-                gameObjectJoint.connectedBody = gameObject.GetComponent<Rigidbody>();
+            return;
         }
 
-
-        else if (destroyState)
+        if (carry.transform.parent != null)
+        {
             return;
+        }
+        
+        if (m_ParentChilds == null)
+        {
+            m_ParentChilds = CreateParent();
+        }
 
-        else
-            return;
+        m_Wind.OnWindFinished.AddListener(RemoveFromParent);
+        carry.transform.SetParent(m_ParentChilds.transform);
+        
     }
 
-    void breakConnection()
+    private GameObject CreateParent()
     {
-        if (gameObjectJoint != null)
+        m_ParentChilds = new GameObject();
+        m_ParentChilds.name = "CarryChildren";
+        m_ParentChilds.transform.parent = gameObject.transform;
+        return m_ParentChilds;
+    }
+
+    private void RemoveFromParent()
+    {
+        foreach (Transform child in m_ParentChilds.transform)
         {
-            Destroy(gameObjectJoint);
+            child.transform.SetParent(null);
         }
     }
 }

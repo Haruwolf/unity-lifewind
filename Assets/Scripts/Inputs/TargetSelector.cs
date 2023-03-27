@@ -82,8 +82,6 @@ public class TargetSelector : MonoBehaviour
                     }
                 }
 
-                Debug.Log(hitInfo.collider.gameObject.name);
-
             }
 
             if (Input.GetMouseButton(0))

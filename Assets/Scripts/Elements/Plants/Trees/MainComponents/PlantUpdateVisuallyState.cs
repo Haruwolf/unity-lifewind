@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PlantUpdateGrowState))]
@@ -11,7 +9,7 @@ public class PlantUpdateVisuallyState : MonoBehaviour
     [SerializeField]
     private PlantController plantController;
 
-    private GameObject seedGameObject, seedPlantedGameObject, sproutGameObject, treeGameObject, plantGameObject;
+    private GameObject m_SeedGameObject, m_SeedPlantedGameObject, m_SproutGameObject, m_TreeGameObject;
 
     private void OnEnable()
     {
@@ -21,19 +19,18 @@ public class PlantUpdateVisuallyState : MonoBehaviour
 
     private void SetGameObjectsList()
     {
-        Plant plant = plantController.GetPlantObject();
-        plantGameObject = plant.GetPlantGameObject();
-        seedGameObject = plant.GetSeedGameObject();
-        seedPlantedGameObject = plant.GetSeedPlantedGameObject();
-        sproutGameObject = plant.GetSproutGameObject();
-        treeGameObject = plant.GetTreeGameObject();
+        var plant = plantController.GetPlantObject();
+        m_SeedGameObject = plant.GetSeedGameObject();
+        m_SeedPlantedGameObject = plant.GetSeedPlantedGameObject();
+        m_SproutGameObject = plant.GetSproutGameObject();
+        m_TreeGameObject = plant.GetTreeGameObject();
     }
 
-    public void CheckPlantState(Plant.PlantStates newState)
+    private void CheckPlantState(Plant.PlantStates newState)
     {
-        seedGameObject.SetActive(newState == Plant.PlantStates.SeedNotPlanted || newState == Plant.PlantStates.SeedCarried);
-        seedPlantedGameObject.SetActive(newState == Plant.PlantStates.SeedPlanted);
-        sproutGameObject.SetActive(newState == Plant.PlantStates.Sprout);
-        treeGameObject.SetActive(newState == Plant.PlantStates.Tree);
+        m_SeedGameObject.SetActive(newState == Plant.PlantStates.SeedNotPlanted || newState == Plant.PlantStates.SeedCarried);
+        m_SeedPlantedGameObject.SetActive(newState == Plant.PlantStates.SeedPlanted);
+        m_SproutGameObject.SetActive(newState == Plant.PlantStates.Sprout);
+        m_TreeGameObject.SetActive(newState == Plant.PlantStates.Tree);
     }
 }

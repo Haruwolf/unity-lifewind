@@ -12,9 +12,12 @@ public class PlantRegenerateSeeds : MonoBehaviour
     [SerializeField]
     GameObject plantToRegenerate;
 
+    [SerializeField] private Vector3 cubeDetectionCollision;
+
     private Plant m_Plant;
 
     private UnityEvent m_OnMaxedWatering;
+    
 
     private Collider m_ActualBlock;
 
@@ -62,7 +65,7 @@ public class PlantRegenerateSeeds : MonoBehaviour
             return;
         
         //Substituir esse 0.25f por alguma coisa controlável no Inspector
-        Gizmos.DrawWireCube(m_ActualBlock.gameObject.transform.position, Vector3.one);
+        Gizmos.DrawWireCube(m_ActualBlock.gameObject.transform.position, cubeDetectionCollision);
         
     }
     
@@ -87,7 +90,7 @@ public class PlantRegenerateSeeds : MonoBehaviour
         //Ver se é o bloco certo também
         m_ActualBlock = plantedBlock;
         
-        Collider[] adjacentBlocks = Physics.OverlapBox(plantedBlock.transform.position, Vector3.one);
+        Collider[] adjacentBlocks = Physics.OverlapBox(m_ActualBlock.gameObject.transform.position, cubeDetectionCollision);
         List<Collider> plantableBlocks = new List<Collider>();
 
         foreach (var collider in adjacentBlocks)

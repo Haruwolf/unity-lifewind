@@ -179,6 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plantController: {fileID: 8770181135477660523}
   plantToRegenerate: {fileID: 5483752849271691951}
+  cubeDetectionCollision: {x: 0.8, y: 0.8, z: 0.8}
 --- !u!114 &800097673945347949
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PlantOriginalPos))]
@@ -16,15 +14,13 @@ public class PlantIngrainSeed : MonoBehaviour
     }
 
     //Adicionar uma propriedade para alterar o tamanho 
-    public void SetPlantOnCube()
+    private void SetPlantOnCube()
     {
-        var ray = new Ray(transform.position, Vector3.down);
-
         Collider[] hitColliders = Physics.OverlapSphere(gameObject.transform.position, 0.25F);
         foreach (var col in hitColliders)
         {
 
-            col.gameObject.TryGetComponent<Grass>(out Grass grass);
+            col.gameObject.TryGetComponent(out Grass grass);
             if (grass != null)
             {
                 if (grass.plantable)
@@ -46,8 +42,7 @@ public class PlantIngrainSeed : MonoBehaviour
 
 
     }
-
-    bool m_Started = true;
+    
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -95,10 +90,10 @@ public class PlantIngrainSeed : MonoBehaviour
 
     private void ResetPlantPosition()
     {
-        GameObject plantGameObject = updateGrowState.GetPlant().GetPlantGameObject();
         CheckCarry();
-        plantGameObject.TryGetComponent<PlantOriginalPos>(out PlantOriginalPos posSaved);
-        plantGameObject.transform.position = posSaved.GetOriginalPos();
+        gameObject.TryGetComponent(out PlantOriginalPos posSaved);
+        gameObject.transform.position = posSaved.GetOriginalPos();
+        gameObject.GetComponentInChildren<ParticleSystem>()?.Play();
     }
 
 }

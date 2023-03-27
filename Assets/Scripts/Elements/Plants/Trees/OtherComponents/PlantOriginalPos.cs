@@ -1,22 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PlantController))]
 public class PlantOriginalPos : MonoBehaviour
 {
-    private Vector3 _originalPos;
+    private Vector3 originalPos { get; set; }
 
-    [HideInInspector]
-    public Vector3 OriginalPos {
-        get {return _originalPos;}
-        set {
-            _originalPos = value;
-        }
+    private void OnEnable()
+    {
+        originalPos = gameObject.transform.position;
     }
 
     public Vector3 GetOriginalPos()
     {
-        return OriginalPos;
+        return originalPos;
     }
 }

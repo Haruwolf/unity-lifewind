@@ -26,17 +26,9 @@ public class BreezeCarriesSeed : MonoBehaviour
                 Plant plant = updateState.GetPlant();
                 plant.ChangePlantState(Plant.PlantStates.SeedCarried);
                 updateState.CheckGrow();
-                SetObjectPosition(other.gameObject);
                 IngrainPlantOnWindFinished(other.gameObject);
             }
         }
-    }
-
-    private void SetObjectPosition(GameObject otherGameObject)
-    {
-        otherGameObject.TryGetComponent<PlantOriginalPos>(out PlantOriginalPos savePos);
-        savePos.OriginalPos = gameObject.transform.position;
-        gameObject.transform.position = otherGameObject.transform.position;
     }
 
     private void IngrainPlantOnWindFinished(GameObject otherGameObject)
