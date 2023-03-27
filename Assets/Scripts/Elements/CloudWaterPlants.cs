@@ -19,42 +19,45 @@ public class CloudWaterPlants : MonoBehaviour
     [SerializeField]
     private float wateringSpeed = 5;
     
+    private List<PlantController> plantControllers = new List<PlantController>();
 
     private void OnTriggerEnter(Collider col)
     {
-        col.gameObject.TryGetComponent<PlantController>(out PlantController plantContrl);
-        col.gameObject.TryGetComponent<PlantUpdateGrowState>(out PlantUpdateGrowState plantGrow);
-        
-        if (plantContrl == null)
-            return;
-        
-        m_PlantController = plantContrl;
-        m_PlantUpdateGrowState = plantGrow;
-        plant = m_PlantController.GetPlantObject();
-    }
-
-    private void OnTriggerStay(Collider col)
-    {
-        if (!m_PlantController)
-        { 
-            return;
+        if (col.TryGetComponent<PlantController>(out PlantController plantContrl))
+        {
+            plantControllers.Add(plantContrl);
         }
-
-        updateGrowState = m_PlantUpdateGrowState;
-        actualPlantStates = updateGrowState.GetActualPlantState();
-        OnPlantWatered();
-
     }
 
-    private void OnPlantWatered()
+    private void OnTriggerExit(Collider other)
     {
+        if (other.TryGetComponent<PlantController>(out PlantController plantContrl))
+        {
+            plantControllers.Remove(plantContrl);
+        }
+    }
+    
+    private void OnPlantWatered(PlantController plantContrl)
+    {
+        var plantObject = plantContrl.GetPlantObject();
+        var updateGrowState = plantContrl.gameObject.GetComponent<PlantUpdateGrowState>();
+        var actualPlantStates = updateGrowState.GetActualPlantState();
+
         if (actualPlantStates == Plant.PlantStates.SeedNotPlanted || actualPlantStates == Plant.PlantStates.SeedCarried)
         {
             return;
         }
         
-        plant.WaterLevel += wateringRate * (int)wateringSpeed;
+        plantObject.WaterLevel += wateringRate * (int)wateringSpeed;
         updateGrowState.CheckGrow();
-
     }
+
+    private void OnTriggerStay(Collider col)
+    {
+        foreach (PlantController plantContrl in plantControllers)
+        {
+            OnPlantWatered(plantContrl);
+        }
+    }
+
 }

@@ -52,6 +52,7 @@ public class PlantIngrainSeed : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(gameObject.transform.position, 0.25F);
+        
     }
 
     void PlantSeed(Grass grass, GameObject blockLanded)
