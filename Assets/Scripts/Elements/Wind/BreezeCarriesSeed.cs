@@ -13,6 +13,11 @@ public class BreezeCarriesSeed : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        other.TryGetComponent(out Breeze windCol);
+        
+        if (windCol != null)
+            return;
+        
         other.TryGetComponent<PlantUpdateGrowState>(out PlantUpdateGrowState updateState);
         if (updateState == null)
             return;
@@ -23,12 +28,19 @@ public class BreezeCarriesSeed : MonoBehaviour
         {
             if (other.TryGetComponent<Carry>(out Carry carry))
             {
+                RemoveCarry(carry);
                 Plant plant = updateState.GetPlant();
                 plant.ChangePlantState(Plant.PlantStates.SeedCarried);
                 updateState.CheckGrow();
                 IngrainPlantOnWindFinished(other.gameObject);
             }
         }
+    }
+    
+    void RemoveCarry(Carry carry)
+    {
+        if (carry != null)
+            Destroy(carry);
     }
 
     private void IngrainPlantOnWindFinished(GameObject otherGameObject)
