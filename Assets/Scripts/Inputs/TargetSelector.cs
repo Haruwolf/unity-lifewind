@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TargetSelector : MonoBehaviour
 {
     public static TargetSelector instance;
+    
+    int m_LayerMask = ~(1 << 2); 
+    
     [SerializeField]
     [Range(0f, 0.5f)]
     [Header("Press Times")]
@@ -54,24 +55,15 @@ public class TargetSelector : MonoBehaviour
     public delegate void ObserverStates();
     public static ObserverStates stateObserver;
 
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-
-    }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        if (Time.timeScale != 0)
+        if (Time.timeScale != 0) //PauseState
         {
             if (Input.GetMouseButtonDown(0))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity))
+                if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, m_LayerMask))
                 {
                     if (hitInfo.collider != null)
                     {

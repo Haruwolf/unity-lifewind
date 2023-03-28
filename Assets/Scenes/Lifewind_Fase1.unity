@@ -396,29 +396,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 53.665, y: -45, z: 0.002}
---- !u!1 &43587401 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3458174491994916114, guid: 33ee0787046f68a4db784b1ee5e1a22d, type: 3}
-  m_PrefabInstance: {fileID: 1339456656}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &43587402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 43587401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f7fe467303e14a4ea2202299ff5156c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  plantable: 0
-  blockType: 1
-  waterMaxLevel: 300
-  waterDropRate: 1
-  waterRechargeRate: 5
-  waterRechargeSpeed: 5
 --- !u!1 &51734474
 GameObject:
   m_ObjectHideFlags: 0
@@ -2508,6 +2485,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7ceeb30287e5abf41b435d4f50acc6b1, type: 3}
   m_PrefabInstance: {fileID: 839608370}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &841543228 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5483752849271691951, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
+  m_PrefabInstance: {fileID: 1501375865}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &888773412
 GameObject:
   m_ObjectHideFlags: 0
@@ -3658,6 +3640,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 985321907}
     m_Modifications:
+    - target: {fileID: 7099013272395054131, guid: 499ee1f5bab80a54ba98221a22542f3f, type: 3}
+      propertyPath: cloudHeight
+      value: 2.16
+      objectReference: {fileID: 0}
     - target: {fileID: 7798213479732165482, guid: 499ee1f5bab80a54ba98221a22542f3f, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -3720,6 +3706,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1338639703271869344, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1508727764881537486, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -3765,6 +3755,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5098538967412549094, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5098538967412549094, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -3772,13 +3766,49 @@ PrefabInstance:
       propertyPath: m_Name
       value: Eucaliptyus
       objectReference: {fileID: 0}
+    - target: {fileID: 5483752849271691951, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519802099085041450, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5519802099085041450, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5858902339708921235, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5979075915710344834, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5979075915710344834, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422286063358758036, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
+      propertyPath: waterLevelMax
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7666610373525025382, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
+      propertyPath: plantToRegenerate
+      value: 
+      objectReference: {fileID: 841543228}
+    - target: {fileID: 7894150809145017022, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8770181135477660523, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
+      propertyPath: waterLevelMax
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122134895468227903, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}

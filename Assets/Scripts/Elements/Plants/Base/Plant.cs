@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Plant : MonoBehaviour, IPlant
+public class Plant : IPlant
 {
     public enum PlantStates
     {
@@ -13,29 +14,55 @@ public class Plant : MonoBehaviour, IPlant
         Tree,
     }
 
-    PlantStates PlantStatus;
+    private PlantStates _plantState;
 
-    private int _waterLevel; 
+    private bool maxedWater = false;
+
+    public PlantStates PlantState
+    {
+        get { return _plantState; }
+        set { _plantState = value; }
+    }
+
+    private int _waterLevel;
     private int _waterLevelMax;
     private int _sproutLevel;
     private int _treeLevel;
 
+    public UnityEvent onMaxedWatering { get; }
     public GameObject SeedGameObject { get; set; }
+    public GameObject SeedPlantedGameObject { get; set; }
     public GameObject SproutGameObject { get; set; }
     public GameObject TreeGameObject { get; set; }
-    public int WaterLevel { get { return _waterLevel; } set
+    public GameObject PlantGameObject { get; set; }
+    public int WaterLevel
+    {
+        get => _waterLevel;
+        set
         {
             if (value < _waterLevelMax)
                 _waterLevel = value;
+            
             else
+            {
                 _waterLevel = _waterLevelMax;
+                onMaxedWatering?.Invoke();
+                onMaxedWatering?.RemoveAllListeners();
+                
+            }
+                
         }
+    }
+
+    public PlantStates GetPlantState()
+    {
+        return PlantState;
     }
 
     public int WaterLevelMax
     {
-        get { return _waterLevelMax; }
-        set { _waterLevelMax = value; }
+        get => _waterLevelMax;
+        set => _waterLevelMax = value;
     }
 
     public int SproutWaterLevel
@@ -62,28 +89,54 @@ public class Plant : MonoBehaviour, IPlant
         }
     }
 
-    public virtual void CheckPlantState()
+    public Plant(PlantStates plantState, 
+        GameObject seed, 
+        GameObject seedPlanted, 
+        GameObject sprout, 
+        GameObject tree, 
+        GameObject plant, int wLevel, int wLevelMax, int wSproutLevel, int wTreeLevel)
     {
-
+        PlantState = plantState;
+        SeedGameObject = seed;
+        SeedPlantedGameObject = seedPlanted;
+        SproutGameObject = sprout;
+        TreeGameObject = tree;
+        PlantGameObject = plant;
+        WaterLevel = wLevel;
+        WaterLevelMax = wLevelMax;
+        SproutWaterLevel = wSproutLevel;
+        TreeWaterLevel = wTreeLevel;
+        onMaxedWatering = new UnityEvent();
     }
 
-    public virtual void CheckGrow()
+    public GameObject GetSeedGameObject()
     {
-
+        return SeedGameObject;
     }
 
-    public virtual void AttributeGameObjects()
+    public GameObject GetPlantGameObject()
     {
-
+        return PlantGameObject;
     }
 
-    public virtual void SetInitialPlantState()
+    public GameObject GetSeedPlantedGameObject()
     {
-
+        return SeedPlantedGameObject;
     }
 
-    public virtual void AddTotalPlants()
+    public GameObject GetSproutGameObject()
     {
+        return SproutGameObject;
+    }
 
+    public GameObject GetTreeGameObject()
+    {
+        return TreeGameObject;
+    }
+
+    public PlantStates ChangePlantState(PlantStates plantState)
+    {
+        PlantState = plantState;
+        return PlantState;
     }
 }

@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlantController))]
 [RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(Rigidbody))]
 public class PlantCollisionConfig : MonoBehaviour
 {
-    BoxCollider collider;
-    Rigidbody rigidbody;
+    BoxCollider colliderGameObject;
+    Rigidbody rigidbodyGameObject;
     void Awake()
     {
         GetComponents();
@@ -17,20 +18,20 @@ public class PlantCollisionConfig : MonoBehaviour
 
     void GetComponents()
     {
-        collider = GetComponent<BoxCollider>();
-        rigidbody = GetComponent<Rigidbody>();
+        colliderGameObject = GetComponent<BoxCollider>();
+        rigidbodyGameObject = GetComponent<Rigidbody>();
     }
 
     void InitializeBoxCollider()
     {
-        collider.isTrigger = true;
+        colliderGameObject.isTrigger = true;
     }
 
     void InitializeRigidbody()
     {
-        rigidbody.mass = 0.01f;
-        rigidbody.useGravity = false;
-        rigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | 
+        rigidbodyGameObject.mass = 0.01f;
+        rigidbodyGameObject.useGravity = false;
+        rigidbodyGameObject.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | 
         RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
     }
 }

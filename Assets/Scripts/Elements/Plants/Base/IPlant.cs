@@ -11,10 +11,5 @@ public interface IPlant
     int WaterLevelMax { get; set; }
     int SproutWaterLevel { get; set; }
     int TreeWaterLevel { get; set; }
-    void CheckPlantState();
-    void CheckGrow();
-    void AttributeGameObjects();
-    void SetInitialPlantState();
-    void AddTotalPlants();
 
 }

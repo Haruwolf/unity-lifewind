@@ -9,14 +9,17 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1508727764881537486}
-  - component: {fileID: 6506154423741873725}
-  - component: {fileID: 7430572122834223028}
-  - component: {fileID: 2141215815096970349}
-  - component: {fileID: 8993214840402430093}
-  - component: {fileID: 7666610373525025382}
-  - component: {fileID: 7422286063358758036}
-  - component: {fileID: 5653241758885728792}
-  m_Layer: 0
+  - component: {fileID: 8770181135477660523}
+  - component: {fileID: 265702425750780925}
+  - component: {fileID: 2615519454799473113}
+  - component: {fileID: 6527496535146434943}
+  - component: {fileID: 8803197692139886536}
+  - component: {fileID: 7762082052965994972}
+  - component: {fileID: 6889563528307314346}
+  - component: {fileID: 385720764845613472}
+  - component: {fileID: 5579358463079761390}
+  - component: {fileID: 800097673945347949}
+  m_Layer: 2
   m_Name: Eucaliptyus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +44,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6506154423741873725
+--- !u!114 &8770181135477660523
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -50,10 +53,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 5483752849271691951}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d44554af5272564796bec2c38264dd9, type: 3}
+  m_Script: {fileID: 11500000, guid: b87040b27b5077647855f36d878bd97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &7430572122834223028
+  onPlantCreated:
+    m_PersistentCalls:
+      m_Calls: []
+  seedGameObject: {fileID: 9122134895468227903}
+  seedPlantedGameObject: {fileID: 5519802099085041450}
+  sproutGameObject: {fileID: 5098538967412549094}
+  treeGameObject: {fileID: 5979075915710344834}
+  plantGameObject: {fileID: 5483752849271691951}
+  plantStates: 0
+  plantWaterLevel: 0
+  waterLevelMax: 30
+  sproutWaterLevel: 15
+  treeWaterLevel: 30
+--- !u!65 &265702425750780925
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -66,7 +82,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &2141215815096970349
+--- !u!54 &2615519454799473113
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -82,7 +98,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8993214840402430093
+--- !u!114 &6527496535146434943
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,7 +110,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 137a027c3a0797b42b48f2088067d84d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7666610373525025382
+--- !u!114 &8803197692139886536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5483752849271691951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b771e809ed6ff494b92f4600f2bc59f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7762082052965994972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5483752849271691951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a813d658a9477494198f1d9a48d22d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantController: {fileID: 8770181135477660523}
+  OnChangedState:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &6889563528307314346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5483752849271691951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eff5b6a9a2a65da41bdb048e456148e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateGrowState: {fileID: 7762082052965994972}
+--- !u!114 &385720764845613472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5483752849271691951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6f69228a201b584eb229f0dee360672, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantUpdateGrowState: {fileID: 7762082052965994972}
+  plantController: {fileID: 8770181135477660523}
+--- !u!114 &5579358463079761390
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,34 +177,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 665fc4ae6a2a37e408337268fa7f2b77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plantController: {fileID: 7422286063358758036}
+  plantController: {fileID: 8770181135477660523}
   plantToRegenerate: {fileID: 5483752849271691951}
---- !u!114 &7422286063358758036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5483752849271691951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b87040b27b5077647855f36d878bd97a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  seedGameObject: {fileID: 9122134895468227903}
-  seedPlantedGameObject: {fileID: 5519802099085041450}
-  sproutGameObject: {fileID: 5098538967412549094}
-  treeGameObject: {fileID: 5979075915710344834}
-  plantStatus: 0
-  plantWaterLevel: 0
-  OnMaxedLevel:
-    m_PersistentCalls:
-      m_Calls: []
-  waterLevelMax: 50
-  sproutWaterLevel: 15
-  treeWaterLevel: 30
-  offsetPlantPositionY: 0
---- !u!114 &5653241758885728792
+  cubeDetectionCollision: {x: 0.8, y: 0.8, z: 0.8}
+--- !u!114 &800097673945347949
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -203,6 +250,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 103811aba3d2c0349b55133026a0a578, type: 3}
       propertyPath: m_Name
       value: SeedPlanted
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 103811aba3d2c0349b55133026a0a578, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 103811aba3d2c0349b55133026a0a578, type: 3}
       propertyPath: m_IsActive
@@ -288,6 +339,10 @@ PrefabInstance:
       value: Tree
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e1ab11b43995c6b4b9c3658d52a36bf0, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e1ab11b43995c6b4b9c3658d52a36bf0, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -310,6 +365,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1508727764881537486}
     m_Modifications:
+    - target: {fileID: 259403398001569366, guid: df9472ddc05592746b229be3459a48af, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2566568895866917812, guid: df9472ddc05592746b229be3459a48af, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -359,8 +418,20 @@ PrefabInstance:
       value: Sprout
       objectReference: {fileID: 0}
     - target: {fileID: 2942425592500750606, guid: df9472ddc05592746b229be3459a48af, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2942425592500750606, guid: df9472ddc05592746b229be3459a48af, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565311861692828027, guid: df9472ddc05592746b229be3459a48af, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8973408953251342152, guid: df9472ddc05592746b229be3459a48af, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df9472ddc05592746b229be3459a48af, type: 3}
@@ -428,6 +499,10 @@ PrefabInstance:
     - target: {fileID: 812886508048762957, guid: 11c10b593581b5a4e84b8cebb9e1a9f1, type: 3}
       propertyPath: m_Name
       value: Seed
+      objectReference: {fileID: 0}
+    - target: {fileID: 812886508048762957, guid: 11c10b593581b5a4e84b8cebb9e1a9f1, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11c10b593581b5a4e84b8cebb9e1a9f1, type: 3}

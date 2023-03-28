@@ -2,6 +2,8 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using System;
 
 public class Wind : MonoBehaviour
 {
@@ -10,37 +12,35 @@ public class Wind : MonoBehaviour
     //[HideInInspector]
     public Vector3 startDirection, endDirection, holdDirection;
 
-    [SerializeField]
-    [Range(0f, 10f)]
-    float windHeight = 7.5f;
+    [SerializeField] [Range(0f, 10f)] private float windHeight = 7.5f;
 
-    GameObject newCyclone;
-    GameObject newBreeze;
-    GameObject windClone;
+    private GameObject newCyclone;
+    private GameObject newBreeze;
+    private GameObject windClone;
 
     public ParticleSystem cycloneParticle;
     public ParticleSystem breezeParticle;
     public AudioSource windAudioSource;
 
-    WindStatus windState;
-    ParticleSystem newCycloneParticle;
-    ParticleSystem newBreezeParticle;
+    private WindStatus windState;
+    private ParticleSystem newCycloneParticle;
+    private ParticleSystem newBreezeParticle;
 
-    bool releasedWind;
-    float windTimer;
+    private bool releasedWind;
+    private float windTimer;
 
     public float interpolationTime = 5;
     public float clearTime = 4;
 
     public float windOffsetHeight = 0.25f;
-
-    public delegate void windDelegateEvent();
-    public static event windDelegateEvent windEvent;
+    public UnityEvent OnWindFinished;
 
     public delegate void arrowDelegateEvent(Vector3 startDir, Vector3 holdDir, GameObject windManager, bool toggle);
+
     public static event arrowDelegateEvent ToggleArrow;
 
     public delegate void soundDelegateEvent(AudioSource audio, string soundName);
+
     public static event soundDelegateEvent SoundEvent;
 
     public const string ventoCarregando = "ventoCarregando"; //const = static, ambos podem ser acessados globalmente
@@ -48,42 +48,52 @@ public class Wind : MonoBehaviour
     public const string quebrarLoop = "quebrarLoop";
 
 
-
     private void Update()
     {
-        if (Time.deltaTime == 0)
-        {
-            if (windClone != null)
-                if (windClone.GetComponent<WindStatus>().wind.ActualState == WindObject.windState.Charging)
-                    SetReleaseWindState();
-        }
+        CheckWindChargingState();
+        MoveBreeze();
+        CheckIfWindFinished();
+    }
 
-        if (releasedWind)
+    private void CheckWindChargingState()
+    {
+        if (Time.deltaTime == 0 && windClone != null &&
+            windClone.GetComponent<WindStatus>().wind.ActualState == WindObject.windState.Charging)
+            SetReleaseWindState();
+    }
+
+    private void MoveBreeze()
+    {
+        if (releasedWind && newBreeze != null)
         {
             windTimer += Time.deltaTime;
-
-            if (newBreeze != null)
-            {
-
-                newBreeze.transform.position = Vector3.Lerp(endDirection, startDirection, windTimer / interpolationTime);
-                if (windTimer >= interpolationTime && windClone != null)
-                {
-                    releasedWind = WindReleasedState(false);
-                    StopBreezeParticles();
-                    if (windEvent != null) windEvent(); //Checar se quebrou a conex„o, e tirar efetivamente o vento, se o evento estiver nulo, d· erro
-                    ClearWind();
-
-                }
-            }
-                
-
+            newBreeze.transform.position = Vector3.Lerp(endDirection, startDirection, windTimer / interpolationTime);
         }
     }
 
+    private void CheckIfWindFinished()
+    {
+        if (releasedWind && newBreeze != null && windTimer >= interpolationTime && windClone != null)
+            try
+            {
+                //Descobrir que tipo de evento est√° atrelado a isso.
+                releasedWind = WindReleasedState(false);
+                StopBreezeParticles();
+                OnWindFinished?.Invoke(); // Obt√©m uma matriz de delegados dos m√©todos inscritos no evento
+                OnWindFinished.RemoveAllListeners();
+                ClearWind();
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e.Message);
+            }
+    }
+
+
     public void CreateWindPrefab(GameObject actualBlock)
     {
-        Vector3 windInitPos = CalcWindPrefabPos(actualBlock.transform.position);
-        windClone = Instantiate(windParentPrefab, windInitPos, windParentPrefab.transform.rotation);
+        var windInitPos = CalcWindPrefabPos(actualBlock.transform.position);
+        windClone = Instantiate(windParentPrefab, gameObject.transform);
         WindCloneConfigs(windClone);
         newCyclone = CreateNewCyclone(windInitPos, windClone);
         windState = windClone.GetComponent<WindStatus>();
@@ -91,17 +101,23 @@ public class Wind : MonoBehaviour
         startDirection = newCyclone.transform.position;
     }
 
-    void WindCloneConfigs(GameObject windClone)
+    private void WindCloneConfigs(GameObject windClone)
     {
         windClone.transform.SetParent(gameObject.transform);
         windClone.name = "Wind";
     }
 
-    GameObject CreateNewCyclone(Vector3 windInitPos, GameObject windClone)
+    public Wind GetWind()
+    {
+        return gameObject.GetComponent<Wind>();
+    }
+
+
+    private GameObject CreateNewCyclone(Vector3 windInitPos, GameObject windClone)
     {
         newCyclone = windClone.GetComponentInChildren<Cyclone>().gameObject;
         newCyclone.SetActive(true);
-        newCyclone.transform.position = windInitPos; ;
+        newCyclone.transform.position = windInitPos;
         newCyclone.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         newCycloneParticle = newCyclone.GetComponent<ParticleSystem>();
         newCycloneParticle.Play();
@@ -110,16 +126,16 @@ public class Wind : MonoBehaviour
 
     public void SetWindCharge(GameObject actualBlock)
     {
-        if (windState.wind.ActualState == WindObject.windState.Setted || windState.wind.ActualState == WindObject.windState.Charging)
+        if (windState.wind.ActualState == WindObject.windState.Setted ||
+            windState.wind.ActualState == WindObject.windState.Charging)
         {
             ChargeCyclone(actualBlock.transform.position);
             ToggleArrow(startDirection, holdDirection, gameObject, true);
             SoundEvent(windAudioSource, ventoCarregando);
         }
-
     }
 
-    void ChargeCyclone(Vector3 blockPos)
+    private void ChargeCyclone(Vector3 blockPos)
     {
         windClone.GetComponent<WindStatus>().updateState(WindObject.windState.Charging);
         newCyclone.transform.position = CalcWindPrefabPos(blockPos);
@@ -128,7 +144,7 @@ public class Wind : MonoBehaviour
         //newCyclone.transform.localScale = new Vector3(actualDistance, actualDistance, actualDistance);
     }
 
-    void SetNewBreeze()
+    private void SetNewBreeze()
     {
         newBreeze = windClone.GetComponentInChildren<Breeze>().gameObject;
         newBreeze.SetActive(true);
@@ -146,13 +162,13 @@ public class Wind : MonoBehaviour
             ToggleArrow(Vector3.zero, Vector3.zero, gameObject, false);
             windState.updateState(WindObject.windState.Released);
             endDirection = DestroyNewCyclone();
-            SetNewBreeze();      
+            SetNewBreeze();
             releasedWind = WindReleasedState(true);
             SoundEvent(windAudioSource, ventoSolto);
         }
     }
 
-    Vector3 DestroyNewCyclone()
+    private Vector3 DestroyNewCyclone()
     {
         newCycloneParticle.Stop();
         newCyclone.GetComponent<ParticleSystem>().Stop();
@@ -167,23 +183,26 @@ public class Wind : MonoBehaviour
             SoundEvent(windAudioSource, quebrarLoop);
         }
     }
+
     private bool WindReleasedState(bool state)
     {
         return state;
     }
 
-    void StopBreezeParticles()
+    private void StopBreezeParticles()
     {
         newBreezeParticle.Stop();
         SoundEvent(windAudioSource, quebrarLoop);
     }
 
-    void ClearWind()
+    private void ClearWind()
     {
         Destroy(windClone, clearTime);
         Destroy(gameObject, clearTime);
     }
 
-    private Vector3 CalcWindPrefabPos(Vector3 blockPos) => new Vector3(blockPos.x, blockPos.y + windOffsetHeight, blockPos.z);
-
+    private Vector3 CalcWindPrefabPos(Vector3 blockPos)
+    {
+        return new Vector3(blockPos.x, blockPos.y + windOffsetHeight, blockPos.z);
+    }
 }

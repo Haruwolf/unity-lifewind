@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6799989721453157799}
   - component: {fileID: 3740071048107206985}
+  - component: {fileID: 2963818817369487505}
   m_Layer: 0
-  m_Name: WindBlow
+  m_Name: Breeze
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,6 +46,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b038e80fa716e6b4db8d5e548ba056c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2963818817369487505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6799989721453157798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d1e7a166e557114a8b15cfc317222da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7214594585813153204

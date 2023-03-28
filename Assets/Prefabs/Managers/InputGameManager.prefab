@@ -52,4 +52,4 @@ MonoBehaviour:
   cloudCount: 0
   cloudMaxCount: 3
   cloudHeight: 7.5
-  cloudPrefab: {fileID: 7243208417592492166, guid: 0a71c5c2efae3814dba1d2e671e0b087, type: 3}
+  cloudPrefab: {fileID: 7560103573904390916, guid: e27bf85acae63604284111893a2a960d, type: 3}

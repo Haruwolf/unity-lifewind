@@ -9,8 +9,8 @@ public class Cloud : MonoBehaviour
 
     public float cloudHP;
 
-    [Range(1, 255)]
-    public float cloudMaxHP = 255;
+    [Range(1, 100)]
+    public float cloudMaxHP = 100;
 
     [Range(1, 50)]
     public float decrementHP;
@@ -18,18 +18,14 @@ public class Cloud : MonoBehaviour
     [Range(0.01f, 1)]
     public float speedSizeRate;
 
-    [Range(1, 5)]
-    public int cloudMinSize;
+    [Range(0.25f, 1f)]
+    public float cloudMinSize;
 
-    [Range(1, 5)]
-    public int cloudMaxSize;
+    [Range(0.75f, 2f)]
+    public float cloudMaxSize;
 
     [Range(0, 50)]
-    public int cloudSizeRate;
-
-    [Range(50, 100)]
-    public int cloudScaleOffset = 65;
-
+    public float cloudSizeRate;
 
     public AudioSource audio;
     public delegate void cloudSoundDelegateEvent(AudioSource audio, string soundName);
@@ -61,12 +57,11 @@ public class Cloud : MonoBehaviour
     {
         rainPrefab.SetActive(true);
         
-
         if (cloudHP > 0)
         {
             cloudHP -= decrementHP * Time.deltaTime;
             ShrinkCloud();
-            Invoke(nameof(MakeItRain), speedSizeRate);
+            //Invoke(nameof(MakeItRain), speedSizeRate);
             SoundEvent(audio, chuvaCaindo);
         }
 
@@ -86,19 +81,30 @@ public class Cloud : MonoBehaviour
     private void GrowCloud()
     {
         cloudHP += cloudSizeRate * Time.deltaTime;
-        float newSize = Mathf.Clamp(cloudHP / cloudScaleOffset, cloudMinSize, cloudMaxSize);
-        transform.localScale = new Vector3(newSize, newSize, newSize);
+        Vector3 cloudNewScale = ClampVectors(transform.localScale);
+        cloudNewScale += new Vector3 (cloudSizeRate, cloudSizeRate, cloudSizeRate) * Time.deltaTime;
+        transform.localScale = cloudNewScale;
         SoundEvent(audio, criandoNuvem);
+    }
+
+    private Vector3 ClampVectors(Vector3 cloudScale)
+    {
+        Vector3 newScale = cloudScale;
+        newScale.x = Mathf.Clamp(newScale.x, cloudMinSize, cloudMaxSize);
+        newScale.y = Mathf.Clamp(newScale.y, cloudMinSize, cloudMaxSize);
+        newScale.z = Mathf.Clamp(newScale.z, cloudMinSize, cloudMaxSize);
+        return newScale;   
     }
 
     private void ShrinkCloud()
     {
         cloudHP -= cloudSizeRate * Time.deltaTime;
-        float newSize = Mathf.Clamp(cloudHP / cloudScaleOffset, cloudMinSize, cloudMaxSize);
-        transform.localScale = new Vector3(newSize, newSize, newSize);
+        Vector3 cloudNewScale = ClampVectors(transform.localScale);
+        cloudNewScale -= new Vector3 (cloudSizeRate, cloudSizeRate, cloudSizeRate) * Time.deltaTime;;
+        transform.localScale = cloudNewScale;
     }
 
-    //Fazer a água regar as plantas
+    //Fazer a ï¿½gua regar as plantas
     //Tirar erva daninha
     //Colocar outros tipos de plantas
 }
