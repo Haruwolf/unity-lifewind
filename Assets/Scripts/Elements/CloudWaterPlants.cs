@@ -48,7 +48,7 @@ public class CloudWaterPlants : MonoBehaviour
             return;
         }
         
-        plantObject.WaterLevel += wateringRate * (int)wateringSpeed;
+        plantObject.WaterLevel += wateringRate * wateringSpeed * Time.deltaTime;
         updateGrowState.CheckGrow();
     }
 

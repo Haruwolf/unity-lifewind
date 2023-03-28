@@ -15,6 +15,10 @@ public class Cloud : MonoBehaviour
     [Range(1, 50)]
     public float decrementHP;
 
+    [Range(2, 100)] 
+    [SerializeField] 
+    private float speedDecreaseRate = 10f;
+
     [Range(0.01f, 1)]
     public float speedSizeRate;
 
@@ -59,9 +63,9 @@ public class Cloud : MonoBehaviour
         
         if (cloudHP > 0)
         {
-            cloudHP -= decrementHP * Time.deltaTime;
+            cloudHP -= decrementHP * Time.deltaTime * speedDecreaseRate;
             ShrinkCloud();
-            //Invoke(nameof(MakeItRain), speedSizeRate);
+            Invoke(nameof(MakeItRain), speedSizeRate);
             SoundEvent(audio, chuvaCaindo);
         }
 

@@ -21,7 +21,7 @@ public class PlantController : MonoBehaviour
     [SerializeField]
     [Range(0, 100)]
     [Tooltip("Nível atual da água da planta, não precisa ser alterado, está no inspector para própositos de assistir a velocidade em que o nível de água sobe durante o jogo.")]
-    private int plantWaterLevel = 0;
+    private float plantWaterLevel = 0;
 
     [SerializeField]
     [Range(30, 100)]
