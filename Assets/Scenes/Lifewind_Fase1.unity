@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 51734475}
-  m_IndirectSpecularColor: {r: 0.80380136, g: 0.78865886, b: 0.78402406, a: 1}
+  m_IndirectSpecularColor: {r: 0.80312705, g: 0.7881093, b: 0.78353083, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3642,7 +3642,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7099013272395054131, guid: 499ee1f5bab80a54ba98221a22542f3f, type: 3}
       propertyPath: cloudHeight
-      value: 2.16
+      value: 3.25
       objectReference: {fileID: 0}
     - target: {fileID: 7798213479732165482, guid: 499ee1f5bab80a54ba98221a22542f3f, type: 3}
       propertyPath: m_RootOrder
@@ -3804,6 +3804,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8770181135477660523, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
       propertyPath: waterLevelMax
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 8770181135477660523, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}
+      propertyPath: treeWaterLevel
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 9122134895468227903, guid: b4c5130681f26f542939666ddb6e4b7e, type: 3}

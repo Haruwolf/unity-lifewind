@@ -103,8 +103,9 @@ MonoBehaviour:
   rainPrefab: {fileID: 7218016711575052768}
   cloudHP: 200
   cloudMaxHP: 100
-  decrementHP: 1
-  speedSizeRate: 0.143
+  decrementHP: 20
+  speedDecreaseRate: 10
+  speedSizeRate: 0.2
   cloudMinSize: 0.25
   cloudMaxSize: 1.5
   cloudSizeRate: 1
@@ -121,8 +122,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.65656185, y: 2.41, z: 0.64020884}
-  m_Center: {x: 0.003199473, y: -0.5, z: -0.011257395}
+  m_Size: {x: 0.65656185, y: 2.5, z: 0.64020884}
+  m_Center: {x: 0.003199473, y: -1, z: -0.011257395}
 --- !u!54 &257696981868622923
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -164,7 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wateringRate: 1
-  wateringSpeed: 1
+  wateringSpeed: 0.65
 --- !u!1001 &1667749336695297540
 PrefabInstance:
   m_ObjectHideFlags: 0

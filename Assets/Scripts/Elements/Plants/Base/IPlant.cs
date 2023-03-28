@@ -7,7 +7,7 @@ public interface IPlant
     GameObject SeedGameObject { get; set; }
     GameObject SproutGameObject { get; set; }
     GameObject TreeGameObject { get; set; }
-    int WaterLevel { get; set; }
+    float WaterLevel { get; set; }
     int WaterLevelMax { get; set; }
     int SproutWaterLevel { get; set; }
     int TreeWaterLevel { get; set; }

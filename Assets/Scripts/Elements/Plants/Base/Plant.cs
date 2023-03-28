@@ -24,7 +24,7 @@ public class Plant : IPlant
         set { _plantState = value; }
     }
 
-    private int _waterLevel;
+    private float _waterLevel;
     private int _waterLevelMax;
     private int _sproutLevel;
     private int _treeLevel;
@@ -35,12 +35,12 @@ public class Plant : IPlant
     public GameObject SproutGameObject { get; set; }
     public GameObject TreeGameObject { get; set; }
     public GameObject PlantGameObject { get; set; }
-    public int WaterLevel
+    public float WaterLevel
     {
         get => _waterLevel;
         set
         {
-            if (value < _waterLevelMax)
+            if (value < _treeLevel)
                 _waterLevel = value;
             
             else
@@ -94,7 +94,7 @@ public class Plant : IPlant
         GameObject seedPlanted, 
         GameObject sprout, 
         GameObject tree, 
-        GameObject plant, int wLevel, int wLevelMax, int wSproutLevel, int wTreeLevel)
+        GameObject plant, float wLevel, int wLevelMax, int wSproutLevel, int wTreeLevel)
     {
         PlantState = plantState;
         SeedGameObject = seed;
