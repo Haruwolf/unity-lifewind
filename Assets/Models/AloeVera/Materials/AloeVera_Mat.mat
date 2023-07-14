@@ -12,23 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 4
+  version: 7
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: AloeVera_Mat
   m_Shader: {fileID: -6465566751694194690, guid: 88f0f1d9170cb464aa66f9382deb3b6d, type: 3}
-  m_ShaderKeywords: 
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -92,6 +96,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - Vector1_02107b15108b40f4b3687ca378c23199: 0
     - Vector1_0b307ac71b284648a052c68d0370f85d: 0.04
@@ -99,7 +104,9 @@ Material:
     - Vector1_86da9559fce04ca5b46e7da12b95ecb6: 0.49
     - Vector1_b841001508354570ad7380323c9b5c17: 1
     - Vector1_bbb3629848fc4daca533790fb3a3d8e8: 0.231
+    - Vector1_cce30906644941c2b403d60e16b45079: 1
     - Vector1_de439fccef4a40e3a74ea4dc4beab52f: 0.143
+    - Vector1_e54698e971444417ab8b124204e9051d: 1
     - Vector1_f62773601bcf4adc834d3aca5551b684: 0.23
     - _AlphaClip: 0
     - _Blend: 0
@@ -118,6 +125,7 @@ Material:
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
+    - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Smoothness: 0.5
@@ -131,6 +139,7 @@ Material:
     - Color_113ba7d4ef4444258f30627449d9d469: {r: 0, g: 1, b: 0.4725387, a: 0}
     - Color_7ca6f3c850aa49c380e2df3b82f9f1df: {r: 0, g: 1, b: 0.50891304, a: 0}
     - Color_a42fa062b7734af0a767df948db3f1b4: {r: 0.7993573, g: 1, b: 0, a: 0}
+    - Color_b7f4508cab104aceaf96619dc6783d31: {r: 0, g: 0.4981887, b: 1, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
