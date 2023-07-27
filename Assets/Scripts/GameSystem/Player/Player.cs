@@ -1,6 +1,7 @@
 using UnityEngine;
+using GameSystem.Inputs;
 
-namespace Core
+namespace GameSystem.Player
 {
     public class Player : MonoBehaviour
     {
@@ -22,7 +23,7 @@ namespace Core
             DontDestroyOnLoad(gameObject);
             SetComponentsActive();
         }
-
+        
         private void SetComponentsActive()
         {
             inputManager.enabled = true;

@@ -609,14 +609,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrassBlock
       objectReference: {fileID: 0}
-    - target: {fileID: 5553347730038144797, guid: 076f2f7a7dafb0c4b922f93742f3371a, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5553347730038144797, guid: 076f2f7a7dafb0c4b922f93742f3371a, type: 3}
-      propertyPath: m_ProvidesContacts
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -627,7 +619,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 478371321516696749, guid: 076f2f7a7dafb0c4b922f93742f3371a, type: 3}
   m_PrefabInstance: {fileID: 667885931}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1039169107
+--- !u!1 &1103802314
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -635,42 +627,90 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1039169109}
-  - component: {fileID: 1039169108}
+  - component: {fileID: 1103802317}
+  - component: {fileID: 1103802316}
+  - component: {fileID: 1103802315}
   m_Layer: 0
-  m_Name: WindSpawner
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1039169108
+--- !u!114 &1103802315
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1039169107}
+  m_GameObject: {fileID: 1103802314}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72de0c6e5a57ee74cab0b4d453fbb0dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 9269666e45fe78449890324dd7ab06b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pool: {fileID: 2022855534}
---- !u!4 &1039169109
+  windAction:
+    m_Name: Wind
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: 3c8c7e7f-389f-4ccc-a0da-f4cb54f24dad
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 98e028f6-dbf6-4b1f-93af-065e231d083e
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Wind
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 5bad869a-d5cc-4e17-b9fe-5c6c45186c8e
+      m_Path: <Touchscreen>/Press
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Wind
+      m_Flags: 0
+    m_Flags: 0
+  holdTime: 0.5
+  holdingEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  performedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  canceledEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1103802316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103802314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f38f3849c342474439f689c3ab58f2d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputManager: {fileID: 1103802315}
+--- !u!4 &1103802317
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1039169107}
+  m_GameObject: {fileID: 1103802314}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0025568195, y: 0.8714848, z: 0.6253336}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1160234425
 GameObject:
@@ -822,144 +862,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 183997020706294460, guid: 7ee7ce51dd06fd64aa69d13c18ef4cfc, type: 3}
   m_PrefabInstance: {fileID: 1905381277}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2022855531
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2022855533}
-  - component: {fileID: 2022855534}
-  m_Layer: 0
-  m_Name: WindPool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2022855533
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2022855531}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0000017285347, y: -0.70480996, z: 1.0000001}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2022855534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2022855531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd8644dd025f0444cb5191f80aaf9251, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  windPoolSettings: {fileID: 11400000, guid: ef98e5de4a6811c47b1368fb6943986b, type: 2}
---- !u!1 &692595030500626090
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8559049257598165606}
-  - component: {fileID: 3434375582042937872}
-  - component: {fileID: 1754322975469181599}
-  m_Layer: 0
-  m_Name: Player
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1754322975469181599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 692595030500626090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9269666e45fe78449890324dd7ab06b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  windAction:
-    m_Name: Wind
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: 3c8c7e7f-389f-4ccc-a0da-f4cb54f24dad
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 98e028f6-dbf6-4b1f-93af-065e231d083e
-      m_Path: <Mouse>/leftButton
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Wind
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 5bad869a-d5cc-4e17-b9fe-5c6c45186c8e
-      m_Path: <Touchscreen>/Press
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Wind
-      m_Flags: 0
-    m_Flags: 0
-  holdTime: 0.5
-  startedEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1039169108}
-        m_TargetAssemblyTypeName: CoreMechanics.Wind.WindSpawn, Assembly-CSharp
-        m_MethodName: SetWind
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  holdingEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  performedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  canceledEvent:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &3434375582042937872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 692595030500626090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f38f3849c342474439f689c3ab58f2d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputManager: {fileID: 1754322975469181599}
 --- !u!1001 &5421647167137576229
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1026,18 +928,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6993612285620382812, guid: 5e3123e8e3c8f5f49aea6c58a6fc733b, type: 3}
   m_PrefabInstance: {fileID: 5421647167137576229}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &8559049257598165606
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 692595030500626090}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

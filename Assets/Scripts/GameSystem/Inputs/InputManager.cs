@@ -1,19 +1,21 @@
-using Core.Interfaces;
+using System;
+using GameSystem.Inputs.Interfaces;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
-namespace Core
+namespace GameSystem.Inputs
 {
     public class InputManager : MonoBehaviour, IInputEvents
     {
+        
         [SerializeField] private InputAction windAction;
         [SerializeField] private float holdTime;
+        public UnityEvent<Vector3> startedEvent;
         public UnityEvent holdingEvent;
         public UnityEvent performedEvent;
         public UnityEvent canceledEvent;
-        
         private float HoldTime
         {
             get => holdTime; 
@@ -39,6 +41,11 @@ namespace Core
         
         private void InitiateActions()
         {
+            windAction.started += ctx =>
+            {
+                OnStarted();
+            };
+            
             windAction.performed += ctx =>
             {
                 if (ctx.interaction is HoldInteraction)
@@ -62,6 +69,12 @@ namespace Core
         {
             windAction.Enable();
         }
+
+        public void OnStarted()
+        {
+            Vector3 mouseClickedPos = GetClickPos();
+            startedEvent.Invoke(mouseClickedPos);
+        }
         
         public void OnHold()
         {
@@ -76,6 +89,16 @@ namespace Core
         public void OnCanceled()
         {
             canceledEvent.Invoke();
+        }
+
+        private Vector3 GetClickPos()
+        {
+            Vector3 mousePos = new Vector3(
+                    Mouse.current.position.ReadValue().x, 
+                    Mouse.current.position.ReadValue().y,
+                    Camera.main!.transform.position.z);
+                
+            return mousePos;
         }
     }
 }
