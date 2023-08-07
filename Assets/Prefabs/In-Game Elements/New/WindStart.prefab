@@ -4841,8 +4841,8 @@ GameObject:
   - component: {fileID: 3181613162438304550}
   - component: {fileID: 6219117637205503498}
   - component: {fileID: 8728995620916782126}
-  - component: {fileID: -5889331168093591935}
   - component: {fileID: 6124175542791244779}
+  - component: {fileID: 1798836941692033975}
   m_Layer: 2
   m_Name: WindStart
   m_TagString: Wind
@@ -4878,7 +4878,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 4
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 3
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -9802,18 +9802,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!114 &-5889331168093591935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4214856129261904110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc52206d18baf5c46b65759df9db7a45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6124175542791244779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9826,10 +9814,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab601efb4e0fd7c4bb2981be69ebdf09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windParticles: {fileID: 3891238047315118973}
-  createdInstance:
-    m_PersistentCalls:
-      m_Calls: []
+  windSettings: {fileID: 11400000, guid: 413594193e46ce64d9310457248f00d5, type: 2}
+--- !u!114 &1798836941692033975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4214856129261904110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4449648819b61754db433ba3327b7e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4501240460928614467
 GameObject:
   m_ObjectHideFlags: 0

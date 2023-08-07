@@ -13,9 +13,11 @@ namespace GameSystem.Inputs
         [SerializeField] private InputAction windAction;
         [SerializeField] private float holdTime;
         public UnityEvent<Vector3> startedEvent;
-        public UnityEvent holdingEvent;
+        public UnityEvent<Vector3> holdingEvent;
         public UnityEvent performedEvent;
         public UnityEvent canceledEvent;
+        private bool isHolding = false;
+        
         private float HoldTime
         {
             get => holdTime; 
@@ -52,6 +54,8 @@ namespace GameSystem.Inputs
                 {
                     OnHold();
                 }
+
+                isHolding = true;
             };
             
             windAction.canceled += ctx =>
@@ -62,7 +66,16 @@ namespace GameSystem.Inputs
                 }
                 
                 OnPerformed();
+                isHolding = false;
             };
+        }
+
+        private void FixedUpdate()
+        {
+            if (isHolding)
+            {
+                OnHold();
+            }
         }
 
         private void OnEnable()
@@ -78,7 +91,8 @@ namespace GameSystem.Inputs
         
         public void OnHold()
         {
-            holdingEvent.Invoke();
+            Vector3 mousePos = GetClickPos();
+            holdingEvent.Invoke(mousePos);
         }
 
         public void OnPerformed()
